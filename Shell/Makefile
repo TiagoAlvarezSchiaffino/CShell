@@ -8,7 +8,7 @@
 #                                                            (    @\___      #
 #                                                             /         O    #
 #   Created: 2024/05/16 11:15:39 by Tiago                    /   (_____/     #
-#   Updated: 2024/05/16 11:18:26 by Tiago                  /_____/ U         #
+#   Updated: 2024/05/16 20:21:18 by Tiago                  /_____/ U         #
 #                                                                            #
 # ************************************************************************** #
 
@@ -18,6 +18,10 @@ ARRC		=	ar rcs
 CC			=	gcc
 RM			=	rm -f
 CFLAGS		=	-Wall -Wextra -Werror
+# CFLAGS		+=	-I/usr/local/opt/readline/include
+# CFLAGS		+=	-L/usr/local/opt/readline/lib
+# CFLAGS		+=	-lreadline -L .brew/opt/readline/lib -I .brew/opt/readline/include
+# CFLAGS		+=	-fsanitize=address -g3
 SRCS_FILES	=	ms_main_bonus
 SRCS		= 	$(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRCS_FILES)))
 OBJS		= 	$(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRCS_FILES)))

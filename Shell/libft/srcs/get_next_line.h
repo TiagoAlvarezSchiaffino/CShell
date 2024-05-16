@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 18:58:57 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/16 19:03:14 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/16 20:27:08 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@
 #  define BUFFER_SIZE 42
 # endif
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
+# include "libft.h"
 
 char	*ft_strcomb(char *dst, char *src);
 int		checkend(char c);

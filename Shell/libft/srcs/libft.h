@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:11:04 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/16 19:38:22 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/16 20:34:36 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stddef.h>
 # include <limits.h>
 # include <stdarg.h>
+# include <fcntl.h>
 
 typedef struct s_list
 {
