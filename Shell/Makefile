@@ -8,7 +8,7 @@
 #                                                            (    @\___      #
 #                                                             /         O    #
 #   Created: 2024/05/16 21:17:51 by Tiago                    /   (_____/     #
-#   Updated: 2024/05/16 21:25:39 by Tiago                  /_____/ U         #
+#   Updated: 2024/05/16 21:58:37 by Tiago                  /_____/ U         #
 #                                                                            #
 # ************************************************************************** #
 
@@ -22,7 +22,8 @@ CFLAGS		=	-Wall -Wextra -Werror
 # CFLAGS		+=	-fsanitize=address -g3
 READLINE	=	-lreadline
 # READLINE	=	-L/usr/local/opt/readline/lib -lreadline
-SRCS_FILES	=	ms_error_bonus \
+SRCS_FILES	=	ms_helper_bonus \
+				ms_error_bonus \
 				ms_main_bonus \
 				ms_cd_bonus
 SRCS		= 	$(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRCS_FILES)))

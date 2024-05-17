@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:38:49 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/16 21:29:18 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/16 21:59:01 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,12 @@
 # include <term.h>
 
 /* CD */
-int		cd(char *path);
+int		check_cd_command(char *command, char *path);
 
 /* Error */
 void	perror_and_exit(char *errormsg);
+
+/* Helper */
+void	free_ftsplit(char **split);
 
 #endif
