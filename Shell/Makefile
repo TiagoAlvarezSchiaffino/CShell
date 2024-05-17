@@ -8,7 +8,7 @@
 #                                                            (    @\___      #
 #                                                             /         O    #
 #   Created: 2024/05/16 21:17:51 by Tiago                    /   (_____/     #
-#   Updated: 2024/05/16 21:58:37 by Tiago                  /_____/ U         #
+#   Updated: 2024/05/16 22:17:32 by Tiago                  /_____/ U         #
 #                                                                            #
 # ************************************************************************** #
 
@@ -23,6 +23,7 @@ CFLAGS		=	-Wall -Wextra -Werror
 READLINE	=	-lreadline
 # READLINE	=	-L/usr/local/opt/readline/lib -lreadline
 SRCS_FILES	=	ms_helper_bonus \
+				ms_signal_bonus \
 				ms_error_bonus \
 				ms_main_bonus \
 				ms_cd_bonus
