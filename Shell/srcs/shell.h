@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:38:49 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/16 22:18:57 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/16 22:33:43 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,12 @@ void	perror_and_exit(char *errormsg);
 
 /* Signal */
 void	sigint_handler(int signo);
+void	init_signal(void);
 
 /* Helper */
 void	free_ftsplit(char **split);
+
+/* Parse Input */
+char	**parse_input(char *input);
 
 #endif

@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/16 22:25:39 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/16 22:38:51 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,11 @@ int	main(void)
 	char	**command;
 	char	*input;
 
+	init_signal();
 	while (1)
 	{
-		signal(SIGINT, sigint_handler);
 		input = readline("$> ");
-		if (input == 0)
-			break ;
-		command = ft_split(input, ' ');
+		command = parse_input(input);
 		if (ft_getwc(input, ' ') < 1)
 			continue ;
 		if (check_cd_command(command[0], command[1]) == 0)

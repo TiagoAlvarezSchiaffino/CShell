@@ -8,7 +8,7 @@
 #                                                            (    @\___      #
 #                                                             /         O    #
 #   Created: 2024/05/16 21:17:51 by Tiago                    /   (_____/     #
-#   Updated: 2024/05/16 22:21:18 by Tiago                  /_____/ U         #
+#   Updated: 2024/05/16 22:29:23 by Tiago                  /_____/ U         #
 #                                                                            #
 # ************************************************************************** #
 
@@ -18,11 +18,12 @@ ARRC		=	ar rcs
 CC			=	gcc
 RM			=	rm -f
 CFLAGS		=	-Wall -Wextra -Werror
-# CFLAGS		+=	-I/usr/local/opt/readline/include
+CFLAGS		+=	-I/usr/local/opt/readline/include
 # CFLAGS		+=	-fsanitize=address -g3
 READLINE	=	-lreadline
-# READLINE	=	-L/usr/local/opt/readline/lib -lreadline
-SRCS_FILES	=	ms_helper_bonus \
+READLINE	+=	-L/usr/local/opt/readline/lib
+SRCS_FILES	=	ms_parseinput_bonus \
+				ms_helper_bonus \
 				ms_signal_bonus \
 				ms_error_bonus \
 				ms_main_bonus \
