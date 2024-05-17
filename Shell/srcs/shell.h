@@ -8,12 +8,12 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:38:49 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/16 20:38:48 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/16 21:29:18 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#ifndef SHELL_H
+# define SHELL_H
 
 # include "../libft/srcs/libft.h"
 # include <readline/readline.h>
@@ -26,5 +26,11 @@
 # include <dirent.h>
 # include <string.h>
 # include <term.h>
+
+/* CD */
+int		cd(char *path);
+
+/* Error */
+void	perror_and_exit(char *errormsg);
 
 #endif
