@@ -1,57 +1,54 @@
-# ************************************************************************** #
-#                                                                            #
-#                                                                            #
-#   Makefile                                                                 #
-#                                                                            #
-#   By: Tiago <tiagoalvarezschiaffino@gmail.com>                             #
-#                                                             / \__          #
-#                                                            (    @\___      #
-#                                                             /         O    #
-#   Created: 2024/05/16 11:15:39 by Tiago                    /   (_____/     #
-#   Updated: 2024/05/16 20:21:18 by Tiago                  /_____/ U         #
-#                                                                            #
-# ************************************************************************** #
+NAME = shell
 
-NAME		=	cshell
-LIBFT		=	libft.a
-ARRC		=	ar rcs
-CC			=	gcc
-RM			=	rm -f
-CFLAGS		=	-Wall -Wextra -Werror
-# CFLAGS		+=	-I/usr/local/opt/readline/include
-# CFLAGS		+=	-L/usr/local/opt/readline/lib
-# CFLAGS		+=	-lreadline -L .brew/opt/readline/lib -I .brew/opt/readline/include
-# CFLAGS		+=	-fsanitize=address -g3
-SRCS_FILES	=	ms_main_bonus
-SRCS		= 	$(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRCS_FILES)))
-OBJS		= 	$(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRCS_FILES)))
-SRCS_DIR	=	srcs/
-LIBFT_DIR	=	libft
-OBJS_DIR	=	objs/
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -I/usr/local/opt/readline/include #-fsanitize=address -g3
+LDFLAGS = -L/usr/include -L/usr/local/opt/readline/lib -lreadline
+RM = rm -f
 
-all:			
-				mkdir -p $(OBJS_DIR)
-				make create_libft
-				make $(NAME)
+MAIN = srcs/ms_main_bonus.c
 
+# SRC = shell.c
 
-$(OBJS_DIR)%.o: $(SRCS_DIR)%.c
-				$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
+# BLTIN = builtin/echo.c builtin/builtin.c builtin/export.c builtin/export_utils.c \
+# 		builtin/env.c builtin/unset.c builtin/unset_utils.c builtin/exit.c \
+# 		builtin/cd_path.c builtin/pwd_path.c builtin/redir_file.c \
+# 		builtin/redir_file_utils.c builtin/env_utils.c builtin/heredoc.c \
+# 		builtin/heredoc_utils.c builtin/cd_path_utils.c
 
-$(NAME):		$(OBJS)
-				$(CC) $(CFLAGS) $(LIBFT_DIR)/$(LIBFT) $(SRCS) -o $(NAME)
+# UTILS = utilities/print_utils.c utilities/free_utils.c utilities/get_next_line.c \
+# 		utilities/signals.c
 
-create_libft:
-				make -C $(LIBFT_DIR)
+# EXECS = executor/executor.c executor/executor_utils.c executor/pipex.c \
+# 		executor/pipex_utils.c
+
+# PARSER = parser/parser.c parser/lexer.c parser/lexer_utils.c parser/init_cmdgrp.c \
+# 		 parser/redirection.c parser/command.c parser/expansion.c parser/expansion_size.c \
+# 		 parser/expansion_replace.c parser/expansion_utils.c parser/arguments.c
+
+OBJ = ${SRC:.c=.o} ${BLTIN:.c=.o} ${UTILS:.c=.o} ${PARSER:.c=.o} ${EXECS:.c=.o}
+
+LIBFT_PATH = libft/
+LIBFT = libft/libft.a
+
+all: ${NAME}
+
+${NAME}: ${OBJ} ${LIBFT} $(MAIN)
+	@${CC} ${CFLAGS} -o ${NAME} ${MAIN} ${OBJ} ${LIBFT} ${LDFLAGS}
+
+${LIBFT}:
+	@make re -C ${LIBFT_PATH}
+
+%.o: %.c
+	@${CC} ${CFLAGS} -c $< -o $@
 
 clean:
-				rm -rf $(OBJS_DIR)
-				make clean -C $(LIBFT_DIR)
+		@${RM} ${OBJ}
+		@make clean -C ${LIBFT_PATH}
 
-fclean:			clean
-				make fclean -C $(LIBFT_DIR)
-				rm -rf $(NAME)
+fclean: clean
+		@${RM} ${NAME}
+		@make fclean -C ${LIBFT_PATH}
 
-re:				fclean all
+re: fclean all
 
-.PHONY:			all create_libft clean fclean re
+.PHONY = all clean fclean re
