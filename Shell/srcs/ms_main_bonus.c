@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/16 22:38:51 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/24 22:54:04 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 ** ft_split the command by ' ', and check whether there is a cd command
 ** If check_cd_command returns 0, then fork out a child to run system program
 ** Parent will wait for the child before freeing and looping again */
-int	main(void)
+int	main(int ac, char **av, char **evp)
 {
 	pid_t	child_pid;
 	char	**command;
@@ -39,7 +39,7 @@ int	main(void)
 			child_pid = fork();
 			if (child_pid < 0)
 				perror_and_exit("Fork failed");
-			if (child_pid == 0 && execvp(command[0], command) < 0)
+			if (child_pid == 0 && execve(command[0], command, evp) < 0)
 				perror_and_exit(command[0]);
 			else
 				waitpid(child_pid, 0, WUNTRACED);
@@ -48,6 +48,8 @@ int	main(void)
 		free(input);
 	}
 	return (0);
+	(void)ac;
+	(void)av;
 }
 
 /*

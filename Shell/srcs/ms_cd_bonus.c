@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/16 22:03:14 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/24 22:53:39 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,17 @@ int	check_cd_command(char *command, char *path)
 {
 	if (ft_strncmp(command, "cd", 3) != 0)
 		return (0);
-	if (chdir(path) < 0)
+	if (path == NULL)
+	{
+		path = ft_strjoin("/Users/", getenv("USER"));
+		if (chdir(path) < 0)
+		{
+			free(path);
+			perror(path);
+		}
+		free(path);
+	}
+	else if (chdir(path) < 0)
 		perror(path);
 	return (1);
 }

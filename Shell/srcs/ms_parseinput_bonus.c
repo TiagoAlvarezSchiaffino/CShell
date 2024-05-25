@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/16 22:46:01 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/24 22:53:21 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ char	**parse_input(char *input)
 	if (input == 0)
 	{
 		write(1, "exit\n", 5);
+		system("leaks -q minishell");
 		exit(0);
 	}
 	command = ft_split(input, ' ');
@@ -34,6 +35,7 @@ char	**parse_input(char *input)
 		if (ft_strncmp(command[i], "exit", 5) == 0)
 		{
 			write(1, "exit\n", 5);
+			system("leaks -q minishell");
 			exit(0);
 		}
 	}
