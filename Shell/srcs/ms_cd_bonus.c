@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/25 06:30:06 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/25 08:12:56 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,15 @@
 ** If yes, then will change current directory and return 1
 ** If changing directory fails, throw error and exit with status 1
 ** The directory is changed in the parent instead of in the child */
-int	check_cd_command(char *command, char *path)
+int	check_cd_command(int count, char **input)
 {
+	char	*command;
+	char	*path;
+
+	if (count <= 1)
+		return (0);
+	command = input[0];
+	path = input[1];
 	if (ft_strncmp(command, "cd", 3) != 0)
 		return (0);
 	if (path == NULL)

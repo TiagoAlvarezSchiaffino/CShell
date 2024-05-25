@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 17:12:26 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/16 17:19:11 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/25 08:10:31 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	count = ft_getwc(s, c);
-	output = malloc(sizeof(char *) * count + 1);
+	output = malloc(sizeof(char *) * (count + 1));
 	if (output == NULL)
 		return (NULL);
 	i = 0;

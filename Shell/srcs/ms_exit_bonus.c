@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/25 06:33:51 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/25 08:14:40 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 
 int	ms_exit(char **args, t_main *main)
 {
-	ft_printf("From EXIT!");
 	(void)args;
 	(void)main;
 	return (0);

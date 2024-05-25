@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/25 06:41:12 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/25 08:17:03 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,8 @@ int	main(int ac, char **av, char **envp)
 	{
 		input = readline("$> ");
 		command = parse_input(input);
-		if (ft_getwc(input, ' ') < 1)
-			continue ;
-		check_cd_command(command[0], command[1]);
+		check_cd_command(ft_getwc(input, ' '), command);
+		main.func[5](NULL, NULL);
 		free_ftsplit(command);
 		free(input);
 	}

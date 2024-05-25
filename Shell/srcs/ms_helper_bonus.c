@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/25 06:35:23 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/25 08:15:26 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	free_ftsplit(char **split)
 	int	i;
 
 	i = -1;
-	while (split[++i] != 0)
+	while (split[++i] != NULL)
 		free(split[i]);
 	free(split);
 }

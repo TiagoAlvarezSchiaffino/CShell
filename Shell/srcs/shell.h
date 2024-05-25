@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:38:49 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/25 06:14:22 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/25 08:11:27 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_main
 }	t_main;
 
 /* CD */
-int		check_cd_command(char *command, char *path);
+int		check_cd_command(int count, char **command);
 int		cd(char **args, t_main *main);
 
 /* Error */
