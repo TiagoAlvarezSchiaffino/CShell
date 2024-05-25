@@ -8,7 +8,7 @@
 #                                                            (    @\___      #
 #                                                             /         O    #
 #   Created: 2024/05/16 21:17:51 by Tiago                    /   (_____/     #
-#   Updated: 2024/05/16 22:29:23 by Tiago                  /_____/ U         #
+#   Updated: 2024/05/25 06:11:56 by Tiago                  /_____/ U         #
 #                                                                            #
 # ************************************************************************** #
 
@@ -25,8 +25,15 @@ READLINE	+=	-L/usr/local/opt/readline/lib
 SRCS_FILES	=	ms_parseinput_bonus \
 				ms_helper_bonus \
 				ms_signal_bonus \
+				ms_bifunc_bonus \
+				ms_export_bonus \
 				ms_error_bonus \
+				ms_unset_bonus \
 				ms_main_bonus \
+				ms_echo_bonus \
+				ms_exit_bonus \
+				ms_env_bonus \
+				ms_pwd_bonus \
 				ms_cd_bonus
 SRCS		= 	$(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRCS_FILES)))
 OBJS		= 	$(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRCS_FILES)))

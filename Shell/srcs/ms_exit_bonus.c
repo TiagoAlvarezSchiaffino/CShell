@@ -1,45 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*   ms_cd_bonus.c                                                            */
+/*   ms_exit_bonus.c                                                          */
 /*                                                                            */
 /*   By: Tiago <tiagoalvarezschiaffino@gmail.com>                             */
 /*                                                             / \__          */
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/25 06:30:06 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/25 06:33:51 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-/* Checks whether there is a cd command
-** If no, return 0
-** If yes, then will change current directory and return 1
-** If changing directory fails, throw error and exit with status 1
-** The directory is changed in the parent instead of in the child */
-int	check_cd_command(char *command, char *path)
+int	ms_exit(char **args, t_main *main)
 {
-	if (ft_strncmp(command, "cd", 3) != 0)
-		return (0);
-	if (path == NULL)
-	{
-		path = ft_strjoin("/Users/", getenv("USER"));
-		if (chdir(path) < 0)
-		{
-			free(path);
-			perror(path);
-		}
-		free(path);
-	}
-	else if (chdir(path) < 0)
-		perror(path);
-	return (1);
-}
-
-int	cd(char **args, t_main *main)
-{
+	ft_printf("From EXIT!");
 	(void)args;
 	(void)main;
 	return (0);
