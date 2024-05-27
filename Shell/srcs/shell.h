@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:38:49 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/27 15:14:08 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/27 15:44:32 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ char	**parse_input(t_main *main, char *input);
 
 /* Bifunc */
 void	init_main(t_main *main, char **envp);
+void	executor(t_main *main, char **command);
 
 /* Echo */
 int		echo(t_main *main, char **args);

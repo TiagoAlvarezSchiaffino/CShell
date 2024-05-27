@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/27 14:51:06 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/27 15:23:34 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/27 15:57:01 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ char	**sort_envp(char **envp)
 	while (envp[max] != 0)
 		max++;
 	i = -1;
-	while (++i < max - 1)
+	while (++i < max)
 	{
-		j = i + 1;
+		j = i;
 		while (++j < max)
 		{
 			if (ft_strcmp(output[i], output[j]) > 0)

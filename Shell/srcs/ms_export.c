@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/27 14:51:06 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/27 15:20:46 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/27 15:53:54 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ int	export(t_main *main, char **args)
 	{
 		dup = sort_envp(main->envp);
 		print_envp(dup);
+        free_doublearray(dup);
 	}
 	else
 		find_and_add(main, args);

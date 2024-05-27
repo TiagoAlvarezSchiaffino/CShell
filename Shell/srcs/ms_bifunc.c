@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:38:49 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/27 15:40:53 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/27 15:50:06 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,4 +27,22 @@ void init_main(t_main *main, char **envp)
 	main->func[MS_ENV] = env;
 	main->func[MS_EXIT] = ms_exit;
 	main->envp = dup_doublearray(envp);
+}
+
+void	executor(t_main *main, char **command)
+{
+	int	i;
+
+	i = -1;
+	while (++i < MS_MAX_BIFUNC)
+	{
+		if (ft_strcmp(command[0], main->func_name[i]) == 0)
+		{
+			g_global.error_no = main->func[i](main, command);
+			return ;
+		}
+	}
+	write(2, command[0], ft_strlen(command[0]));
+	write(2, ": command not found\n", 20);
+	g_global.error_no = 127;
 }

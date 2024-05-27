@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/27 15:28:27 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/27 15:57:45 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	main(int ac, char **av, char **envp)
 		command = parse_input(&main, input);
 		if (input[0] != '\0')
 			add_history(input);
+		executor(&main, command);
 		free_doublearray(command);
 		free(input);
 	}
