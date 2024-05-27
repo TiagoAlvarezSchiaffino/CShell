@@ -8,13 +8,12 @@
 #                                                            (    @\___      #
 #                                                             /         O    #
 #   Created: 2024/05/16 21:17:51 by Tiago                    /   (_____/     #
-#   Updated: 2024/05/27 14:09:21 by Tiago                  /_____/ U         #
+#   Updated: 2024/05/27 15:08:20 by Tiago                  /_____/ U         #
 #                                                                            #
 # ************************************************************************** #
 
 NAME		=	shell
 LIBFT		=	libft.a
-ARRC		=	ar rcs
 CC			=	gcc
 RM			=	rm -f
 CFLAGS		=	-Wall -Wextra -Werror
@@ -43,16 +42,16 @@ OBJS_DIR	=	objs/
 
 all:			
 				mkdir -p $(OBJS_DIR)
-				make create_libft
+				make libft
 				make $(NAME)
 
 $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
-				$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
+				$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME):		$(OBJS)
-				$(CC) $(READLINE) $(CFLAGS) $(LIBFT_DIR)/$(LIBFT) $(SRCS) -o $(NAME)
+				$(CC) $(READLINE) $(CFLAGS) $(LIBFT_DIR)/$(LIBFT) $(OBJS) -o $(NAME)
 
-create_libft:
+libft:
 				make -C $(LIBFT_DIR)
 
 clean:
@@ -65,4 +64,4 @@ fclean:			clean
 
 re:				fclean all
 
-.PHONY:			all create_libft clean fclean re
+.PHONY:			all libft clean fclean re

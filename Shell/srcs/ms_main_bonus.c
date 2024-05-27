@@ -1,14 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*   ms_main_bonus.c                                                          */
+/*   ms_main.c                                                                */
 /*                                                                            */
 /*   By: Tiago <tiagoalvarezschiaffino@gmail.com>                             */
 /*                                                             / \__          */
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/27 14:34:46 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/27 15:11:20 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	main(int ac, char **av, char **envp)
 		if (input[0] != '\0')
 			add_history(input);
 		main.func[MS_CD](&main, command);
-		main.func[MS_EXPORT](&main, command);
 		free_doublearray(command);
 		free(input);
 	}
