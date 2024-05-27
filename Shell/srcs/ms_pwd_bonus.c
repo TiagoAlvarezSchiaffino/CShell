@@ -8,13 +8,13 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/25 06:42:08 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/27 14:21:44 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int	pwd(char **args, t_main *main)
+int	pwd(t_main *main, char **args)
 {
 	(void)args;
 	(void)main;

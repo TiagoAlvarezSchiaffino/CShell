@@ -8,13 +8,13 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/27 14:10:57 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/27 14:17:12 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int	env(char **args, t_main *main)
+int	env(t_main *main, char **args)
 {
 	int	i;
 

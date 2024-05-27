@@ -8,15 +8,18 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/25 08:14:40 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/27 14:19:31 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int	ms_exit(char **args, t_main *main)
+int	ms_exit(t_main *main, char **args)
 {
-	(void)args;
-	(void)main;
+	write(1, "exit\n", 5);
+	system("leaks -q minishell");
+	exit(0);
 	return (0);
+	(void)main;
+	(void)args;
 }

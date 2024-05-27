@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/25 08:12:56 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/27 14:15:19 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	check_cd_command(int count, char **input)
 	return (1);
 }
 
-int	cd(char **args, t_main *main)
+int	cd(t_main *main, char **args)
 {
 	(void)args;
 	(void)main;

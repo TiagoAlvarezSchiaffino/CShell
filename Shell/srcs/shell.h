@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:38:49 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/25 08:11:27 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/27 14:13:11 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,22 +28,29 @@
 # include <string.h>
 # include <term.h>
 
-# define MAX_BIFUNC 7
+# define MS_ECHO 0
+# define MS_CD 1
+# define MS_PWD 2
+# define MS_EXPORT 3
+# define MS_UNSET 4
+# define MS_ENV 5
+# define MS_EXIT 6
+# define MS_MAX_BIFUNC 7
 
 struct		s_main;
-typedef int	(*t_func)(char **args, struct s_main *data);
+typedef int	(*t_func)(struct s_main *main, char **args);
 
 /* Builtin functions struct */
 typedef struct s_main
 {
 	char	**envp;
 	char	**func_name;
-	t_func	func[MAX_BIFUNC];
+	t_func	func[MS_MAX_BIFUNC];
 }	t_main;
 
 /* CD */
 int		check_cd_command(int count, char **command);
-int		cd(char **args, t_main *main);
+int		cd(t_main *main, char **args);
 
 /* Error */
 void	perror_and_exit(char *errormsg);
@@ -56,27 +63,27 @@ void	init_signal(void);
 void	free_ftsplit(char **split);
 
 /* Parse Input */
-char	**parse_input(char *input);
+char	**parse_input(t_main *main, char *input);
 
 /* Bifunc */
 void	init_main(t_main *main, char **envp);
 
 /* Echo */
-int		echo(char **args, t_main *main);
+int		echo(t_main *main, char **args);
 
 /* Pwd */
-int		pwd(char **args, t_main *main);
+int		pwd(t_main *main, char **args);
 
 /* Export */
-int		export(char **args, t_main *main);
+int		export(t_main *main, char **args);
 
 /* Unset */
-int		unset(char **args, t_main *main);
+int		unset(t_main *main, char **args);
 
 /* Env */
-int		env(char **args, t_main *main);
+int		env(t_main *main, char **args);
 
 /* Exit */
-int		ms_exit(char **args, t_main *main);
+int		ms_exit(t_main *main, char **args);
 
 #endif
