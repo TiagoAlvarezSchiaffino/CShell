@@ -1,42 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*   ms_helper_bonus.c                                                        */
+/*   ft_strndup.c                                                             */
 /*                                                                            */
 /*   By: Tiago <tiagoalvarezschiaffino@gmail.com>                             */
 /*                                                             / \__          */
 /*                                                            (    @\___      */
 /*                                                             /         O    */
-/*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/27 14:50:54 by Tiago                  /_____/ U         */
+/*   Created: 2024/05/27 15:37:53 by Tiago                    /   (_____/     */
+/*   Updated: 2024/05/27 15:39:58 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "shell.h"
+#include "libft.h"
 
-/* Frees double array (ie. output from ft_split) */
-void	free_doublearray(char **split)
+char	*ft_strndup(const char *str, size_t n)
 {
-	int	i;
+	size_t	i;
+	char	*output;
 
+	output = malloc(sizeof(char) * n + 1);
+	if (output == NULL)
+		return (NULL);
 	i = -1;
-	while (split[++i] != NULL)
-		free(split[i]);
-	free(split);
-}
-
-/* Creates a duplicate of a double array */
-char	**dup_doublearray(char **src)
-{
-	char	**output;
-	int		i;
-
-	i = 0;
-	while (src[i] != 0)
-		i++;
-	output = ft_calloc(i + 1, sizeof(char *));
-	output[i] = 0;
-	while (--i >= 0)
-		output[i] = ft_strdup(src[i]);
+	while (++i < n)
+		output[i] = str[i];
+	output[i] = '\0';
 	return (output);
 }

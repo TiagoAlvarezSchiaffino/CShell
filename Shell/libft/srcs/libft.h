@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:11:04 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/27 14:44:21 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/27 15:40:32 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ char	*ft_strnstr(const char *str, const char *to_find, size_t len);
 long	ft_atoi(const char *str);
 void	*ft_calloc(size_t nitems, size_t size);
 char	*ft_strdup(const char *src);
+char	*ft_strndup(const char *src, size_t size);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);

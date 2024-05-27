@@ -1,30 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*   ms_bifunc_bonus.c                                                        */
+/*   ms_helper.c                 	                                          */
 /*                                                                            */
 /*   By: Tiago <tiagoalvarezschiaffino@gmail.com>                             */
 /*                                                             / \__          */
 /*                                                            (    @\___      */
 /*                                                             /         O    */
-/*   Created: 2024/05/16 19:38:49 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/27 14:23:08 by Tiago                  /_____/ U         */
+/*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
+/*   Updated: 2024/05/27 15:41:46 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-/* Initializes all of the functions pointers with their respective names
-** Creates a copy of envp and saves it into the struct */
-void init_main(t_main *main, char **envp)
+/* Frees double array (ie. output from ft_split) */
+void	free_doublearray(char **split)
 {
-	main->func_name = ft_split("echo cd pwd export unset env exit", ' ');
-	main->func[MS_ECHO] = echo;
-	main->func[MS_CD] = cd;
-	main->func[MS_PWD] = pwd;
-	main->func[MS_EXPORT] = export;
-	main->func[MS_UNSET] = unset;
-	main->func[MS_ENV] = env;
-	main->func[MS_EXIT] = ms_exit;
-	main->envp = dup_doublearray(envp);
+	int	i;
+
+	i = -1;
+	while (split[++i] != NULL)
+		free(split[i]);
+	free(split);
+}
+
+/* Creates a duplicate of a double array */
+char	**dup_doublearray(char **src)
+{
+	char	**output;
+	int		i;
+
+	i = 0;
+	while (src[i] != 0)
+		i++;
+	output = ft_calloc(i + 1, sizeof(char *));
+	output[i] = 0;
+	while (--i >= 0)
+		output[i] = ft_strdup(src[i]);
+	return (output);
 }

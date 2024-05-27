@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 17:12:26 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/27 14:39:13 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/27 15:37:47 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,6 @@ int	ft_getwc(char const *s, char c)
 		count++;
 	}
 	return (count);
-}
-
-char	*ft_strndup(char *str, size_t n)
-{
-	size_t	i;
-	char	*output;
-
-	output = malloc(sizeof(char) * n + 1);
-	if (output == NULL)
-		return (NULL);
-	i = -1;
-	while (++i < n)
-		output[i] = str[i];
-	output[i] = '\0';
-	return (output);
 }
 
 char	**ft_split(char const *s, char c)
