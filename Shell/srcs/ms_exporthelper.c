@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/27 14:51:06 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/27 14:55:18 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/27 15:23:34 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@
 ** If second letter and beyond is not alphanumeric or '_',
 ** print error message and return 1
 ** Else return 0 (No error) */
-int	check_valid_identifier(char *arg, char *str)
+int	check_valid_identifier(char *arg, char *str, char *type)
 {
 	int	i;
 
 	i = 0;
 	if (ft_isalpha(str[i]) == 0 && str[i] != '_')
-		return (export_error(arg));
+		return (export_unset_error(arg, type));
 	while (str[++i] != '\0')
-		if (!ft_isalnum(str[i]) && str[i] != '_' && str[i] != ' ')
-			return (export_error(arg));
+		if (ft_isalnum(str[i]) == 0 && str[i] != '_' && str[i] != ' ')
+			return (export_unset_error(arg, type));
 	return (0);
 }
 

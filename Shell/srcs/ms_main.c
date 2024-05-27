@@ -8,22 +8,21 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/27 15:11:20 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/27 15:28:27 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-/* If readline shows undefined when compiling, you need to install it
-** For installation, can check how to at Available Functions
+/* Signal will be initialised: Ctrl-\ and Ctrl-C
 ** Every while loop, readline will be called while showing "$> " prompt,
-** readline will return user input in char * form, removing the '\n' behind
-** ft_split the command by ' ', and check whether there is a cd command
+** and returns user input in char * form, removing the '\n' behind
+** Parses the user input from readline into commands
 ** If check_cd_command returns 0, then fork out a child to run system program
 ** Parent will wait for the child before freeing and looping again */
 int	main(int ac, char **av, char **envp)
 {
-	t_main	main;
+	t_main	main;	
 	char	**command;
 	char	*input;
 
@@ -35,7 +34,6 @@ int	main(int ac, char **av, char **envp)
 		command = parse_input(&main, input);
 		if (input[0] != '\0')
 			add_history(input);
-		main.func[MS_CD](&main, command);
 		free_doublearray(command);
 		free(input);
 	}

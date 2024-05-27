@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:38:49 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/27 15:08:47 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/27 15:14:08 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int		cd(t_main *main, char **args);
 
 /* Error */
 void	perror_and_exit(char *errormsg);
-int		export_error(char *str);
+int		export_unset_error(char *arg, char *type);
 
 /* Signal */
 void	sigint_handler(int signo);
@@ -87,7 +87,7 @@ int		pwd(t_main *main, char **args);
 int		export(t_main *main, char **args);
 
 /* Export Helper */
-int		check_valid_identifier(char *arg, char *str);
+int		check_valid_identifier(char *arg, char *str, char *type);
 void	print_envp(char **envp);
 char	**sort_envp(char **envp);
 char	**envp_split(char *str);
