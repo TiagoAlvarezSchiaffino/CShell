@@ -8,7 +8,7 @@
 #                                                            (    @\___      #
 #                                                             /         O    #
 #   Created: 2024/05/16 21:17:51 by Tiago                    /   (_____/     #
-#   Updated: 2024/05/25 08:09:46 by Tiago                  /_____/ U         #
+#   Updated: 2024/05/27 14:09:21 by Tiago                  /_____/ U         #
 #                                                                            #
 # ************************************************************************** #
 
@@ -19,7 +19,7 @@ CC			=	gcc
 RM			=	rm -f
 CFLAGS		=	-Wall -Wextra -Werror
 CFLAGS		+=	-I/usr/local/opt/readline/include
-# CFLAGS		+=	-fsanitize=address -g3
+CFLAGS		+=	-fsanitize=address -g3
 READLINE	=	-lreadline
 READLINE	+=	-L/usr/local/opt/readline/lib
 SRCS_FILES	=	ms_parseinput_bonus \
