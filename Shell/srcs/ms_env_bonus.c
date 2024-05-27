@@ -8,12 +8,13 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/27 14:17:12 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/27 14:32:04 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
+/* Prints out everyline in environment list */
 int	env(t_main *main, char **args)
 {
 	int	i;

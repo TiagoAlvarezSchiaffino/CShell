@@ -8,14 +8,14 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/25 08:15:26 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/27 14:50:54 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
 /* Frees double array (ie. output from ft_split) */
-void	free_ftsplit(char **split)
+void	free_doublearray(char **split)
 {
 	int	i;
 
@@ -23,4 +23,20 @@ void	free_ftsplit(char **split)
 	while (split[++i] != NULL)
 		free(split[i]);
 	free(split);
+}
+
+/* Creates a duplicate of a double array */
+char	**dup_doublearray(char **src)
+{
+	char	**output;
+	int		i;
+
+	i = 0;
+	while (src[i] != 0)
+		i++;
+	output = ft_calloc(i + 1, sizeof(char *));
+	output[i] = 0;
+	while (--i >= 0)
+		output[i] = ft_strdup(src[i]);
+	return (output);
 }

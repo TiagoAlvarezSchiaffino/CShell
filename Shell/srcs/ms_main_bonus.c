@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/27 14:20:45 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/27 14:34:46 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,14 @@ int	main(int ac, char **av, char **envp)
 	{
 		input = readline("$> ");
 		command = parse_input(&main, input);
-		check_cd_command(ft_getwc(input, ' '), command);
-		free_ftsplit(command);
+		if (input[0] != '\0')
+			add_history(input);
+		main.func[MS_CD](&main, command);
+		main.func[MS_EXPORT](&main, command);
+		free_doublearray(command);
 		free(input);
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 	(void)ac;
 	(void)av;
 }

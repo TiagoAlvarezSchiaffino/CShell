@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:38:49 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/27 14:13:11 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/27 14:22:26 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ typedef struct s_main
 }	t_main;
 
 /* CD */
-int		check_cd_command(int count, char **command);
 int		cd(t_main *main, char **args);
 
 /* Error */
@@ -60,7 +59,8 @@ void	sigint_handler(int signo);
 void	init_signal(void);
 
 /* Helper */
-void	free_ftsplit(char **split);
+void	free_doublearray(char **split);
+char	**dup_doublearray(char **src);
 
 /* Parse Input */
 char	**parse_input(t_main *main, char *input);

@@ -8,7 +8,7 @@
 #                                                            (    @\___      #
 #                                                             /         O    #
 #   Created: 2024/05/16 11:17:51 by Tiago                    /   (_____/     #
-#   Updated: 2024/05/16 11:24:39 by Tiago                  /_____/ U         #
+#   Updated: 2024/05/27 14:36:15 by Tiago                  /_____/ U         #
 #                                                                            #
 # ************************************************************************** #
 
@@ -37,6 +37,7 @@ SRC_FILES		=	ft_isalpha \
 					ft_strchr \
 					ft_strrchr \
 					ft_strncmp \
+					ft_strcmp \
 					ft_memchr \
 					ft_memcmp \
 					ft_strnstr \

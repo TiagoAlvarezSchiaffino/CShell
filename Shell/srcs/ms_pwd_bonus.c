@@ -8,15 +8,21 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/27 14:21:44 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/27 14:35:57 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
+/* Gets and prints out the current directory of the program */
 int	pwd(t_main *main, char **args)
 {
+	char	*path;
+
+	path = getcwd(NULL, 0);
+	ft_printf("%s\n", path);
+	free(path);
+	return (0);
 	(void)args;
 	(void)main;
-	return (0);
 }

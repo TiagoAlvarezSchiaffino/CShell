@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/16 21:34:02 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/27 14:32:31 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,5 @@
 void	perror_and_exit(char *errormsg)
 {
 	perror(errormsg);
-	exit(1);
+	exit(EXIT_FAILURE);
 }
