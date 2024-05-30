@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 14:44:33 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/30 15:33:03 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,7 @@ char	**parse_input(t_main *main, char *input)
 	command = ft_split(input, ' ');
 	i = -1;
 	while (command[++i] != 0)
-	{
 		if (ft_strncmp(command[i], "exit", 5) == 0)
 			main->func[MS_EXIT](main, NULL);
-	}
 	return (command);
 }

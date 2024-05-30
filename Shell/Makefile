@@ -8,7 +8,7 @@
 #                                                            (    @\___      #
 #                                                             /         O    #
 #   Created: 2024/05/16 21:17:51 by Tiago                    /   (_____/     #
-#   Updated: 2024/05/30 14:11:28 by Tiago                 /_____/ U          #
+#   Updated: 2024/05/30 15:08:02 by Tiago                 /_____/ U          #
 #                                                                            #
 # ************************************************************************** #
 
@@ -24,6 +24,7 @@ READLINE	+=	-L/usr/local/opt/readline/lib
 SRCS_FILES	=	ms_expanderhelper \
 				ms_exporthelper \
 				ms_parseinput \
+				ms_expandstar \
 				ms_executor \
 				ms_expander \
 				ms_helper \

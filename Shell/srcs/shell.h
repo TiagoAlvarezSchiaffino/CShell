@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:38:49 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 14:14:43 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/30 15:11:14 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,17 @@ char	**parse_input(t_main *main, char *input);
 void	executor(t_main *main, char **command);
 
 /* Expander */
-char	**expander(t_main *main, char **args);
+void	expander(t_main *main, t_list **args);
 
 /* Expander Helper */
 char	*append_char(char *input, char c);
 void	print_ll(t_list *head);
 char	**ft_list_to_charss(t_list *lst);
+
+/* Expand Star */
+int		check_star(char *arg);
+t_list	*get_files_from_dir(char *arg);
+t_list	*star_wildcard(char *arg, t_list *input);
 
 /* Echo */
 int		echo(t_main *main, char **args);

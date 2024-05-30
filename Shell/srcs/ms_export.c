@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/27 14:51:06 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 14:35:34 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/30 15:30:04 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,8 @@ static void	find_and_add(t_main *main, char **args)
 			update_envp(main, args[i], split[0], split[1]);
 			free_doublearray(split);
 		}
+		else
+			free_doublearray(split);
 	}
 }
 
