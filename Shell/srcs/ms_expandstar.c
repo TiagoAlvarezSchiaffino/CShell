@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 15:11:31 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 15:43:08 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/30 17:52:20 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,10 @@ t_list	*get_files_from_dir(char *arg)
 		free(temp);
 	}
 	if (entity == NULL)
+    {
+		closedir(dir);
 		return (NULL);
+    }
 	current = ft_lstnew(ft_calloc(1, sizeof(char *)));
 	head = current;
 	ft_memcpy(current->content, &temp, sizeof(char *));
