@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:38:49 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 15:11:14 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/30 15:42:30 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ void	init_signal(void);
 void	free_doublearray(char **split);
 char	**dup_doublearray(char **src);
 char	*get_envp_value(char **envp, char *key);
+char	**sort_doublearray(char **envp);
+void	ft_lstsort(t_list **lst);
 
 /* Parse Input */
 char	**parse_input(t_main *main, char *input);
@@ -103,7 +105,6 @@ int		export(t_main *main, char **args);
 /* Export Helper */
 int		check_valid_identifier(char *arg, char *str, char *type);
 void	print_envp(char **envp);
-char	**sort_envp(char **envp);
 char	**envp_split(char *str);
 
 /* Unset */

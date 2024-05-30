@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 15:32:44 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/30 15:40:06 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	main(int ac, char **av, char **envp)
 	char	*input;
 	int		i;
 
-	// init_signal();
+	init_signal();
 	init_main(&main, envp);
 	while (1)
 	{
@@ -65,14 +65,11 @@ int	main(int ac, char **av, char **envp)
 		while (command[i] != 0)
 			i++;
 		args = ft_array_to_list(command, i, sizeof(char *));
-		// print_ll(args);
 		expander(&main, &args);
-		print_ll(args);
-		exit(1);
 		free_doublearray(command);
 		command = ft_list_to_array(args, sizeof(char *));
 		executor(&main, command);
-		// free_doublearray(command);
+		free_doublearray(command);
 		free(input);
 	}
 	return (EXIT_SUCCESS);
