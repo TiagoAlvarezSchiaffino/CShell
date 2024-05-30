@@ -1,43 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*   ft_itoa.c  	                                                          */
+/*   ft_list_to_array.c                                                       */
 /*                                                                            */
 /*   By: Tiago <tiagoalvarezschiaffino@gmail.com>                             */
 /*                                                             / \__          */
 /*                                                            (    @\___      */
 /*                                                             /         O    */
-/*   Created: 2024/05/16 14:55:12 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 13:24:41 by Tiago                  /_____/ U         */
+/*   Created: 2024/05/30 13:24:02 by Tiago                    /   (_____/     */
+/*   Updated: 2024/05/30 13:26:47 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa(int n)
+void	*ft_list_to_array(t_list *lst, int elem_size)
 {
-	size_t		i;
-	long int	an;
-	char		*output;
+	void	*buffer;
+	void	*head;
 
-	an = n;
-	i = (n <= 0);
-	while (n != 0 && ++i > 0)
-		n = n / 10;
-	output = malloc(sizeof(char) * (i + 1));
-	if (output == NULL)
+	if (lst == NULL)
 		return (NULL);
-	if (an < 0)
-		output[0] = '-';
-	if (an < 0)
-		an *= -1;
-	output[i--] = '\0';
-	if (an == 0)
-		output[0] = 48;
-	while (an)
+	buffer = ft_calloc(ft_lstsize(lst), elem_size);
+	head = buffer;
+	while (lst != NULL)
 	{
-		output[i--] = (an % 10) + '0';
-		an /= 10;
+		ft_memcpy(buffer, lst->content, elem_size);
+		lst = lst->next;
+		buffer += elem_size;
 	}
-	return (output);
+	return (head);
 }

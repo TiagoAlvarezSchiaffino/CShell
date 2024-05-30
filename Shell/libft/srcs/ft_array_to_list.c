@@ -1,43 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*   ft_itoa.c  	                                                          */
+/*   ft_array_to_list.c                                                       */
 /*                                                                            */
 /*   By: Tiago <tiagoalvarezschiaffino@gmail.com>                             */
 /*                                                             / \__          */
 /*                                                            (    @\___      */
 /*                                                             /         O    */
-/*   Created: 2024/05/16 14:55:12 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 13:24:41 by Tiago                  /_____/ U         */
+/*   Created: 2024/05/30 13:21:11 by Tiago                    /   (_____/     */
+/*   Updated: 2024/05/30 13:23:54 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_itoa(int n)
+/* To use: ft_printf("%type\n", *(type *)content); */
+t_list	*ft_array_to_list(void *array, int array_size, int elem_size)
 {
-	size_t		i;
-	long int	an;
-	char		*output;
+	t_list	*head;
+	void	*content;
+	int		i;
 
-	an = n;
-	i = (n <= 0);
-	while (n != 0 && ++i > 0)
-		n = n / 10;
-	output = malloc(sizeof(char) * (i + 1));
-	if (output == NULL)
-		return (NULL);
-	if (an < 0)
-		output[0] = '-';
-	if (an < 0)
-		an *= -1;
-	output[i--] = '\0';
-	if (an == 0)
-		output[0] = 48;
-	while (an)
+	head = NULL;
+	i = -1;
+	while (++i < array_size)
 	{
-		output[i--] = (an % 10) + '0';
-		an /= 10;
+		content = ft_calloc(1, elem_size);
+		ft_memcpy(content, array, elem_size);
+		ft_lstadd_back(&head, ft_lstnew(content));
+		array += elem_size;
 	}
-	return (output);
-}
+	return (head);
+} 

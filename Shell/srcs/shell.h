@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:38:49 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/27 15:44:32 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/30 13:28:33 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,16 @@ void	init_signal(void);
 /* Helper */
 void	free_doublearray(char **split);
 char	**dup_doublearray(char **src);
+char	*get_envp_value(char **envp, char *key);
 
 /* Parse Input */
 char	**parse_input(t_main *main, char *input);
 
-/* Bifunc */
-void	init_main(t_main *main, char **envp);
+/* Executor */
 void	executor(t_main *main, char **command);
+
+/* Expander */
+char	**expander(t_main *main, char **args);
 
 /* Echo */
 int		echo(t_main *main, char **args);

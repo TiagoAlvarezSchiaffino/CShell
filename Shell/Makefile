@@ -8,7 +8,7 @@
 #                                                            (    @\___      #
 #                                                             /         O    #
 #   Created: 2024/05/16 21:17:51 by Tiago                    /   (_____/     #
-#   Updated: 2024/05/27 15:36:38 by Tiago                 /_____/ U         #
+#   Updated: 2024/05/30 13:20:06 by Tiago                 /_____/ U          #
 #                                                                            #
 # ************************************************************************** #
 
@@ -23,9 +23,10 @@ READLINE	=	-lreadline
 READLINE	+=	-L/usr/local/opt/readline/lib
 SRCS_FILES	=	ms_exporthelper \
 				ms_parseinput \
+				ms_executor \
+				ms_expander \
 				ms_helper \
 				ms_signal \
-				ms_bifunc \
 				ms_export \
 				ms_error \
 				ms_unset \
@@ -50,7 +51,7 @@ $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
 				$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME):		$(OBJS)
-				$(CC) $(READLINE) $(CFLAGS) $(LIBFT_DIR)/$(LIBFT) $(OBJS) -o $(NAME)
+				$(CC) $(CFLAGS) $^ $(READLINE) -Llibft -lft -o $@
 
 libft:
 				make -C $(LIBFT_DIR)

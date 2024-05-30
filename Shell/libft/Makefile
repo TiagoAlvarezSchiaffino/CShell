@@ -8,7 +8,7 @@
 #                                                            (    @\___      #
 #                                                             /         O    #
 #   Created: 2024/05/16 11:17:51 by Tiago                    /   (_____/     #
-#   Updated: 2024/05/27 15:37:02 by Tiago                  /_____/ U         #
+#   Updated: 2024/05/30 13:20:58 by Tiago                  /_____/ U         #
 #                                                                            #
 # ************************************************************************** #
 
@@ -79,7 +79,9 @@ SRC_FILES		=	ft_isalpha \
 					ft_isspace \
 					ft_ultoa_base \
 					ft_uitoa_base \
-					ft_uitoa
+					ft_uitoa \
+					ft_array_to_list \
+					ft_list_to_array
 SRCS 			= 	$(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJS 			= 	$(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRC_FILES)))
 

@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/27 15:41:46 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/30 13:46:53 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,26 @@ char	**dup_doublearray(char **src)
 	while (--i >= 0)
 		output[i] = ft_strdup(src[i]);
 	return (output);
+}
+
+/* Gets the value from envp based on key */
+char	*get_envp_value(char **envp, char *key)
+{
+	char	**split;
+	char	*value;
+	int		i;
+
+	i = -1;
+	while (envp[++i] != 0)
+	{
+		split = envp_split(envp[i]);
+		if (ft_strcmp(split[0], key) == 0)
+		{
+			value = ft_strdup(split[1]);
+			free_doublearray(split);
+			return (value);
+		}
+		free_doublearray(split);
+	}
+	return (NULL);
 }

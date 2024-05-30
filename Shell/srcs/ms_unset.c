@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/27 15:34:31 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/30 13:51:23 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static void	find_and_delete(t_main *main, char *key)
 		split = envp_split(main->envp[i]);
 		if (ft_strcmp(split[0], key) != 0)
 			new_envp[j++] = ft_strdup(main->envp[i]);
+		free_doublearray(split);
 	}
 	free_doublearray(main->envp);
 	main->envp = new_envp;

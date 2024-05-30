@@ -8,11 +8,26 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/27 15:57:45 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/30 13:50:57 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
+
+/* Initializes all of the functions pointers with their respective names
+** Creates a copy of envp and saves it into the struct */
+static void	init_main(t_main *main, char **envp)
+{
+	main->func_name = ft_split("echo cd pwd export unset env exit", ' ');
+	main->func[MS_ECHO] = echo;
+	main->func[MS_CD] = cd;
+	main->func[MS_PWD] = pwd;
+	main->func[MS_EXPORT] = export;
+	main->func[MS_UNSET] = unset;
+	main->func[MS_ENV] = env;
+	main->func[MS_EXIT] = ms_exit;
+	main->envp = dup_doublearray(envp);
+}
 
 /* Signal will be initialised: Ctrl-\ and Ctrl-C
 ** Every while loop, readline will be called while showing "$> " prompt,
@@ -34,6 +49,8 @@ int	main(int ac, char **av, char **envp)
 		command = parse_input(&main, input);
 		if (input[0] != '\0')
 			add_history(input);
+		// main.func[MS_EXPORT](&main, av);
+		command = expander(&main, command);
 		executor(&main, command);
 		free_doublearray(command);
 		free(input);
