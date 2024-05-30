@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:38:49 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 13:28:33 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/30 14:12:08 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,9 @@ void	executor(t_main *main, char **command);
 
 /* Expander */
 char	**expander(t_main *main, char **args);
+
+/* Expander Helper */
+char	*append_char(char *input, char c);
 
 /* Echo */
 int		echo(t_main *main, char **args);
