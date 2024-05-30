@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:38:49 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 14:12:08 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/30 14:14:43 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ char	**expander(t_main *main, char **args);
 
 /* Expander Helper */
 char	*append_char(char *input, char c);
+void	print_ll(t_list *head);
+char	**ft_list_to_charss(t_list *lst);
 
 /* Echo */
 int		echo(t_main *main, char **args);

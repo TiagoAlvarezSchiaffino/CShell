@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 17:22:13 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/16 17:24:58 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/30 14:13:34 by Tiago                   /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_strdup(const char *src)
 	counter = 0;
 	while (src[counter] != '\0')
 		counter++;
-	copy = malloc((counter * 1) + 1);
+	copy = malloc(sizeof(char) * (counter + 1));
 	if (copy == NULL)
 		return (0);
 	index = -1;
