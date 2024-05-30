@@ -8,7 +8,7 @@
 #                                                            (    @\___      #
 #                                                             /         O    #
 #   Created: 2024/05/16 21:17:51 by Tiago                    /   (_____/     #
-#   Updated: 2024/05/30 15:08:02 by Tiago                 /_____/ U          #
+#   Updated: 2024/05/30 15:56:10 by Tiago                 /_____/ U          #
 #                                                                            #
 # ************************************************************************** #
 
@@ -17,8 +17,8 @@ LIBFT		=	libft.a
 CC			=	gcc
 RM			=	rm -f
 CFLAGS		=	-Wall -Wextra -Werror
-CFLAGS		+=	-I/usr/local/opt/readline/include
-CFLAGS		+=	-fsanitize=address -g3
+CFLAGS		+=	-I/usr/local/opt/readline/include -g
+# CFLAGS		+=	-fsanitize=address -g3
 READLINE	=	-lreadline
 READLINE	+=	-L/usr/local/opt/readline/lib
 SRCS_FILES	=	ms_expanderhelper \
@@ -37,7 +37,23 @@ SRCS_FILES	=	ms_expanderhelper \
 				ms_exit \
 				ms_env \
 				ms_pwd \
-				ms_cd
+				ms_cd \
+				ms_check_dangling \
+				ms_cmd_list \
+				ms_io_list \
+				ms_lexer_utils \
+				ms_lexer \
+				ms_parser \
+				ms_pipe_list \
+				ms_pipe_list_utils \
+				ms_token \
+				ms_expander_tree \
+				ms_executor_struct \
+				ms_executor_tree \
+				ms_heredoc \
+				ms_heredoc_tree_enqueue \
+				ms_heredoc_tree_dequeue \
+				tmp_print_cmd_list
 SRCS		= 	$(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRCS_FILES)))
 OBJS		= 	$(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRCS_FILES)))
 SRCS_DIR	=	srcs/

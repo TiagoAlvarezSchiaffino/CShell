@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 15:40:06 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/30 17:20:09 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	init_main(t_main *main, char **envp)
 int	main(int ac, char **av, char **envp)
 {
 	t_main	main;
-	t_list	*args;	
+	t_list	*args;
 	char	**command;
 	char	*input;
 	int		i;
@@ -70,6 +70,7 @@ int	main(int ac, char **av, char **envp)
 		command = ft_list_to_array(args, sizeof(char *));
 		executor(&main, command);
 		free_doublearray(command);
+		ft_lstclear(&args, &free);
 		free(input);
 	}
 	return (EXIT_SUCCESS);

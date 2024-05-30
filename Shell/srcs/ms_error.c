@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 14:50:09 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/30 16:31:34 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,17 @@ int	export_unset_error(char *arg, char *type)
 	ft_dprintf(STDERR_FILENO, "%s: `%s': not a valid identifier\n", type, arg);
 	g_global.error_no = 1;
 	return (1);
+}
+
+/**
+ * @brief 	Prints syntax error using the current token in the parser.
+ * 			Also sets the member syntax_error in the parser struct to 1.
+ * 
+ * @param p Parser struct
+ */
+void	ms_parser_syntax_error(t_parser *p)
+{
+	ft_dprintf(2, "minishell: syntax error near unexpected token `%s'\n",
+		p->curr_token->value);
+	p->syntax_error = 1;
 }
