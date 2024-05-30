@@ -8,7 +8,7 @@
 #                                                            (    @\___      #
 #                                                             /         O    #
 #   Created: 2024/05/16 21:17:51 by Tiago                    /   (_____/     #
-#   Updated: 2024/05/30 17:54:29 by Tiago                 /_____/ U          #
+#   Updated: 2024/05/30 18:22:03 by Tiago                 /_____/ U          #
 #                                                                            #
 # ************************************************************************** #
 
@@ -18,7 +18,7 @@ CC			=	gcc
 RM			=	rm -f
 CFLAGS		=	-Wall -Wextra -Werror
 CFLAGS		+=	-I/usr/local/opt/readline/include -g
-# CFLAGS		+=	-fsanitize=address -g3
+CFLAGS		+=	-fsanitize=address -g3
 READLINE	=	-lreadline
 READLINE	+=	-L/usr/local/opt/readline/lib
 SRCS_FILES	=	ms_expand_helper \

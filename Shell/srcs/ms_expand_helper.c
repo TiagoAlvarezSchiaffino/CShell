@@ -8,12 +8,19 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 14:10:52 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 18:16:34 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/30 18:23:34 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
+/**
+ * @brief Appends a character to the back of a string
+ * 
+ * @param input The string input
+ * @param c The character to be appended to the back of a string
+ * @return char* The result string after appending
+ */
 char	*append_char(char *input, char c)
 {
 	char	*output;
