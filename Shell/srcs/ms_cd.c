@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 14:49:37 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/30 18:40:37 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  * will change current directory and return 1. If changing directory fails,
  * throw error and exit with status 1
  * 
- * @param main The main struct containing envp
+ * @param main The main struct containing the environment list
  * @param args The arguments
  * @return int 0 on success
  */

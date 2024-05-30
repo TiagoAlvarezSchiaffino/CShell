@@ -7,8 +7,8 @@
 /*                                                             / \__          */
 /*                                                            (    @\___      */
 /*                                                             /         O    */
-/*   Created: 2024/05/30 18:00:51 by Tiago                   /   (_____/     */
-/*   Updated: 2024/05/30 18:31:08 by Tiago                  /_____/ U         */
+/*   Created: 2024/05/30 18:00:51 by Tiago                   /   (_____/      */
+/*   Updated: 2024/05/30 18:48:24 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static t_list	*get_files_lst(struct dirent *entity, DIR *dir,
 	while (entity != NULL)
 	{
 		file_name = ft_strdup(entity->d_name);
-		if (is_valid(file_name, arg) == 1)
+		if (is_valid(file_name, arg))
 		{
 			current->next = ft_lstnew(ft_calloc(1, sizeof(char *)));
 			current = current->next;

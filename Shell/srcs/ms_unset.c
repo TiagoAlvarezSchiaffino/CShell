@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 14:50:55 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/30 19:09:55 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
  * matches with the key, it is ignored. Frees the old envp and sets the new
  * one as the current one
  * 
- * @param main The main struct containing envp
+ * @param main The main struct containing the environment list
  * @param key The key of the value that will be deleted
  */
 static void	find_and_delete(t_main *main, char *key)
@@ -52,7 +52,7 @@ static void	find_and_delete(t_main *main, char *key)
  * @brief Checks whether the arg is valid. If so then find and delete the
  * envp based on the key
  * 
- * @param main The main struct containing envp
+ * @param main The main struct containing the environment list
  * @param args The arguments
  * @return int 0 on success
  */

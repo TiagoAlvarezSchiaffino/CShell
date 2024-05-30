@@ -8,7 +8,7 @@
 #                                                            (    @\___      #
 #                                                             /         O    #
 #   Created: 2024/05/16 21:17:51 by Tiago                    /   (_____/     #
-#   Updated: 2024/05/30 18:22:03 by Tiago                 /_____/ U          #
+#   Updated: 2024/05/30 18:36:40 by Tiago                 /_____/ U          #
 #                                                                            #
 # ************************************************************************** #
 
@@ -21,8 +21,10 @@ CFLAGS		+=	-I/usr/local/opt/readline/include -g
 CFLAGS		+=	-fsanitize=address -g3
 READLINE	=	-lreadline
 READLINE	+=	-L/usr/local/opt/readline/lib
-SRCS_FILES	=	ms_expand_helper \
-				ms_export_helper \
+SRCS_FILES	=	ms_expand_dollar \
+				ms_expand_utils \
+				ms_export_utils \
+				ms_expand_quote \
 				ms_expand_files \
 				ms_parse_input \
 				ms_expand_star \
@@ -85,5 +87,8 @@ fclean:			clean
 				rm -rf $(NAME)
 
 re:				fclean all
+
+valgrind:
+				valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=valgrind-out.txt ./minishell
 
 .PHONY:			all libft clean fclean re

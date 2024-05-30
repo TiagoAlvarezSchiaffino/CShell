@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:38:49 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 18:00:13 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/30 18:40:01 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,14 @@ typedef struct s_main
 typedef struct s_global
 {
 	int	error_no;
-}						t_global;
+}	t_global;
 
+typedef struct s_expand
+{
+	char	*output;
+	char	*arg;
+	int		i;
+}	t_expand;
 /* Global struct in defined here */
 t_global	g_global;
 
@@ -205,6 +211,7 @@ void		expander(t_main *main, t_list **args);
 
 /* Expander Helper */
 char		*append_char(char *input, char c);
+char	*dlr_val(t_main *main, char *arg);
 
 /* Expand Star */
 int			check_star(char *arg);
@@ -213,6 +220,13 @@ int		is_valid(char *tocheck, char *arg);
 /* Expand Files */
 DIR		*get_dir(char *path);
 t_list		*get_files_from_dir(char *arg);
+
+/* Expand Quote */
+void	expand_squote(t_expand *exp);
+void	expand_dquote(t_main *main, t_expand *exp);
+
+/* Expand Dollar */
+int		expand_dlr(t_list **cur_in, t_expand *exp, char *dollar_expanded);
 
 /* Echo */
 int			echo(t_main *main, char **args);

@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/27 14:51:06 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 15:43:32 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/30 19:08:26 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
  * is KEY="". If value is 0, new envp is KEY. Else, new envp is KEY=VALUE. Copy
  * the rest and frees the old one, sets the new one as the current one
  * 
- * @param main The main struct containing envp
+ * @param main The main struct containing the environment list
  * @param key The key of the new variable
  * @param value The value of the new variable
  * @param i The position of the last variable in the existing envp + 1
@@ -77,7 +77,7 @@ static void	do_replace(char **envp, char *key, char *value, int option)
  * (opt 0). If there is already an existing key and arg is key only, return. If
  * no existing key is found, add new key and value to the envp
  * 
- * @param main The main struct containing envp
+ * @param main The main struct containing the environment list
  * @param args The arguments
  * @param key The key of the "new" variable
  * @param value The value of the "new" variable
@@ -112,7 +112,7 @@ static void	update_envp(t_main *main, char *args, char *key, char *value)
  * @brief Loops through every args. Check whether the arg is valid. Split the
  * arg into Key and Value, then feed into update_envp function
  * 
- * @param main The main struct containing envp
+ * @param main The main struct containing the environment list
  * @param args The arguments
  */
 static void	find_and_add(t_main *main, char **args)
@@ -138,7 +138,7 @@ static void	find_and_add(t_main *main, char **args)
  * @brief If export is called with no other args, print envp. Else, add new
  * args into envp
  * 
- * @param main The main struct containing envp
+ * @param main The main struct containing the environment list
  * @param args The arguments
  * @return int 0 on success
  */
@@ -150,7 +150,7 @@ int	export(t_main *main, char **args)
 	{
 		dup = sort_doublearray(main->envp);
 		print_envp(dup);
-        free_doublearray(dup);
+		free_doublearray(dup);
 	}
 	else
 		find_and_add(main, args);
