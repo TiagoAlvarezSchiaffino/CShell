@@ -8,13 +8,17 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 14:22:52 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/30 14:40:41 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-/* Frees double array (ie. output from ft_split) */
+/**
+ * @brief Frees double array (ie. output from ft_split)
+ * 
+ * @param split The double array that will be freed
+ */
 void	free_doublearray(char **split)
 {
 	int	i;
@@ -25,7 +29,12 @@ void	free_doublearray(char **split)
 	free(split);
 }
 
-/* Creates a duplicate of a double array */
+/**
+ * @brief Creates a duplicate of a double array
+ * 
+ * @param src The double array source that will be duplicated
+ * @return char** double array that is duplicated from src
+ */
 char	**dup_doublearray(char **src)
 {
 	char	**output;
@@ -41,8 +50,13 @@ char	**dup_doublearray(char **src)
 	return (output);
 }
 
-/* Gets the value from envp based on key
-** Returns NULL if key is not found */
+/**
+ * @brief Gets the value from envp based on key
+ * 
+ * @param envp The enviroment variables to get the values from
+ * @param key The key of the value
+ * @return char* value if the key is found, NULL if its not found
+ */
 char	*get_envp_value(char **envp, char *key)
 {
 	char	**split;

@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:11:04 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 13:27:33 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/30 15:06:41 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <limits.h>
 # include <stdarg.h>
 # include <fcntl.h>
+# include <stdint.h>
 
 typedef struct s_list
 {
@@ -81,6 +82,7 @@ char	*ft_ultoa_base(unsigned long n);
 char	*ft_uitoa_base(unsigned int n, char *base);
 char	*ft_uitoa(unsigned int n);
 int		ft_printf(const char *str, ...);
+int		ft_dprintf(int fd, const char *str, ...);
 char	*get_next_line(int fd);
 t_list	*ft_array_to_list(void *array, int array_size, int elem_size);
 void	*ft_list_to_array(t_list *lst, int elem_size);

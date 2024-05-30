@@ -8,26 +8,34 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/27 15:18:13 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/30 14:50:09 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-/* Prints perror and exit with status 1 */
+/**
+ * @brief Prints perror and exit with status 1
+ * 
+ * @param errormsg The error message to be printed
+ */
 void	perror_and_exit(char *errormsg)
 {
 	perror(errormsg);
 	exit(EXIT_FAILURE);
 }
 
-/* Prints custom error message for invalid identifier for export */
+/**
+ * @brief Prints custom error message for invalid identifier for export. Updates
+ * the errno to 1
+ * 
+ * @param arg The arguments
+ * @param type The type of builtin function it is called from (unset or export)
+ * @return int 1 on success
+ */
 int	export_unset_error(char *arg, char *type)
 {
-	write(2, type, ft_strlen(type));
-	write(2, ": `", 3);
-	write(2, arg, ft_strlen(arg));
-	write(2, "': not a valid identifier\n", 26);
+	ft_dprintf(STDERR_FILENO, "%s: `%s': not a valid identifier\n", type, arg);
 	g_global.error_no = 1;
 	return (1);
 }

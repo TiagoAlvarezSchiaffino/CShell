@@ -8,16 +8,20 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/27 15:41:11 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/30 14:51:01 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-/* Iterate through the args and finds the first '-' character
-** Check whether it is a valid flag and only 'n' flag exists in the user input
-** Loops through again for cases where the input is (echo -nn -nn Hi)
-** Returns the total flag count */
+/**
+ * @brief Iterates through the args and finds the first '-' character. Check
+ * whether it is a valid flag and only 'n' flag exists in the user input. Loops
+ * through again for cases where the input is (echo -nn -nn Hi)
+ * 
+ * @param args The arguments
+ * @return int flag count
+ */
 static int	get_flag(char **args)
 {
 	int	i;
@@ -40,16 +44,22 @@ static int	get_flag(char **args)
 	return (flag_count);
 }
 
-/* Gets the "-n" flag count from args
-** Using i starting from flag count, iterate through the rest of args and
-** print out all the variable. If flag_count is 0, prints out a "\n" */
+/**
+ * @brief Gets the "-n" flag count from args. Using i starting from flag count,
+ * iterate through the rest of args and print out all the variable. If flag_count
+ * is 0 (no -n flag), prints out a "\n"
+ * 
+ * @param main The main struct (Can be NULL)
+ * @param args The arguments
+ * @return int 0 on success
+ */
 int	echo(t_main *main, char **args)
 {
 	int	i;
 	int	flag_count;
 
 	if (args[1] == 0)
-		return (printf("\n"));
+		return (ft_printf("\n") - 1);
 	flag_count = get_flag(args);
 	i = flag_count;
 	while (args[++i] != 0)
@@ -59,7 +69,7 @@ int	echo(t_main *main, char **args)
 			ft_printf(" ");
 	}
 	if (flag_count == 0)
-		printf("\n");
+		ft_printf("\n");
 	return (0);
 	(void)main;
 }

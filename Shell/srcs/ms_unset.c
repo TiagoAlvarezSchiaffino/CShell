@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*   ms_unset.c                                                         */
+/*   ms_unset.c                                                               */
 /*                                                                            */
 /*   By: Tiago <tiagoalvarezschiaffino@gmail.com>                             */
 /*                                                             / \__          */
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 13:51:23 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/30 14:50:55 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-/* Calloc a new array with existing size + 1 (1 for 0, guard)
-** Loops through existing envp and finds for matching key
-** If current string does not match with the key, it is dup into the new envp 
-** If current strind matches with the key, it is ignored
-** Frees the old envp and sets the new one as the current one */
+/**
+ * @brief Calloc a new array with existing size + 1 (1 for 0, guard). Loops
+ * through existing envp and finds for matching key. If current string does
+ * not match with the key, it is dup into the new envp. If current string
+ * matches with the key, it is ignored. Frees the old envp and sets the new
+ * one as the current one
+ * 
+ * @param main The main struct containing envp
+ * @param key The key of the value that will be deleted
+ */
 static void	find_and_delete(t_main *main, char *key)
 {
 	char	**new_envp;
@@ -43,8 +48,14 @@ static void	find_and_delete(t_main *main, char *key)
 	main->envp = new_envp;
 }
 
-/* Checks whether the arg is valid
-** If so then find and delete the envp based on the key */
+/**
+ * @brief Checks whether the arg is valid. If so then find and delete the
+ * envp based on the key
+ * 
+ * @param main The main struct containing envp
+ * @param args The arguments
+ * @return int 0 on success
+ */
 int	unset(t_main *main, char **args)
 {
 	int		i;

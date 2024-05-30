@@ -8,13 +8,19 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/27 15:53:29 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/30 14:29:07 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-/* Prints out everyline in environment list */
+/**
+ * @brief Prints out everyline in environment list
+ * 
+ * @param main The main struct containing envp
+ * @param args The arguments (Can be NULL)
+ * @return int 0 on success
+ */
 int	env(t_main *main, char **args)
 {
 	int		i;

@@ -8,27 +8,33 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:38:49 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/27 15:42:26 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/30 14:48:24 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-/* Prints out a new line and clears readline buffer */
+/**
+ * @brief Prints out a new line and clears readline buffer
+ * 
+ * @param signo The signal (Should be SIGINT)
+ */
 void	sigint_handler(int signo)
 {
 	if (signo != SIGINT)
 		return ;
-	write(STDOUT_FILENO, "\n", 1);
+	ft_printf("\n");
 	rl_replace_line("", 0);
 	rl_on_new_line();
 	rl_redisplay();
+	g_global.error_no = 1;
 }
 
-/* Initializes the signals: CTRL-C and CTRL-\
-** Termios is get and set to not print ^C or ^D
-** This is done by turning the ECHO flag off
-** When CTRL-\ (SIGQUIT) signal is received, it is ignored */
+/**
+ * @brief Initializes the signals: CTRL-C and CTRL-\. Termios is get and set to
+ * not print ^C or ^D. This is done by turning the ECHO flag off. When CTRL-\
+ * (SIGQUIT) signal is received, it is ignored
+ */
 void	init_signal(void)
 {
 	struct termios	termios_current;
@@ -46,5 +52,4 @@ void	init_signal(void)
 	}
 	signal(SIGINT, sigint_handler);
 	signal(SIGQUIT, SIG_IGN);
-	return ;
 }
