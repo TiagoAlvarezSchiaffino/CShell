@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 15:52:43 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/30 18:17:59 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,11 @@ char	**sort_doublearray(char **array)
 	return (output);
 }
 
+/**
+ * @brief Sorts the list in ascii order
+ * 
+ * @param lst The head of the list
+ */
 void	ft_lstsort(t_list **lst)
 {
 	t_list	*current;

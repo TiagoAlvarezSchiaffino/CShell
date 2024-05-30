@@ -8,7 +8,7 @@
 #                                                            (    @\___      #
 #                                                             /         O    #
 #   Created: 2024/05/16 21:17:51 by Tiago                    /   (_____/     #
-#   Updated: 2024/05/30 15:56:10 by Tiago                 /_____/ U          #
+#   Updated: 2024/05/30 17:54:29 by Tiago                 /_____/ U          #
 #                                                                            #
 # ************************************************************************** #
 
@@ -21,10 +21,11 @@ CFLAGS		+=	-I/usr/local/opt/readline/include -g
 # CFLAGS		+=	-fsanitize=address -g3
 READLINE	=	-lreadline
 READLINE	+=	-L/usr/local/opt/readline/lib
-SRCS_FILES	=	ms_expanderhelper \
-				ms_exporthelper \
-				ms_parseinput \
-				ms_expandstar \
+SRCS_FILES	=	ms_expand_helper \
+				ms_export_helper \
+				ms_expand_files \
+				ms_parse_input \
+				ms_expand_star \
 				ms_executor \
 				ms_expander \
 				ms_helper \
@@ -38,6 +39,7 @@ SRCS_FILES	=	ms_expanderhelper \
 				ms_env \
 				ms_pwd \
 				ms_cd \
+				temp_debugger
 				ms_check_dangling \
 				ms_cmd_list \
 				ms_io_list \

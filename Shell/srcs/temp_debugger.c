@@ -1,38 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    ms_parseinput.c                         		                          */
+/*    temp_debugger.c                         		                          */
 /*                                                                            */
 /*   By: Tiago <tiagoalvarezschiaffino@gmail.com>                             */
 /*                                                             / \__          */
 /*                                                            (    @\___      */
 /*                                                             /         O    */
-/*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 15:33:03 by Tiago                  /_____/ U         */
+/*   Created: 2024/05/30 18:18:46 by Tiago                    /   (_____/     */
+/*   Updated: 2024/05/30 18:21:39 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
 /**
- * @brief ft_split the input by ' '. If no input (ie. Ctrl-D), print exit and
- * exit with status 0. If command is exit, print exit and exit with status 0
+ * @brief To print the linked list
  * 
- * @param main The main struct containing the exit builtin function
- * @param input The input from readline
- * @return char** string array that are null terminated by 0
+ * @param head The head of the linked list
  */
-char	**parse_input(t_main *main, char *input)
+void	print_ll(t_list *head)
 {
-	char	**command;
+	t_list	*temp;
 	int		i;
 
-	if (input == 0)
-		main->func[MS_EXIT](main, NULL);
-	command = ft_split(input, ' ');
-	i = -1;
-	while (command[++i] != 0)
-		if (ft_strncmp(command[i], "exit", 5) == 0)
-			main->func[MS_EXIT](main, NULL);
-	return (command);
+	i = 0;
+	temp = head;
+	ft_printf("\nPRINTING LL\n");
+	while (temp != NULL)
+	{
+		ft_printf("%d: |%s|\n", i++, *(char **)temp->content);
+		temp = temp->next;
+	}
+	ft_printf("PRINTING END\n");
 }

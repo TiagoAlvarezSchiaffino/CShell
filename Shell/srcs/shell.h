@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:38:49 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 16:14:45 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/30 18:00:13 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define MS_EXIT 6
 # define MS_MAX_BIFUNC 7
 
+/* Used to rename builtin functions into function pointers */
 struct		s_main;
 typedef int	(*t_func)(struct s_main *main, char **args);
 
@@ -53,8 +54,9 @@ typedef struct s_main
 typedef struct s_global
 {
 	int	error_no;
-}	t_global;
+}						t_global;
 
+/* Global struct in defined here */
 t_global	g_global;
 
 typedef struct s_executor
@@ -203,13 +205,14 @@ void		expander(t_main *main, t_list **args);
 
 /* Expander Helper */
 char		*append_char(char *input, char c);
-void		print_ll(t_list *head);
-char		**ft_list_to_charss(t_list *lst);
 
 /* Expand Star */
 int			check_star(char *arg);
+int		is_valid(char *tocheck, char *arg);
+
+/* Expand Files */
+DIR		*get_dir(char *path);
 t_list		*get_files_from_dir(char *arg);
-t_list		*star_wildcard(char *arg, t_list *input);
 
 /* Echo */
 int			echo(t_main *main, char **args);
@@ -244,6 +247,9 @@ void		ms_lexer_free(t_lexer **lexer);
 
 /* Lexer Utils */
 int			ms_lexer_is_spec(char *s);
+
+/* Temp */
+void	print_ll(t_list *head);
 
 /* Token */
 t_token		*ms_token_init(int type, char *value);
