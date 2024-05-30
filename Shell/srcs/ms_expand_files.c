@@ -8,11 +8,11 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 18:00:51 by Tiago                   /   (_____/     */
-/*   Updated: 2024/05/30 18:08:44 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/30 18:31:08 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "shell.h"
 
 /**
  * @brief Get the dir object
@@ -64,6 +64,7 @@ static t_list	*get_files_lst(struct dirent *entity, DIR *dir,
 		entity = readdir(dir);
 	}
 	closedir(dir);
+    ft_lstsort(&head);
 	return (head);
 }
 

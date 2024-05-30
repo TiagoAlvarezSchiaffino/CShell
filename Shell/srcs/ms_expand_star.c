@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 15:11:31 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 18:30:42 by Tiago                  /_____/ U         */
+/*   Updated: 2024/05/30 18:33:10 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,13 @@
  * @param j The current position of the argument
  * @return int 1 if the file's name is valid with the *, else 0
  */
-int	check_star_is_valid(char *tocheck, char *arg, int *i, int *j)
+int	check_star_is_valid(char **tocheck_in, char **arg_in, int *i, int *j)
 {
+	char	*tocheck;
+	char	*arg;
+
+	tocheck = *tocheck_in;
+	arg = *arg_in;
 	while (arg[*j] == '*' && arg[*j] != '\0')
 		(*j)++;
 	if (arg[*j] == '\0')
@@ -85,18 +90,19 @@ int	is_valid(char *tocheck, char *arg)
 	{
 		if (arg[j] == '*')
 		{
-			output = check_star_is_valid(arg, tocheck, &i, &j);
+			output = check_star_is_valid(&tocheck, &arg, &i, &j);
 			if (output >= 0)
 				return (output);
 			continue ;
 		}
-		if (check_end_string(arg, tocheck, &i, &j) == 0)
+		if (check_end_string(tocheck, arg, &i, &j) == 0)
 			return (0);
 	}
 	while (arg[j] == '*' && arg[j] != '\0')
 		j++;
-	return (tocheck[i] != '\0' || arg[j] == '\0');
-}
+	if (tocheck[i] == '\0' && arg[j] != '\0')
+		return (0);
+	return (1);}
 
 /**
  * @brief Checks whether there is a star in the directory, and whether the
