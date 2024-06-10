@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:30:44 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/10 15:36:54 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/10 17:45:00 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,37 @@ void	executor(t_main *main, char **command)
 	}
 	ft_dprintf(STDERR_FILENO, "%s: command not found\n", command[0]);
 	g_global.error_no = 127;
+}
+
+static void	ms_child_close_fd(t_executor *exec, t_pipe_list *p)
+{
+	if (exec->pipe_count != 0)
+	{
+		close(exec->pipe_fd[exec->pipe_count - 1][0]);
+		close(exec->pipe_fd[exec->pipe_count - 1][1]);
+	}
+	if (p->next)
+	{
+		close(exec->pipe_fd[exec->pipe_count][0]);
+		close(exec->pipe_fd[exec->pipe_count][1]);
+	}
+}
+
+void	executor_non_builtin(t_main *main, t_executor *exec, t_pipe_list *p,
+	char **argv)
+{
+	int	pid;
+
+	signal(SIGINT, SIG_IGN);
+	pid = fork();
+	if (pid == 0)
+	{
+		signal(SIGINT, SIG_DFL);
+		ms_child_close_fd(exec, p);
+		if (ms_get_path_env(main->envp, argv))
+			exit(127);
+		execve(argv[0], argv, main->envp);
+		ft_dprintf(STDERR_FILENO, "%s: command not found\n", argv[0]);
+		exit(127);
+	}
 }

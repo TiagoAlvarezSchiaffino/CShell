@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/10 17:38:27 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/10 17:51:55 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	ms_read_next_line(t_main *main)
 	t_executor	*exec;
 	char		*input;
 
+	init_signal();
 	input = readline("$> ");
 	if (input == NULL)
 		main->func[MS_EXIT](main, NULL);
@@ -89,7 +90,6 @@ int	main(int ac, char **av, char **envp)
 {
 	t_main		main;
 
-	init_signal();
 	init_main(&main, envp);
 	while (1)
 		ms_read_next_line(&main);
@@ -97,19 +97,3 @@ int	main(int ac, char **av, char **envp)
 	(void)ac;
 	(void)av;
 }
-
-/*
-child_pid = fork();
-if (child_pid < 0)
-	perror_and_exit("Fork failed");
-if (child_pid == 0 && execve(command[0], command, envp) < 0)
-	perror_and_exit(command[0]);
-else
-	waitpid(child_pid, 0, WUNTRACED);
-
-char	cmd[] = "/bin/ls";
-char	*av[] = {"ls", "-l", NULL};
-char	*envp[] = {NULL};
-
-execve(cmd, av, envp);
-*/
