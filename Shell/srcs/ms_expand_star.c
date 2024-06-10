@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 15:11:31 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/10 15:17:23 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/10 16:03:28 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	check_star_is_valid(char **tocheck_in, char **arg_in, int *i, int *j)
 		return (1);
 	while (tocheck[*i] != '\0' && tocheck[*i] != arg[*j])
 		(*i)++;
-	if (tocheck[*i] == '\0' && arg[*j] != '\0')
+	if (is_valid(tocheck + *i, arg + *j - 1))
 		return (0);
 	while (tocheck[*i] == arg[*j])
 		(*i)++;

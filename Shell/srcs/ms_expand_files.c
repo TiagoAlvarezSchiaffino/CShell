@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 18:00:51 by Tiago                   /   (_____/      */
-/*   Updated: 2024/05/30 18:48:24 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/10 16:02:50 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ DIR	*get_dir(char *path)
  * @param dir The directory object
  * @param arg The argument to check if a file's name is valid
  * @param file_name The file name of the first valid file if there's one
- * @return The head of the filename's linked list.
+ * @return t_list * The head of the filename's linked list.
  */
 static t_list	*get_files_lst(struct dirent *entity, DIR *dir,
 	char *arg, char *file_name)
@@ -74,7 +74,8 @@ static t_list	*get_files_lst(struct dirent *entity, DIR *dir,
  * returns the file name's linked list
  * 
  * @param arg The argument to check if a file's name is valid
- * @return The head of the filename's linked list, NULL if there's no valid files
+ * @return t_list * The head of the filename's linked list, NULL if there's no
+ * valid files
  */
 t_list	*get_files_from_dir(char *arg)
 {

@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 18:52:03 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/10 15:22:16 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/10 16:03:40 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,30 +46,3 @@ char	*append_char(char *input, char c)
 	free(input);
 	return (output);
     }
-
-	/**
- * @brief Expands the $ symbol by finding its value. Gets the key from the arg
- * and use the key to loop through every envp to find a matching key
- * 
- * @param main The main struct containing the environment list
- * @param arg The argument containing the key
- * @return char* value if a matching key is found, else returns NULL 
- */
-char	*dlr_val(t_main *main, char *arg)
-{
-	char	*key;
-	char	*value;
-	int		i;
-
-	i = 1;
-	while (arg[i] != '\0' && arg[i] != '\''
-		&& arg[i] != '\"' && arg[i] != '$' && arg[i] != '*')
-		i++;
-	key = ft_calloc(i, sizeof(char));
-	key[--i] = '\0';
-	while (--i >= 0)
-		key[i] = arg[i + 1];
-	value = get_envp_value(main->envp, key);
-	free(key);
-	return (value);
-}
