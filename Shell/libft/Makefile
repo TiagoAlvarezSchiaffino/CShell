@@ -8,7 +8,7 @@
 #                                                            (    @\___      #
 #                                                             /         O    #
 #   Created: 2024/05/16 11:17:51 by Tiago                    /   (_____/     #
-#   Updated: 2024/05/30 14:30:22 by Tiago                  /_____/ U         #
+#   Updated: 2024/06/10 16:38:56 by Tiago                  /_____/ U         #
 #                                                                            #
 # ************************************************************************** #
 
@@ -47,6 +47,7 @@ SRC_FILES		=	ft_isalpha \
 					ft_strndup \
 					ft_substr \
 					ft_strjoin \
+					ft_strjoin_free \
 					ft_strtrim \
 					ft_split \
 					ft_itoa \

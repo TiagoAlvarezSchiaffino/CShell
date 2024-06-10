@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:11:04 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 15:06:41 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/10 16:09:45 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ char	*ft_strdup(const char *src);
 char	*ft_strndup(const char *src, size_t size);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin_free(char *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
 char	**ft_split(char const *s, char c);
 int		ft_getwc(char const *s, char c);

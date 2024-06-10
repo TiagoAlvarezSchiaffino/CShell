@@ -8,7 +8,7 @@
 #                                                            (    @\___      #
 #                                                             /         O    #
 #   Created: 2024/05/16 21:17:51 by Tiago                    /   (_____/     #
-#   Updated: 2024/06/10 15:10:03 by Tiago                 /_____/ U          #
+#   Updated: 2024/06/10 16:38:40 by Tiago                 /_____/ U          #
 #                                                                            #
 # ************************************************************************** #
 
@@ -22,9 +22,9 @@ CFLAGS		+=	-fsanitize=address -g3
 READLINE	=	-lreadline
 READLINE	+=	-L/usr/local/opt/readline/lib
 SRCS_FILES	=	ms_expand_dollar \
-				ms_expand_utils \
+				ms_expand_second \
+				ms_expand_first \
 				ms_export_utils \
-				ms_expand_quote \
 				ms_expand_files \
 				ms_parse_input \
 				ms_expand_star \

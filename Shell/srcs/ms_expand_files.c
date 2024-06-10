@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 18:00:51 by Tiago                   /   (_____/      */
-/*   Updated: 2024/06/10 16:02:50 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/10 16:36:59 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ DIR	*get_dir(char *path)
 }
 
 /**
- * @brief Get the files in linked list format. Reads through every file's name
+ * @brief Store the files in linked list format. Reads through every file name
  * and checks whether it is valid according to the argument. If it is, store the
- * file's name into a linked list and returns
+ * file name into a linked list
  * 
  * @param entity The dirent from readdir
  * @param dir The directory object
- * @param arg The argument to check if a file's name is valid
+ * @param arg The argument to check if a file name is valid
  * @param file_name The file name of the first valid file if there's one
  * @return t_list * The head of the filename's linked list.
  */
@@ -64,17 +64,17 @@ static t_list	*get_files_lst(struct dirent *entity, DIR *dir,
 		entity = readdir(dir);
 	}
 	closedir(dir);
-    ft_lstsort(&head);
+	ft_lstsort(&head);
 	return (head);
 }
 
 /**
- * @brief Get the files from dir object. Checks through every file's name for the
+ * @brief Get the files from dir object. Checks through every file name for the
  * first node. If reached NULL and no suitable file was found, return NULL, else
- * returns the file name's linked list
+ * returns the head of the file name linked list
  * 
- * @param arg The argument to check if a file's name is valid
- * @return t_list * The head of the filename's linked list, NULL if there's no
+ * @param arg The argument to check if a file name is valid
+ * @return t_list * The head of the filename's linked list, NULL if there are no
  * valid files
  */
 t_list	*get_files_from_dir(char *arg)
