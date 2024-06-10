@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 19:09:55 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/10 16:50:53 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,11 @@ int	unset(t_main *main, char **args)
 
 	i = 0;
 	while (args[++i] != 0)
+	{
 		if (check_valid_identifier(args[i], args[i], "unset") == 0)
 			find_and_delete(main, args[i]);
+		else
+			return (1);
+	}
 	return (0);
 }

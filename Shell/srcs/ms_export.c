@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/27 14:51:06 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 19:08:26 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/10 16:50:10 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ static void	update_envp(t_main *main, char *args, char *key, char *value)
  * @param main The main struct containing the environment list
  * @param args The arguments
  */
-static void	find_and_add(t_main *main, char **args)
+static int	find_and_add(t_main *main, char **args)
 {
 	int		i;
 	char	**split;
@@ -130,8 +130,12 @@ static void	find_and_add(t_main *main, char **args)
 			free_doublearray(split);
 		}
 		else
+		{
 			free_doublearray(split);
+			return (1);
+		}
 	}
+	return (0);
 }
 
 /**
@@ -149,10 +153,10 @@ int	export(t_main *main, char **args)
 	if (args[1] == 0 || args[1][0] == '#')
 	{
 		dup = sort_doublearray(main->envp);
-		print_envp(dup);
+		print_export(dup);
 		free_doublearray(dup);
 	}
 	else
-		find_and_add(main, args);
+		return (find_and_add(main, args));
 	return (0);
 }

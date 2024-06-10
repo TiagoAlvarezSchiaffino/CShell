@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:38:49 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/10 16:13:57 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/10 16:47:11 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,22 @@
 # include <string.h>
 # include <term.h>
 
-# define MS_ECHO 0
-# define MS_CD 1
-# define MS_PWD 2
-# define MS_EXPORT 3
-# define MS_UNSET 4
-# define MS_ENV 5
-# define MS_EXIT 6
-# define MS_MAX_BIFUNC 7
-
 /* Used to rename builtin functions into function pointers */
 struct		s_main;
 typedef int	(*t_func)(struct s_main *main, char **args);
+
+/* Builtin function name in enums */
+typedef enum bifname
+{
+	MS_ECHO = 0,
+	MS_CD = 1,
+	MS_PWD = 2,
+	MS_EXPORT = 3,
+	MS_UNSET = 4,
+	MS_ENV = 5,
+	MS_EXIT = 6,
+	MS_MAX_BIFUNC = 7,
+}	t_bifname;
 
 /* Builtin functions struct */
 typedef struct s_main
@@ -65,9 +69,6 @@ typedef struct s_expand
 
 /* Global struct is defined here */
 t_global	g_global;
-
-/* CD */
-int		cd(t_main *main, char **args);
 
 /* Error */
 int		export_unset_error(char *arg, char *type);
@@ -118,15 +119,18 @@ char	*dlr_val(t_main *main, char *arg);
 /* Echo */
 int		echo(t_main *main, char **args);
 
+/* CD */
+int		cd(t_main *main, char **args);
+
 /* Pwd */
 int		pwd(t_main *main, char **args);
 
 /* Export */
 int		export(t_main *main, char **args);
 
-/* Export Helper */
+/* Export Utils */
 int		check_valid_identifier(char *arg, char *str, char *type);
-void	print_envp(char **envp);
+void	print_export(char **envp);
 char	**envp_split(char *str);
 
 /* Unset */
@@ -138,7 +142,7 @@ int		env(t_main *main, char **args);
 /* Exit */
 int		ms_exit(t_main *main, char **args);
 
-/* Temp */
+/* Temp Debugger */
 void	print_ll(t_list *head);
 
 #endif

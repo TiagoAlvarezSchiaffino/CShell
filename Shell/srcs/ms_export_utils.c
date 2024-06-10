@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 19:08:39 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 19:08:52 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/10 16:50:21 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	check_valid_identifier(char *arg, char *str, char *type)
  * 
  * @param envp The enviroment variable list
  */
-void	print_envp(char **envp)
+void	print_export(char **envp)
 {
 	char	**split;
 	int		i;

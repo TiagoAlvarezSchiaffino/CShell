@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 16:31:34 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/10 16:47:23 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	perror_and_exit(char *errormsg)
 int	export_unset_error(char *arg, char *type)
 {
 	ft_dprintf(STDERR_FILENO, "%s: `%s': not a valid identifier\n", type, arg);
-	g_global.error_no = 1;
 	return (1);
 }
 

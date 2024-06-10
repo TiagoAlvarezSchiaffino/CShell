@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/06/10 16:03:01 by Tiago                   /   (_____/      */
-/*   Updated: 2024/06/10 16:15:06 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/10 16:47:34 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static void	convert_dquote(t_main *main, t_expand *exp)
  * @param quote Whether there was a single quote
  * @return int 1 if any conversion has been made, else 0
  */
-int	convert_quote_star(t_main *main, t_expand *exp, int *quote)
+static int	convert_quote_star(t_main *main, t_expand *exp, int *quote)
 {
 	if (exp->arg[exp->i] == '\'')
 	{
