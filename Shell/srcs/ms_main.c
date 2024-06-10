@@ -8,11 +8,13 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/10 15:53:54 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/10 16:51:08 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
+
+t_global	g_global;
 
 // TEMPORARY FOR DEBUGGING PURPOSES
 void	print_cmd_list(t_cmd_list *cmd_list);

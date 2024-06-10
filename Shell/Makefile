@@ -54,6 +54,7 @@ SRCS_FILES	=	ms_expand_dollar \
 				ms_expander_tree \
 				ms_executor_struct \
 				ms_executor_tree \
+				ms_executor_io \
 				ms_executor_utils \
 				ms_heredoc \
 				ms_heredoc_tree_enqueue \
