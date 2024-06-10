@@ -8,7 +8,7 @@
 #                                                            (    @\___      #
 #                                                             /         O    #
 #   Created: 2024/05/16 21:17:51 by Tiago                    /   (_____/     #
-#   Updated: 2024/06/10 16:38:40 by Tiago                 /_____/ U          #
+#   Updated: 2024/06/10 17:04:39 by Tiago                 /_____/ U          #
 #                                                                            #
 # ************************************************************************** #
 
@@ -59,7 +59,7 @@ SRCS_FILES	=	ms_expand_dollar \
 				ms_heredoc \
 				ms_heredoc_tree_enqueue \
 				ms_heredoc_tree_dequeue \
-				tmp_print_cmd_list
+				ms_env_path
 SRCS		= 	$(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRCS_FILES)))
 OBJS		= 	$(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRCS_FILES)))
 SRCS_DIR	=	srcs/
