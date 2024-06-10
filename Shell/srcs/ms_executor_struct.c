@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 16:32:13 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 16:33:55 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/10 15:38:57 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ t_executor	*ms_executor_init(void)
 	exec->pipe_fd[1] = ft_calloc(2, sizeof(int));
 	exec->infile = 0;
 	exec->outfile = 1;
+	exec->tmpstdin = dup(0);
+	exec->tmpstdout = dup(1);
 	exec->runtime_error = 0;
 	pipe(exec->pipe_fd[0]);
 	pipe(exec->pipe_fd[1]);

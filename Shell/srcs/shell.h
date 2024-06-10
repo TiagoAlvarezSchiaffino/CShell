@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:38:49 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 18:40:01 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/10 15:36:41 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ typedef struct s_executor
 	int		pipe_count;
 	int		infile;
 	int		outfile;
+	int		tmpstdin;
+	int		tmpstdout;
 	int		runtime_error;
 }	t_executor;
 
@@ -305,6 +307,9 @@ t_executor	*ms_executor_init(void);
 
 /* Executor tree */
 void		ms_executor_cmd_list(t_main *main, t_executor *e, t_cmd_list *cmd);
+
+/* Executor utils */
+void		ms_executor(t_main *main, t_executor *exec, t_pipe_list *pipe);
 
 /* Heredoc */
 void		ms_heredoc_enqueue(t_list **heredoc, char *delimiter);

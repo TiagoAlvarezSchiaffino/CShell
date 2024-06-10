@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:30:44 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 16:32:07 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/10 15:36:54 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	executor(t_main *main, char **command)
 			return ;
 		}
 	}
-	execve(command[0], command, main->envp);
 	ft_dprintf(STDERR_FILENO, "%s: command not found\n", command[0]);
 	g_global.error_no = 127;
 }

@@ -8,11 +8,14 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 17:20:09 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/10 15:53:54 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
+
+// TEMPORARY FOR DEBUGGING PURPOSES
+void	print_cmd_list(t_cmd_list *cmd_list);
 
 /**
  * @brief Initializes all of the functions pointers with their respective names
@@ -34,6 +37,18 @@ static void	init_main(t_main *main, char **envp)
 	main->envp = dup_doublearray(envp);
 }
 
+static t_cmd_list	*ms_get_cmd_list(t_main *main, char *input)
+{
+	t_parser	*parser;
+	t_cmd_list	*cmd_list;
+
+	parser = ms_parser_init(ms_lexer_init(ft_strdup(input)));
+	cmd_list = ms_parser_parse_cmd_list(parser);
+	main->syntax_error = parser->syntax_error;
+	ms_parser_free(&parser);
+	return (cmd_list);
+}
+
 /**
  * @brief Signal will be initialised: Ctrl-\ and Ctrl-C. Every while loop,
  * readline will be called while showing "$> " prompt, and returns user input
@@ -47,30 +62,31 @@ static void	init_main(t_main *main, char **envp)
  */
 int	main(int ac, char **av, char **envp)
 {
-	t_main	main;
-	t_list	*args;
-	char	**command;
-	char	*input;
-	int		i;
+	t_main		main;
+	t_cmd_list	*cmd_list;
+	t_executor	*exec;
+	char		*input;
+	// t_list		*args;
 
 	init_signal();
 	init_main(&main, envp);
 	while (1)
 	{
-		i = 0;
+		// i = 0;
 		input = readline("$> ");
-		command = parse_input(&main, input);
-		if (input[0] != '\0')
-			add_history(input);
-		while (command[i] != 0)
-			i++;
-		args = ft_array_to_list(command, i, sizeof(char *));
-		expander(&main, &args);
-		free_doublearray(command);
-		command = ft_list_to_array(args, sizeof(char *));
-		executor(&main, command);
-		free_doublearray(command);
-		ft_lstclear(&args, &free);
+		if (input == NULL)
+			main.func[MS_EXIT](&main, NULL);
+		if (ft_strlen(input) == 0)
+			continue ;
+		add_history(input);
+		if (ms_check_dangling(input))
+			continue ;
+		cmd_list = ms_get_cmd_list(&main, input);
+		ms_expander_cmd_list(&main, cmd_list);
+		exec = ms_executor_init();
+		ms_heredoc_cmd_list_enqueue(exec, cmd_list);
+		ms_executor_cmd_list(&main, exec, cmd_list);
+		ms_cmd_list_free(&cmd_list);
 		free(input);
 	}
 	return (EXIT_SUCCESS);

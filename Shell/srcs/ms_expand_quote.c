@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 18:48:30 by Tiago                   /   (_____/      */
-/*   Updated: 2024/05/30 18:51:41 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/10 15:12:14 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	expand_squote(t_expand *exp)
 
 /**
  * @brief Expands double quotes, treats all strings inbetween "" as raw strings
- * except for $. Any $ in the double quotes will be expanded to their respective
+ * except for $, which will be expanded to its respective
  * values
  * 
  * @param main The main struct containing the environment list

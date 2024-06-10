@@ -8,14 +8,15 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 18:52:03 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 18:59:36 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/10 15:22:16 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
 /**
- * @brief Appends a character to the back of a string
+ * @brief Appends a character to the back of a string and returns the malloc'ed 
+ * resulting string, freeing the original one.
  * 
  * @param input The string input
  * @param c The character to be appended to the back of a string
@@ -62,7 +63,7 @@ char	*dlr_val(t_main *main, char *arg)
 
 	i = 1;
 	while (arg[i] != '\0' && arg[i] != '\''
-		&& arg[i] != '\"' && arg[i] != '$')
+		&& arg[i] != '\"' && arg[i] != '$' && arg[i] != '*')
 		i++;
 	key = ft_calloc(i, sizeof(char));
 	key[--i] = '\0';
