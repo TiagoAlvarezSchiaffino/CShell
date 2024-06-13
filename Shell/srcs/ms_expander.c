@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 13:32:13 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 06:47:21 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 17:52:35 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ void	expander(t_main *main, t_list **args)
 		arg_lst = expand_first_phase(main, &exp, arg_lst);
 		free(exp.arg);
 	}
+	ms_expander_delete_null(args);
 	arg_lst = *args;
 	while (arg_lst != NULL)
 	{

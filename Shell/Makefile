@@ -8,7 +8,7 @@
 #                                                            (    @\___      #
 #                                                             /         O    #
 #   Created: 2024/05/16 21:17:51 by Tiago                    /   (_____/     #
-#   Updated: 2024/06/13 17:31:34 by Tiago                 /_____/ U          #
+#   Updated: 2024/06/13 17:52:07 by Tiago                 /_____/ U          #
 #                                                                            #
 # ************************************************************************** #
 
@@ -29,7 +29,7 @@ SRCS_FILES	=	ms_heredoc_tree_enqueue \
 				ms_executor_utils \
 				ms_expand_dollar \
 				ms_expand_second \
-				ms_expander_tree \
+				ms_expander_util \
 				ms_executor_tree \
 				ms_expand_first \
 				ms_export_utils \
