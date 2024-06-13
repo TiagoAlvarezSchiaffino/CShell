@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 15:11:31 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 06:46:39 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 18:46:46 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	check_valid_star(char **tocheck_in, char **arg_in, int *i, int *j)
 }
 
 /**
- * @brief Checks the file name after any * (eg. the s after *s) and checks
+ * @brief Checks the file name after any * (e.g. the s after *s) and checks
  * whether the current arg character and the current file name character is the
  * same
  * 

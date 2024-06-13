@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 16:22:16 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 06:19:40 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 18:23:58 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
  * @brief Inits cmd list with operator.
  * 
  * @param operator Operator to set in cmd list struct.
- * @return t_cmd_list* malloced cmd list node.
+ * @return t_cmd* malloced cmd list node.
  */
-t_cmd_list	*ms_cmd_list_init(int operator)
+t_cmd	*ms_cmd_list_init(int operator)
 {
-	t_cmd_list	*cmd_list;
+	t_cmd	*cmd_list;
 
-	cmd_list = ft_calloc(1, sizeof(t_cmd_list));
+	cmd_list = ft_calloc(1, sizeof(t_cmd));
 	cmd_list->e_operator = operator;
 	cmd_list->e_type = -1;
 	cmd_list->ptr = NULL;
@@ -39,7 +39,7 @@ t_cmd_list	*ms_cmd_list_init(int operator)
  * @param p Parser struct.
  * @param buffer Pointer to cmd list buffer.
  */
-static void	ms_parser_cmd_next(t_parser *p, t_cmd_list **buffer)
+static void	ms_parser_cmd_next(t_parser *p, t_cmd **buffer)
 {
 	if ((int)(*buffer)->e_type == -1)
 		ms_parser_syntax_error(p);
@@ -58,7 +58,7 @@ static void	ms_parser_cmd_next(t_parser *p, t_cmd_list **buffer)
  * @param p Parser struct.
  * @param buffer Pointer to buffer.
  */
-static void	ms_parser_cmd_recurse(t_parser *p, t_cmd_list **buffer)
+static void	ms_parser_cmd_recurse(t_parser *p, t_cmd **buffer)
 {
 	if ((int)(*buffer)->e_type != -1)
 		ms_parser_syntax_error(p);
@@ -76,12 +76,12 @@ static void	ms_parser_cmd_recurse(t_parser *p, t_cmd_list **buffer)
  * token
  * 
  * @param p Parser struct.
- * @return t_cmd_list* Pointer to cmd list head.
+ * @return t_cmd* Pointer to cmd list head.
  */
-t_cmd_list	*ms_parser_parse_cmd_list(t_parser *p)
+t_cmd	*ms_parser_parse_cmd_list(t_parser *p)
 {
-	t_cmd_list	*cmd_list;
-	t_cmd_list	*buffer;
+	t_cmd	*cmd_list;
+	t_cmd	*buffer;
 
 	cmd_list = ms_cmd_list_init(OP_START);
 	buffer = cmd_list;
@@ -112,18 +112,18 @@ t_cmd_list	*ms_parser_parse_cmd_list(t_parser *p)
  * 
  * @param cmd_list Pointer to pointer of cmd list struct.
  */
-void	ms_cmd_list_free(t_cmd_list **cmd_list)
+void	ms_cmd_list_free(t_cmd **cmd_list)
 {
-	t_cmd_list	*temp;
+	t_cmd	*temp;
 
 	while (*cmd_list)
 	{
 		temp = *cmd_list;
 		*cmd_list = (*cmd_list)->next;
 		if (temp->e_type == PIPE_LIST)
-			ms_pipe_list_free((t_pipe_list **)&temp->ptr);
+			ms_pipe_list_free((t_pipe **)&temp->ptr);
 		else
-			ms_cmd_list_free((t_cmd_list **)&temp->ptr);
+			ms_cmd_list_free((t_cmd **)&temp->ptr);
 		free(temp);
 	}
 }

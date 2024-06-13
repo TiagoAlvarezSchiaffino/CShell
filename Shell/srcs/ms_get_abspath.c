@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/06/13 06:49:27 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 06:54:10 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 18:49:31 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 /**
  * @brief Combines the command with all the directories in $PATH by looping
  * through and joining them with the command to test for accessibility. If
- * access is granted (ie. the command is found in one of the path), return the
+ * access is granted (i.e. the command is found in one of the path), return the
  * newly joined string, else return the original command
  * 
  * @param paths Paths of $PATH to check with
@@ -49,8 +49,8 @@ static char	*comb_cmd(char **paths, char *rawcmd)
 }
 
 /**
- * @brief Gets the absolute path of a command (eg. cat -> /bin/cat). If a command
- * is not found in one of the paths in $PATH, the command is not changed
+ * @brief Gets the absolute path of a command (e.g. cat -> /bin/cat). If a
+ * command is not found in one of the paths in $PATH, the command is not changed
  * 
  * @param envp Environment variables
  * @param cmd Command that will be checked

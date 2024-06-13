@@ -8,7 +8,7 @@
 #                                                            (    @\___      #
 #                                                             /         O    #
 #   Created: 2024/05/16 21:17:51 by Tiago                    /   (_____/     #
-#   Updated: 2024/06/13 17:52:07 by Tiago                 /_____/ U          #
+#   Updated: 2024/06/13 18:14:26 by Tiago                 /_____/ U          #
 #                                                                            #
 # ************************************************************************** #
 
@@ -21,9 +21,8 @@ CFLAGS		+=	-I/usr/local/opt/readline/include -g
 CFLAGS		+=	-fsanitize=address -g3
 READLINE	=	-lreadline
 READLINE	+=	-L/usr/local/opt/readline/lib
-SRCS_FILES	=	ms_heredoc_tree_enqueue \
-				ms_heredoc_tree_dequeue \
-				ms_expand_dollar_utils \
+SRCS_FILES	=	ms_expand_dollar_utils \
+				ms_heredoc_tree_queue \
 				ms_executor_struct \
 				ms_check_dangling \
 				ms_executor_utils \
@@ -34,7 +33,6 @@ SRCS_FILES	=	ms_heredoc_tree_enqueue \
 				ms_expand_first \
 				ms_export_utils \
 				ms_expand_files \
-				ms_parse_input \
 				ms_expand_star \
 				ms_lexer_utils \
 				ms_executor_io \

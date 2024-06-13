@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 19:08:39 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 06:49:27 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 18:47:19 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	check_valid_identifier(char *arg, char *str, char *type)
 
 /**
  * @brief Prints the sorted envp with the "declare -x" suffix and the value of
- * the variable covered with "" (eg. "value"). If key has no value, just print
+ * the variable covered with "" (e.g. "value"). If key has no value, just print
  * "declare -x" with the key only
  * 
  * @param envp Enviroment variable array
@@ -64,7 +64,7 @@ void	print_export(char **envp)
 /**
  * @brief Splits the str into key and value at first '=' contact.
  * 
- * @param str String containing the key and value (eg. key=value)
+ * @param str String containing the key and value (e.g. key=value)
  * @return char** str if str don't have =, else output[0] is key, output[1] is
  * value, output[2] is NULL terminator
  */

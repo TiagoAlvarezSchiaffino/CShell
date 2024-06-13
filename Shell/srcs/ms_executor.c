@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:30:44 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 18:12:23 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 18:27:00 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 
 /**
  * @brief Loops through the available builtins function and find a match based
- * on args. If found, it will executes the functio. Else write error and set
- * errno to 127
+ * on args. If found, it will execute the function
  * 
  * @param main The main struct containing the builtin functions and
  * their respective names
@@ -30,19 +29,21 @@ void	executor(t_main *main, char **command)
 	i = -1;
 	while (++i < MS_MAX_BIFUNC)
 	{
-		if (command[0] == 0)
-			return ;
 		if (ft_strcmp(command[0], main->func_name[i]) == 0)
 		{
 			g_errno = main->func[i](main, command);
 			return ;
 		}
 	}
-	ft_dprintf(STDERR_FILENO, "%s: command not found\n", command[0]);
-	g_errno = 127;
 }
 
-static void	ms_child_close_fd(t_exe *exec, t_pipe_list *p)
+/**
+ * @brief Closes all fd in child process
+ * 
+ * @param exec Executor linked list containing the file fds
+ * @param p Pipe list struct that could be containing the next node to close fd
+ */
+static void	ms_child_close_fd(t_exe *exec, t_pipe *p)
 {
 	if (exec->pipe_count != 0)
 	{
@@ -56,7 +57,19 @@ static void	ms_child_close_fd(t_exe *exec, t_pipe_list *p)
 	}
 }
 
-void	exe_non_bi(t_main *main, t_exe *exec, t_pipe_list *p, char **argv)
+/**
+ * @brief Executes non builtin functions. Sets SIGINT signal back to default and
+ * closes all fd in child process. Tries to convert command to absolute path and
+ * then executes them with execve. If execve fails it returns, and depending on
+ * whether PATH is set, different error messages will be printed out and errno is
+ * set to 127
+ * 
+ * @param main Main struct containing the environment array
+ * @param exec Executor linked list containing the file fds
+ * @param p Pipe list struct that could be containing the next node to close fd
+ * @param argv Argument linked list that will be executed
+ */
+void	exe_non_bi(t_main *main, t_exe *exec, t_pipe *p, char **argv)
 {
 	int		pid;
 	char	*value;
@@ -66,7 +79,6 @@ void	exe_non_bi(t_main *main, t_exe *exec, t_pipe_list *p, char **argv)
 	if (pid == 0)
 	{
 		signal(SIGINT, SIG_DFL);
-		signal(SIGQUIT, SIG_DFL);
 		ms_child_close_fd(exec, p);
 		if (argv[0] != NULL && argv[0][0] != '\0')
 			ms_get_abspath(main->envp, argv);

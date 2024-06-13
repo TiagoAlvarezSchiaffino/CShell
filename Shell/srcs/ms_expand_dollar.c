@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 18:41:10 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 18:02:44 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 18:45:57 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,8 @@ static t_list	*split_value(t_list **cur_in, t_expand *exp, char *d_value)
 	end = current->next;
 	split = ft_split(d_value, ' ');
 	j = 0;
+	merge_first_split(&current, exp, split);
 	if (split_null(&current, exp, split[0], d_value) == 0)
-	if (split_is_null(&current, exp, split[0], d_value) == 0)
 	{
 		while (split[++j] != 0)
 		{
@@ -123,9 +123,9 @@ static t_list	*split_value(t_list **cur_in, t_expand *exp, char *d_value)
 
 /**
  * @brief Expands $ to its value. If it is a single $, append '$' to the current
- * output instead. Else, if the character before $ is =, get the value of $ and
+ * output instead. Else if the character before $ is =, get the value of $ and
  * append them to the current output, else if it is not NULL and the content are
- * not spaces only, split them into individual linked list (eg. B="echo hi") and
+ * not spaces only, split them into individual linked list (e.g. B="echo hi") and
  * link them to the current node of the linked list argument
  * 
  * @param cur_in Current node of the argument linked list

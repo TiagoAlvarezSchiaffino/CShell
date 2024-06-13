@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 06:58:00 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 19:03:50 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ static void	init_main(t_main *main, char **envp)
  * 
  * @param main Main struct containing the boolean syntax error
  * @param input User input
- * @return t_cmd_list* head of the command linked list
+ * @return t_cmd* head of the command linked list
  */
-static t_cmd_list	*ms_get_cmd_list(t_main *main, char *input)
+static t_cmd	*ms_get_cmd_list(t_main *main, char *input)
 {
 	t_parser	*parser;
-	t_cmd_list	*cmd_list;
+	t_cmd		*cmd_list;
 
 	parser = ms_parser_init(ms_lexer_init(ft_strdup(input)));
 	cmd_list = ms_parser_parse_cmd_list(parser);
@@ -60,12 +60,12 @@ static t_cmd_list	*ms_get_cmd_list(t_main *main, char *input)
  * and builtin functions
  * @param cmd_list head of the command linked list 
  */
-static void	ms_run_execution(t_main *main, t_cmd_list *cmd_list)
+static void	ms_run_execution(t_main *main, t_cmd *cmd_list)
 {
 	t_exe	*exec;
 
 	exec = ms_executor_init();
-	ms_hd_cmd_list_enqueue(exec, cmd_list);
+	ms_hd_cmd_queue(exec, cmd_list, EQ);
 	ms_executor_cmd_list(main, exec, cmd_list);
 	ms_executor_free(&exec);
 }
@@ -82,8 +82,8 @@ static void	ms_run_execution(t_main *main, t_cmd_list *cmd_list)
  */
 void	ms_read_next_line(t_main *main)
 {
-	t_cmd_list	*cmd_list;
-	char		*input;
+	t_cmd	*cmd_list;
+	char	*input;
 
 	init_signal();
 	input = readline("$> ");

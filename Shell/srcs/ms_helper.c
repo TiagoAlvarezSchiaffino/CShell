@@ -8,14 +8,14 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 06:54:41 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 18:49:50 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
 /**
- * @brief Frees double array (ie. output from ft_split)
+ * @brief Frees double array (i.e. output from ft_split)
  * 
  * @param split Double array that will be freed
  */

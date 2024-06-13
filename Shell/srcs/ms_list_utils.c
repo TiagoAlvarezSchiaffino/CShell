@@ -8,12 +8,17 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/06/13 05:49:08 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 17:48:27 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 19:01:33 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
+/**
+ * @brief Frees the content inside of a linked list's node 
+ * 
+ * @param content Content that will be freed
+ */
 void	ms_free_args(void *content)
 {
 	if (*(char **)content)
@@ -55,7 +60,15 @@ void	ft_lstsort(t_list **lst)
 	}
 }
 
-int	ms_cmd_list_parse_pipe_list(t_cmd_list *buffer, t_parser *p)
+/**
+ * @brief If there is an error in the buffer, print syntax error and set parser
+ * syntax_error to 1. Else set e_type to PIPE_LIST and parses the pipe list.
+ * 
+ * @param buffer Buffer linked list
+ * @param p Parser struct
+ * @return int 1 if there is syntax error in parser linked list, else 0
+ */
+int	ms_cmd_list_parse_pipe_list(t_cmd *buffer, t_parser *p)
 {
 	if ((int)buffer->e_type != -1)
 	{
@@ -64,12 +77,17 @@ int	ms_cmd_list_parse_pipe_list(t_cmd_list *buffer, t_parser *p)
 	}
 	buffer->e_type = PIPE_LIST;
 	buffer->ptr = ms_parser_parse_pipe_list(p);
-	if (p->syntax_error)
-		return (1);
-	return (0);
+	return (p->syntax_error);
 }
 
-void	ms_pipe_new_arg(t_parser *p, t_pipe_list *buffer)
+/**
+ * @brief Creates a new node using parser struct as content, and adds it to the
+ * back of the buffer linked list
+ * 
+ * @param buffer Buffer linked list that will be added to the back
+ * @param p Parser struct that will be used as content for the new node
+ */
+void	ms_pipe_new_arg(t_pipe *buffer, t_parser *p)
 {
 	t_list		*new;
 

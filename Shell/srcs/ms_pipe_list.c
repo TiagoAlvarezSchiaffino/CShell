@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 17:33:24 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 17:51:39 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 19:06:10 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 /**
  * @brief Inits pipe list.
  * 
- * @return t_pipe_list* Returns a malloced pipe list node.
+ * @return t_pipe* Returns a malloced pipe list node.
  */
-t_pipe_list	*ms_pipe_list_init(void)
+t_pipe	*ms_pipe_list_init(void)
 {
-	t_pipe_list	*pipe_list;
+	t_pipe	*pipe_list;
 
-	pipe_list = ft_calloc(1, sizeof(t_pipe_list));
+	pipe_list = ft_calloc(1, sizeof(t_pipe));
 	pipe_list->argv = NULL;
 	pipe_list->io_list = NULL;
 	pipe_list->next = NULL;
@@ -31,14 +31,14 @@ t_pipe_list	*ms_pipe_list_init(void)
 }
 
 /**
- * @brief Appends node to pipe list and moves the buffer to new node.\
- * @brief If both argv and io list is empty, i.e. current pipe list is empty,
- * 			prints error and return.
+ * @brief Appends node to pipe list and moves the buffer to new node. If both
+ * argv and io list is empty (i.e. current pipe list is empty), prints error and
+ * return.
  * 
  * @param p Parser struct.
  * @param buffer Pointer to pipe list buffer.
  */
-static int	ms_parser_pipe_next(t_parser *p, t_pipe_list **buffer)
+static int	ms_parser_pipe_next(t_parser *p, t_pipe **buffer)
 {
 	if ((*buffer)->argv == NULL && (*buffer)->io_list == NULL)
 	{
@@ -54,19 +54,19 @@ static int	ms_parser_pipe_next(t_parser *p, t_pipe_list **buffer)
  * @brief Parses a pipe list.
  * 
  * @param p Parser struct.
- * @return t_pipe_list* Pointer to pipe list head.
+ * @return t_pipe* Pointer to pipe list head.
  */
-t_pipe_list	*ms_parser_parse_pipe_list(t_parser *p)
+t_pipe	*ms_parser_parse_pipe_list(t_parser *p)
 {
-	t_pipe_list	*pipe_list;
-	t_pipe_list	*buffer;
+	t_pipe	*pipe_list;
+	t_pipe	*buffer;
 
 	pipe_list = ms_pipe_list_init();
 	buffer = pipe_list;
 	while (p->curr_token && p->syntax_error == 0)
 	{
 		if (p->curr_token->e_type == TOKEN_WORD)
-			ms_pipe_new_arg(p, buffer);
+			ms_pipe_new_arg(buffer, p);
 		else if (p->curr_token->e_type == TOKEN_PIPE
 			&& ms_parser_pipe_next(p, &buffer))
 			return (pipe_list);
@@ -100,9 +100,9 @@ int	ms_parser_is_pipe_token(t_token *token)
  * 
  * @param pipe_list Pointer to pointer of pipe list struct.
  */
-void	ms_pipe_list_free(t_pipe_list **pipe_list)
+void	ms_pipe_list_free(t_pipe **pipe_list)
 {
-	t_pipe_list	*temp;
+	t_pipe	*temp;
 
 	while (*pipe_list)
 	{

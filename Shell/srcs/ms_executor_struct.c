@@ -8,12 +8,17 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 16:32:13 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 06:33:12 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 18:34:29 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
+/**
+ * @brief Initialises the executor struct
+ * 
+ * @return t_exe* Initialized executor struct
+ */
 t_exe	*ms_executor_init(void)
 {
 	t_exe	*exec;
@@ -29,7 +34,13 @@ t_exe	*ms_executor_init(void)
 	return (exec);
 }
 
-void	ms_executor_init_pipefd(t_exe *exec, t_pipe_list *p)
+/**
+ * @brief Allocating memory for the pipe_fd in executor struct
+ * 
+ * @param exec Executor struct containing pipe fd
+ * @param p Parser struct
+ */
+void	ms_executor_init_pipefd(t_exe *exec, t_pipe *p)
 {
 	int	i;
 
@@ -45,6 +56,11 @@ void	ms_executor_init_pipefd(t_exe *exec, t_pipe_list *p)
 		exec->pipe_fd[i] = ft_calloc(2, sizeof(int));
 }
 
+/**
+ * @brief Frees the pipe fds
+ * 
+ * @param exec Executor struct containing the pipe fds
+ */
 void	ms_executor_free_pipefd(t_exe *exec)
 {
 	int	i;
@@ -59,6 +75,11 @@ void	ms_executor_free_pipefd(t_exe *exec)
 	exec->pipe_fd = NULL;
 }
 
+/**
+ * @brief Frees the temporary STDIN and STDOUT fds and frees the executor struct
+ * 
+ * @param exec Executor struct to be freed, containing tmpstdin and tmpstdout
+ */
 void	ms_executor_free(t_exe **exec)
 {
 	close((*exec)->tmpstdin);

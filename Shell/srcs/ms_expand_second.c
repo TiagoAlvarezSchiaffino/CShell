@@ -8,14 +8,14 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/06/10 16:15:15 by Tiago                   /   (_____/      */
-/*   Updated: 2024/06/13 06:45:28 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 18:46:32 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
 /**
- * @brief When the files linked-list is NULL, it will clear the files linked list
+ * @brief When the files linked list is NULL, it will clear the files linked list
  * and append the argument to the output instead until a upcoming character is
  * found, which are '\0', '\'' and '\"'
  * 

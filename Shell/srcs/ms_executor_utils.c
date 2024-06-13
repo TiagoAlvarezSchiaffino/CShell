@@ -8,12 +8,18 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/06/10 15:40:23 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 17:36:55 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 18:40:56 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
+/**
+ * @brief Checks whether the command is a builtin
+ * 
+ * @param command The command that will be checked
+ * @return int 1 if it is a builtin, else 0
+ */
 int	ms_exec_is_builtin(char *command)
 {
 	char	**cmds;
@@ -32,6 +38,11 @@ int	ms_exec_is_builtin(char *command)
 	return (res);
 }
 
+/**
+ * @brief Resets and closes any fd redirections
+ * 
+ * @param exec Executor linked list containing the file fds
+ */
 void	ms_exec_redir_reset(t_exe *exec)
 {
 	if (exec->pipe_count != 0)
@@ -47,7 +58,13 @@ void	ms_exec_redir_reset(t_exe *exec)
 	dup2(exec->tmpstdout, 1);
 }
 
-void	ms_exec_redir_set(t_exe *exec, t_pipe_list *p)
+/**
+ * @brief Redirects the file fds
+ * 
+ * @param exec Executor linked list containing the file fds
+ * @param p Pipe linked list to check if there is next
+ */
+void	ms_exec_redir_set(t_exe *exec, t_pipe *p)
 {
 	if (p->next)
 		pipe(exec->pipe_fd[exec->pipe_count]);
@@ -61,7 +78,17 @@ void	ms_exec_redir_set(t_exe *exec, t_pipe_list *p)
 		dup2(exec->pipe_fd[exec->pipe_count][1], 1);
 }
 
-void	ms_executor(t_main *main, t_exe *exec, t_pipe_list *p)
+/**
+ * @brief Executes the commands. Sets redirection first and then expands the
+ * arguments. Executes the command if it is a builtin function. Else executes
+ * it directly through another function. Resets and closes any fd redirections
+ * in the end.
+ * 
+ * @param main Main struct containing the environment array
+ * @param exec Executor linked list containing the file fds
+ * @param p Pipe linked list to check if there is next
+ */
+void	ms_executor(t_main *main, t_exe *exec, t_pipe *p)
 {
 	char	**argv;
 
@@ -70,9 +97,9 @@ void	ms_executor(t_main *main, t_exe *exec, t_pipe_list *p)
 	ms_expander_delete_null(&p->argv);
 	ft_lstadd_back(&p->argv, ft_lstnew(ft_calloc(1, sizeof(char *))));
 	argv = ft_list_to_array(p->argv, sizeof(char *));
-	if (ms_exec_is_builtin(argv[0]))
+	if (argv[0] != NULL && ms_exec_is_builtin(argv[0]))
 		executor(main, argv);
-	else
+	else if (argv[0] != NULL)
 		exe_non_bi(main, exec, p, argv);
 	free(argv);
 	ms_exec_redir_reset(exec);

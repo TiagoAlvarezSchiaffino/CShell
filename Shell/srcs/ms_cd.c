@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 06:18:03 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 18:20:11 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  * will change current directory and return 1. If changing directory fails, throw
  * error and exit with status 1
  * 
- * @param main Main struct containing the environement array
+ * @param main Main struct containing the environment array
  * @param args Arguments that will be cd into
  * @return int 0 on success
  */
