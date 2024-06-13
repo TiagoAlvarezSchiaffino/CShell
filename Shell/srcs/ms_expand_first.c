@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/06/10 16:03:01 by Tiago                   /   (_____/      */
-/*   Updated: 2024/06/13 06:43:55 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 17:54:42 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,14 @@ static int	convert_quote_star(t_main *main, t_expand *exp, int *quote)
 {
 	if (exp->arg[exp->i] == '\'')
 	{
+		exp->output = append_char(exp->output, '\0');
 		*quote = (*quote == 0);
 		exp->i++;
 		return (1);
 	}
 	else if (exp->arg[exp->i] == '\"' && *quote == 0)
 	{
+		exp->output = append_char(exp->output, '\0');
 		convert_dquote(main, exp);
 		exp->i++;
 		return (1);
