@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 17:33:24 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 17:43:47 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 17:51:39 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,16 @@ t_pipe_list	*ms_pipe_list_init(void)
  * @param p Parser struct.
  * @param buffer Pointer to pipe list buffer.
  */
-static void	ms_parser_pipe_next(t_parser *p, t_pipe_list **buffer)
+static int	ms_parser_pipe_next(t_parser *p, t_pipe_list **buffer)
 {
 	if ((*buffer)->argv == NULL && (*buffer)->io_list == NULL)
-		ms_parser_syntax_error(p);
-	else
 	{
-		(*buffer)->next = ms_pipe_list_init();
-		*buffer = (*buffer)->next;
+		ms_parser_syntax_error(p);
+		return (1);
 	}
+	(*buffer)->next = ms_pipe_list_init();
+	*buffer = (*buffer)->next;
+	return (0);
 }
 
 /**
@@ -66,14 +67,13 @@ t_pipe_list	*ms_parser_parse_pipe_list(t_parser *p)
 	{
 		if (p->curr_token->e_type == TOKEN_WORD)
 			ms_pipe_new_arg(p, buffer);
-		else if (p->curr_token->e_type == TOKEN_PIPE)
-			ms_parser_pipe_next(p, &buffer);
-		else if (ms_parser_is_io_token(p->curr_token))
-		{
-			if (ms_parser_parse_io_list(&buffer->io_list, p))
-				return (pipe_list);
-		}
-		else
+		else if (p->curr_token->e_type == TOKEN_PIPE
+			&& ms_parser_pipe_next(p, &buffer))
+			return (pipe_list);
+		else if (ms_parser_is_io_token(p->curr_token)
+			&& ms_parser_parse_io_list(&buffer->io_list, p))
+			return (pipe_list);
+		else if (!ms_parser_is_pipe_token(p->curr_token))
 			break ;
 		ms_parser_eat(p);
 	}
