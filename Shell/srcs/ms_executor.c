@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:30:44 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 18:10:57 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 18:12:23 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	exe_non_bi(t_main *main, t_exe *exec, t_pipe_list *p, char **argv)
 	if (pid == 0)
 	{
 		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
 		ms_child_close_fd(exec, p);
 		if (argv[0] != NULL && argv[0][0] != '\0')
 			ms_get_abspath(main->envp, argv);
