@@ -8,16 +8,16 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 18:40:54 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 06:20:46 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
 /**
- * @brief Prints out everyline in environment list
+ * @brief Prints out the environment list
  * 
- * @param main The main struct containing the environment list
+ * @param main Main struct containing the environment array
  * @param args The arguments (Can be NULL)
  * @return int 0 on success
  */

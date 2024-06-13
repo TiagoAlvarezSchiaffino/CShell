@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/06/10 15:40:23 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 05:34:48 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 06:34:51 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ms_exec_is_builtin(char *command)
 	return (res);
 }
 
-void	ms_exec_redir_reset(t_executor *exec)
+void	ms_exec_redir_reset(t_exe *exec)
 {
 	if (exec->pipe_count != 0)
 	{
@@ -47,7 +47,7 @@ void	ms_exec_redir_reset(t_executor *exec)
 	dup2(exec->tmpstdout, 1);
 }
 
-void	ms_exec_redir_set(t_executor *exec, t_pipe_list *p)
+void	ms_exec_redir_set(t_exe *exec, t_pipe_list *p)
 {
 	if (p->next)
 		pipe(exec->pipe_fd[exec->pipe_count]);
@@ -61,7 +61,7 @@ void	ms_exec_redir_set(t_executor *exec, t_pipe_list *p)
 		dup2(exec->pipe_fd[exec->pipe_count][1], 1);
 }
 
-void	ms_executor(t_main *main, t_executor *exec, t_pipe_list *p)
+void	ms_executor(t_main *main, t_exe *exec, t_pipe_list *p)
 {
 	char	**argv;
 
@@ -73,7 +73,7 @@ void	ms_executor(t_main *main, t_executor *exec, t_pipe_list *p)
 	if (ms_exec_is_builtin(argv[0]))
 		executor(main, argv);
 	else
-		executor_non_builtin(main, exec, p, argv);
+		exe_non_bi(main, exec, p, argv);
 	free(argv);
 	ms_exec_redir_reset(exec);
 }

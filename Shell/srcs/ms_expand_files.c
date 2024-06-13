@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 18:00:51 by Tiago                   /   (_____/      */
-/*   Updated: 2024/06/10 16:36:59 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 06:42:07 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 /**
  * @brief Get the dir object
  * 
- * @param path The path of the dir
+ * @param path Path of the dir
  * @return DIR* object
  */
 DIR	*get_dir(char *path)
@@ -34,11 +34,11 @@ DIR	*get_dir(char *path)
  * and checks whether it is valid according to the argument. If it is, store the
  * file name into a linked list
  * 
- * @param entity The dirent from readdir
- * @param dir The directory object
- * @param arg The argument to check if a file name is valid
- * @param file_name The file name of the first valid file if there's one
- * @return t_list * The head of the filename's linked list.
+ * @param entity Dirent from readdir
+ * @param dir Directory object
+ * @param arg Argument to check if a file name is valid
+ * @param file_name File name of the first valid file if there's one
+ * @return t_list * Head of the filename's linked list.
  */
 static t_list	*get_files_lst(struct dirent *entity, DIR *dir,
 	char *arg, char *file_name)
@@ -73,8 +73,8 @@ static t_list	*get_files_lst(struct dirent *entity, DIR *dir,
  * first node. If reached NULL and no suitable file was found, return NULL, else
  * returns the head of the file name linked list
  * 
- * @param arg The argument to check if a file name is valid
- * @return t_list * The head of the filename's linked list, NULL if there are no
+ * @param arg Argument to check if a file name is valid
+ * @return t_list * Head of the filename's linked list, NULL if there are no
  * valid files
  */
 t_list	*get_files_from_dir(char *arg)

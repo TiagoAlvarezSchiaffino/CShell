@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 18:40:37 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 06:18:03 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 
 /**
  * @brief Checks whether there is a cd command. If no, return 0 . If yes, then
- * will change current directory and return 1. If changing directory fails,
- * throw error and exit with status 1
+ * will change current directory and return 1. If changing directory fails, throw
+ * error and exit with status 1
  * 
- * @param main The main struct containing the environment list
- * @param args The arguments
+ * @param main Main struct containing the environement array
+ * @param args Arguments that will be cd into
  * @return int 0 on success
  */
 int	cd(t_main *main, char **args)

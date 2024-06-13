@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/10 16:47:23 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 06:22:33 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 /**
  * @brief Prints perror and exit with status 1
  * 
- * @param errormsg The error message to be printed
+ * @param errormsg Error message to be printed
  */
 void	perror_and_exit(char *errormsg)
 {
@@ -26,12 +26,12 @@ void	perror_and_exit(char *errormsg)
 }
 
 /**
- * @brief Prints custom error message for invalid identifier for export. Updates
- * the errno to 1
+ * @brief Prints error message for invalid identifier for export or unset and
+ * updates the errno to 1
  * 
- * @param arg The arguments
+ * @param arg Argument that is invalid
  * @param type The type of builtin function it is called from (unset or export)
- * @return int 1 on success
+ * @return int 1 to be set as errno
  */
 int	export_unset_error(char *arg, char *type)
 {
@@ -40,14 +40,14 @@ int	export_unset_error(char *arg, char *type)
 }
 
 /**
- * @brief 	Prints syntax error using the current token in the parser.
- * 			Also sets the member syntax_error in the parser struct to 1.
+ * @brief Prints syntax error using the current token in the parser and sets the
+ * member syntax_error in the parser struct to 1.
  * 
- * @param p Parser struct
+ * @param p Parser struct containing current token value and syntax error boolean
  */
 void	ms_parser_syntax_error(t_parser *p)
 {
-	ft_dprintf(2, "minishell: syntax error near unexpected token `%s'\n",
+	ft_dprintf(2, "shell: syntax error near unexpected token `%s'\n",
 		p->curr_token->value);
 	p->syntax_error = 1;
 }

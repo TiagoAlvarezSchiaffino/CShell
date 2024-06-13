@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/06/10 16:03:01 by Tiago                   /   (_____/      */
-/*   Updated: 2024/06/10 16:47:34 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 06:43:55 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
  * the argument followed by an ending '. If none of the above criteria were met,
  * simply append the character to the current output
  * 
- * @param main The main struct containing the environment list
- * @param exp The expansion struct containing the argument, i position and
- * output string
+ * @param main Main struct containing the environement array
+ * @param exp Expansion struct containing the argument, i position and output
+ * string
  */
 static void	convert_dquote(t_main *main, t_expand *exp)
 {
@@ -60,8 +60,8 @@ static void	convert_dquote(t_main *main, t_expand *exp)
  * is passed to another function to deal with it. If a * if found and it is
  * inside '', append '*' to the current output
  * 
- * @param main The main struct containing the environment list
- * @param exp The expansion struct containing the argument, i position and
+ * @param main Main struct containing the environement array
+ * @param exp Expansion struct containing the argument, i position and
  * output string
  * @param quote Whether there was a single quote
  * @return int 1 if any conversion has been made, else 0
@@ -96,11 +96,11 @@ static int	convert_quote_star(t_main *main, t_expand *exp, int *quote)
  * passed to another function to deal with it. If a $ is found, it is expanded 
  * with its values possibly extending the argument linked list.
  * 
- * @param main The main struct containing the environment list
- * @param exp The expansion struct containing the argument, i position and
+ * @param main Main struct containing the environement array
+ * @param exp Expansion struct containing the argument, i position and
  * output string
- * @param current The current node of the argument linked list
- * @return t_list* The next node of the argument linked list to be expanded
+ * @param current Current node of the argument linked list
+ * @return t_list* Next node of the argument linked list to be expanded
  */
 t_list	*expand_first_phase(t_main *main, t_expand *exp, t_list *current)
 {

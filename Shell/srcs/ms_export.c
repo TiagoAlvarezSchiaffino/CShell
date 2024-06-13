@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/27 14:51:06 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/10 16:50:10 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 06:48:42 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
  * is KEY="". If value is 0, new envp is KEY. Else, new envp is KEY=VALUE. Copy
  * the rest and frees the old one, sets the new one as the current one
  * 
- * @param main The main struct containing the environment list
- * @param key The key of the new variable
- * @param value The value of the new variable
+ * @param main Main struct containing the environment variable array
+ * @param key Key of the new variable
+ * @param value Value of the new variable
  * @param i The position of the last variable in the existing envp + 1
  */
 static void	add_new_envp(t_main *main, char *key, char *value, int i)
@@ -52,9 +52,9 @@ static void	add_new_envp(t_main *main, char *key, char *value, int i)
  * option is set to 1, replace existing envp with new key + no value. Else,
  * replace existing envp with key + '=' + value
  * 
- * @param envp The environment variable list
- * @param key The key of the existing variable
- * @param value The new value of the existing variable
+ * @param envp Environment variable array
+ * @param key Key of the existing variable
+ * @param value New value of the existing variable
  * @param option Whether the strdup or strjoin is needed to be used
  */
 static void	do_replace(char **envp, char *key, char *value, int option)
@@ -77,10 +77,10 @@ static void	do_replace(char **envp, char *key, char *value, int option)
  * (opt 0). If there is already an existing key and arg is key only, return. If
  * no existing key is found, add new key and value to the envp
  * 
- * @param main The main struct containing the environment list
- * @param args The arguments
- * @param key The key of the "new" variable
- * @param value The value of the "new" variable
+ * @param main Main struct containing the environment array
+ * @param args Argument of the current argument linked list node
+ * @param key Key of the "new" variable
+ * @param value Value of the "new" variable
  */
 static void	update_envp(t_main *main, char *args, char *key, char *value)
 {
@@ -112,8 +112,8 @@ static void	update_envp(t_main *main, char *args, char *key, char *value)
  * @brief Loops through every args. Check whether the arg is valid. Split the
  * arg into Key and Value, then feed into update_envp function
  * 
- * @param main The main struct containing the environment list
- * @param args The arguments
+ * @param main Main struct containing the environment array
+ * @param args Arguments that will be checked for export
  */
 static int	find_and_add(t_main *main, char **args)
 {
@@ -142,7 +142,7 @@ static int	find_and_add(t_main *main, char **args)
  * @brief If export is called with no other args, print envp. Else, add new
  * args into envp
  * 
- * @param main The main struct containing the environment list
+ * @param main Main struct containing the environment array
  * @param args The arguments
  * @return int 0 on success
  */

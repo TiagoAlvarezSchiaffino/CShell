@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 13:32:13 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 05:35:05 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 06:47:21 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
  * @brief Appends a character to the back of a string and returns the memmory
  * allocated resulting string, freeing the original one.
  * 
- * @param input The string input
- * @param c The character to be appended to the back of a string
+ * @param input String input to be appended
+ * @param c Character to be appended to the back of a string
  * @return char* The result string after appending
  */
 char	*append_char(char *input, char c)
@@ -52,9 +52,9 @@ char	*append_char(char *input, char c)
  * the argument and returns the next node of the argument linked list to be
  * expanded
  * 
- * @param current The current node of the argument linked list
- * @param files The list of files
- * @param output The content that suppposingly will house the current node
+ * @param current Current node of the argument linked list
+ * @param files List of files
+ * @param output Content that suppposingly will house the current node
  * @return t_list* Next node of the argument to be expanded (Excluding the files)
  */
 t_list	*connect_cur_with_cur(t_list *current, t_list *files, char *output)
@@ -77,10 +77,10 @@ t_list	*connect_cur_with_cur(t_list *current, t_list *files, char *output)
  * Else if the final output is not NULL and there is no dollar conversion,
  * replace the current node's content with output
  * 
- * @param current The current node of the argument linked list
- * @param output The content that will house the current node's content
+ * @param current Current node of the argument linked list
+ * @param output Content that will house the current node's content
  * @param dollar Whether a dollar conversion had taken place
- * @return t_list* The next node of the argument linked list to be expanded
+ * @return t_list* Next node of the argument linked list to be expanded
  */
 t_list	*check_output_dollar(t_list *current, char *output, int dollar)
 {
@@ -102,8 +102,8 @@ t_list	*check_output_dollar(t_list *current, char *output, int dollar)
  * through expanding the arguments twice. The first expansion will make things
  * easier for the second expansion to read and expand
  * 
- * @param main The main struct containing the environment list
- * @param args The arguments
+ * @param main Main struct containing the environement array
+ * @param args Arguments linked list to be expanded
  */
 void	expander(t_main *main, t_list **args)
 {
@@ -112,10 +112,7 @@ void	expander(t_main *main, t_list **args)
 
 	arg_lst = *args;
 	if (arg_lst == NULL)
-	{
-		*args = ft_lstnew(ft_calloc(1, sizeof(char *)));
 		return ;
-	}
 	while (arg_lst != NULL)
 	{
 		exp.arg = *(char **)arg_lst->content;

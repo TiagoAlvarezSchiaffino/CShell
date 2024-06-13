@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 14:51:01 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 06:20:22 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  * whether it is a valid flag and only 'n' flag exists in the user input. Loops
  * through again for cases where the input is (echo -nn -nn Hi)
  * 
- * @param args The arguments
+ * @param args Arguments that will be checked for flags
  * @return int flag count
  */
 static int	get_flag(char **args)
@@ -49,8 +49,8 @@ static int	get_flag(char **args)
  * iterate through the rest of args and print out all the variable. If flag_count
  * is 0 (no -n flag), prints out a "\n"
  * 
- * @param main The main struct (Can be NULL)
- * @param args The arguments
+ * @param main Main struct (Can be NULL)
+ * @param args Arguments that will be printed out
  * @return int 0 on success
  */
 int	echo(t_main *main, char **args)

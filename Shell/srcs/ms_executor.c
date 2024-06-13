@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:30:44 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 05:56:16 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 06:24:49 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	executor(t_main *main, char **command)
 	g_errno = 127;
 }
 
-static void	ms_child_close_fd(t_executor *exec, t_pipe_list *p)
+static void	ms_child_close_fd(t_exe *exec, t_pipe_list *p)
 {
 	if (exec->pipe_count != 0)
 	{
@@ -56,10 +56,10 @@ static void	ms_child_close_fd(t_executor *exec, t_pipe_list *p)
 	}
 }
 
-void	executor_non_builtin(t_main *main, t_executor *exec, t_pipe_list *p,
-	char **argv)
+void	exe_non_bi(t_main *main, t_exe *exec, t_pipe_list *p, char **argv)
 {
-	int	pid;
+	int		pid;
+	char	*value;
 
 	signal(SIGINT, SIG_IGN);
 	pid = fork();
@@ -67,13 +67,15 @@ void	executor_non_builtin(t_main *main, t_executor *exec, t_pipe_list *p,
 	{
 		signal(SIGINT, SIG_DFL);
 		ms_child_close_fd(exec, p);
-		if (ms_get_path_env(main->envp, argv))
-		{
-			free(argv);
-			exit(127);
-		}
+		ms_get_abspath(main->envp, argv);
 		execve(argv[0], argv, main->envp);
-		ft_dprintf(STDERR_FILENO, "%s: command not found\n", argv[0]);
+		value = get_envp_value(main->envp, "PATH");
+		if (value == NULL)
+			ft_dprintf(STDERR_FILENO, "%s: No such file or directory\n",
+				argv[0]);
+		else
+			ft_dprintf(STDERR_FILENO, "%s: command not found\n", argv[0]);
+		free(value);
 		exit(127);
 	}
 }

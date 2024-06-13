@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 14:45:39 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 06:58:30 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 /**
  * @brief Gets and prints out the current directory of the program
  * 
- * @param main The main struct (Can be NULL)
- * @param args The arguments (Can be NULL)
+ * @param main Main struct (Can be NULL)
+ * @param args Arguments (Can be NULL)
  * @return int 0 on success
  */
 int	pwd(t_main *main, char **args)

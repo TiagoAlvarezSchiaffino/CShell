@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 19:08:39 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/10 16:50:21 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 06:49:27 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
  * or '_', print error message. If second letter and beyond is not alphanumeric
  * or '_', print error message
  * 
- * @param arg The argument
- * @param str The string that will be exported
- * @param type The type of builtin function that is called from (unset or export)
+ * @param arg Argument to be checked
+ * @param str String that will be exported
+ * @param type Type of builtin function that is called from (unset or export)
  * @return int 0 on success, else 1 if there is an error
  */
 int	check_valid_identifier(char *arg, char *str, char *type)
@@ -42,7 +42,7 @@ int	check_valid_identifier(char *arg, char *str, char *type)
  * the variable covered with "" (eg. "value"). If key has no value, just print
  * "declare -x" with the key only
  * 
- * @param envp The enviroment variable list
+ * @param envp Enviroment variable array
  */
 void	print_export(char **envp)
 {
@@ -64,7 +64,7 @@ void	print_export(char **envp)
 /**
  * @brief Splits the str into key and value at first '=' contact.
  * 
- * @param str The string containing the key and value (eg. key=value)
+ * @param str String containing the key and value (eg. key=value)
  * @return char** str if str don't have =, else output[0] is key, output[1] is
  * value, output[2] is NULL terminator
  */

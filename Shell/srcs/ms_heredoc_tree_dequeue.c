@@ -8,13 +8,13 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 16:49:04 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 16:58:31 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 06:55:34 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-void	ms_heredoc_io_list_dequeue(t_executor *exec, t_io_list *io_list)
+void	ms_heredoc_io_list_dequeue(t_exe *exec, t_io_list *io_list)
 {
 	int	fd;
 
@@ -29,7 +29,7 @@ void	ms_heredoc_io_list_dequeue(t_executor *exec, t_io_list *io_list)
 	}
 }
 
-void	ms_heredoc_pipe_list_dequeue(t_executor *exec, t_pipe_list *pipe_list)
+void	ms_hd_pipe_list_dequeue(t_exe *exec, t_pipe_list *pipe_list)
 {
 	while (pipe_list)
 	{
@@ -38,14 +38,14 @@ void	ms_heredoc_pipe_list_dequeue(t_executor *exec, t_pipe_list *pipe_list)
 	}
 }
 
-void	ms_heredoc_cmd_list_dequeue(t_executor *exec, t_cmd_list *cmd_list)
+void	ms_hd_cmd_list_dequeue(t_exe *exec, t_cmd_list *cmd_list)
 {
 	while (cmd_list)
 	{
 		if (cmd_list->e_type == PIPE_LIST)
-			ms_heredoc_pipe_list_dequeue(exec, cmd_list->ptr);
+			ms_hd_pipe_list_dequeue(exec, cmd_list->ptr);
 		else
-			ms_heredoc_pipe_list_dequeue(exec, cmd_list->ptr);
+			ms_hd_pipe_list_dequeue(exec, cmd_list->ptr);
 		cmd_list = cmd_list->next;
 	}
 }

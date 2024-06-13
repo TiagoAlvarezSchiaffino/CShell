@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 16:22:16 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 05:48:28 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 06:19:40 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
  * @brief Inits cmd list with operator.
  * 
  * @param operator Operator to set in cmd list struct.
- * @return t_cmd_list* Returns a malloced cmd list node.
+ * @return t_cmd_list* malloced cmd list node.
  */
 t_cmd_list	*ms_cmd_list_init(int operator)
 {
@@ -33,9 +33,8 @@ t_cmd_list	*ms_cmd_list_init(int operator)
 }
 
 /**
- * @brief Appends node to cmd list and moves the buffer to new node.\
- * @brief If e_type is not set, i.e. current cmd list is empty, prints error
- * 			and return.
+ * @brief Appends node to cmd list and moves the buffer to new node. If e_type is
+ * not set (i.e. current cmd list is empty), prints error and return.
  * 
  * @param p Parser struct.
  * @param buffer Pointer to cmd list buffer.
@@ -53,9 +52,8 @@ static void	ms_parser_cmd_next(t_parser *p, t_cmd_list **buffer)
 }
 
 /**
- * @brief Sets current node to cmd list and parse the new cmd list.\
- * @brief If e_type is already set, i.e. current cmd list is not empty,
- * 			prints error and return.
+ * @brief Sets current node to cmd list and parse the new cmd list. If e_type is
+ * already set (i.e. current cmd list is not empty), prints error and return.
  * 
  * @param p Parser struct.
  * @param buffer Pointer to buffer.
@@ -74,7 +72,8 @@ static void	ms_parser_cmd_recurse(t_parser *p, t_cmd_list **buffer)
 }
 
 /**
- * @brief Parses a cmd list.
+ * @brief Parses a cmd list. Different functions will be called based on the
+ * token
  * 
  * @param p Parser struct.
  * @return t_cmd_list* Pointer to cmd list head.

@@ -8,7 +8,7 @@
 #                                                            (    @\___      #
 #                                                             /         O    #
 #   Created: 2024/05/16 21:17:51 by Tiago                    /   (_____/     #
-#   Updated: 2024/06/13 05:46:26 by Tiago                 /_____/ U          #
+#   Updated: 2024/06/13 06:08:26 by Tiago                 /_____/ U          #
 #                                                                            #
 # ************************************************************************** #
 
@@ -37,12 +37,12 @@ SRCS_FILES	=	ms_heredoc_tree_enqueue \
 				ms_expand_star \
 				ms_lexer_utils \
 				ms_executor_io \
+				ms_get_abspath \
 				ms_list_utils \
 				ms_pipe_list \
 				ms_executor \
 				ms_expander \
 				ms_cmd_list \
-				ms_env_path \
 				ms_io_list \
 				ms_heredoc \
 				ms_helper \

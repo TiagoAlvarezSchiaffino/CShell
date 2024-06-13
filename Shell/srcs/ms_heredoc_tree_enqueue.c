@@ -8,13 +8,13 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 16:43:16 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 16:48:58 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 06:55:56 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-void	ms_heredoc_io_list_enqueue(t_executor *exec, t_io_list *io_list)
+void	ms_heredoc_io_list_enqueue(t_exe *exec, t_io_list *io_list)
 {
 	while (io_list)
 	{
@@ -25,7 +25,7 @@ void	ms_heredoc_io_list_enqueue(t_executor *exec, t_io_list *io_list)
 	}
 }
 
-void	ms_heredoc_pipe_list_enqueue(t_executor *exec, t_pipe_list *pipe_list)
+void	ms_heredoc_pipe_list_enqueue(t_exe *exec, t_pipe_list *pipe_list)
 {
 	while (pipe_list)
 	{
@@ -34,7 +34,7 @@ void	ms_heredoc_pipe_list_enqueue(t_executor *exec, t_pipe_list *pipe_list)
 	}
 }
 
-void	ms_heredoc_cmd_list_enqueue(t_executor *exec, t_cmd_list *cmd_list)
+void	ms_hd_cmd_list_enqueue(t_exe *exec, t_cmd_list *cmd_list)
 {
 	while (cmd_list)
 	{
