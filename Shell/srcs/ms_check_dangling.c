@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 16:14:45 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 17:59:06 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 18:07:02 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	ms_has_dangling_bracket(char *str, char open, char close,
 		{
 			if (ignore_char == *str)
 				ignore_char = '\0';
-			else
+			else if (ignore_char == '\0')
 				ignore_char = *str;
 		}
 		if (!ignore_char)
