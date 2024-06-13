@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:38:49 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 17:36:41 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 17:40:13 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -293,9 +293,10 @@ void		ms_pipe_list_free(t_pipe_list **pipe_list);
 void		ms_free_args(void *content);
 void		ft_lstsort(t_list **lst);
 int			ms_cmd_list_parse_pipe_list(t_cmd_list *buffer, t_parser *p);
+void		ms_pipe_new_arg(t_parser *p, t_pipe_list *buffer);
 
 t_io_list	*ms_io_list_init(int type);
-void		ms_parser_parse_io_list(t_io_list **io_list, t_parser *p);
+int			ms_parser_parse_io_list(t_io_list **io_list, t_parser *p);
 void		ms_io_list_free(t_io_list **io_list);
 int			ms_parser_is_io_token(t_token *token);
 

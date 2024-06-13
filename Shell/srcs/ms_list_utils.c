@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/06/13 05:49:08 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 05:52:33 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 17:42:33 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,13 @@ int	ms_cmd_list_parse_pipe_list(t_cmd_list *buffer, t_parser *p)
 	buffer->e_type = PIPE_LIST;
 	buffer->ptr = ms_parser_parse_pipe_list(p);
 	return (0);
+}
+
+void	ms_pipe_new_arg(t_parser *p, t_pipe_list *buffer)
+{
+	t_list		*new;
+
+	new = ft_lstnew(ft_calloc(1, sizeof(char *)));
+	ft_memcpy(new->content, &p->curr_token->value, sizeof(char *));
+	ft_lstadd_back(&buffer->argv, new);
 }

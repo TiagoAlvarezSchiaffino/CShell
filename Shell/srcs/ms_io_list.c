@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 16:49:30 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 05:36:11 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 17:41:24 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,20 @@ t_io_list	*ms_io_list_init(int type)
  * @param io_list Io list.
  * @param p Parser struct.
  */
-void	ms_parser_parse_io_list(t_io_list **io_list, t_parser *p)
+int	ms_parser_parse_io_list(t_io_list **io_list, t_parser *p)
 {
 	t_io_list	*new;
 	t_io_list	*buffer;
 
-	new = ms_io_list_init(p->curr_token->e_type - 3);
 	ms_parser_eat(p);
 	if (p->curr_token->e_type != TOKEN_WORD)
-		return (ms_parser_syntax_error(p));
+	{
+		ms_parser_syntax_error(p);
+		return (1);
+	}
 	else
 	{
+		new = ms_io_list_init(p->curr_token->e_type - 3);
 		new->value = ft_lstnew(ft_calloc(1, sizeof(char *)));
 		ft_memcpy(new->value->content, &p->curr_token->value, sizeof(char *));
 	}
@@ -60,6 +63,7 @@ void	ms_parser_parse_io_list(t_io_list **io_list, t_parser *p)
 	}
 	else
 		*io_list = new;
+	return (0);
 }
 
 /** 
