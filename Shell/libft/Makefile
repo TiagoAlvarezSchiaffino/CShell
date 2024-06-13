@@ -8,7 +8,7 @@
 #                                                            (    @\___      #
 #                                                             /         O    #
 #   Created: 2024/05/16 11:17:51 by Tiago                    /   (_____/     #
-#   Updated: 2024/06/10 16:38:56 by Tiago                  /_____/ U         #
+#   Updated: 2024/06/13 19:13:01 by Tiago                  /_____/ U         #
 #                                                                            #
 # ************************************************************************** #
 
@@ -16,7 +16,9 @@ NAME			=	libft.a
 CC				=	gcc
 AR				=	ar rcs
 HEADER			=	-I libft.h
-CFLAGS			=	-Wall -Werror -Wextra $(HEADER)
+CFLAGS			=	-Wall -Werror -Wextra
+RM				=	rm -rf
+MKDIR			=	mkdir -p
 SRCS_DIR		=	srcs/
 OBJS_DIR		=	objs/
 PRINTF_DIR		=	printf/
@@ -91,7 +93,7 @@ SRCS 			= 	$(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJS 			= 	$(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRC_FILES)))
 
 all:				
-					mkdir -p $(OBJS_DIR)
+					$(MKDIR) $(OBJS_DIR)
 					make $(NAME)
 
 $(OBJS_DIR)%.o:		$(SRCS_DIR)%.c | $(OBJSF)
@@ -101,10 +103,10 @@ $(NAME):			$(OBJS)
 					$(AR) $(NAME) $(OBJS)
 
 clean:
-					rm -rf $(OBJS_DIR)
+					$(RM) $(OBJS_DIR)
 
 fclean:				clean
-					rm -rf $(NAME)
+					$(RM) $(NAME)
 
 re:					fclean all
 
