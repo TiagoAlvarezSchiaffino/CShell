@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 16:34:10 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 17:52:49 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 17:55:58 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,14 @@ void	ms_expander_delete_null(t_list **list)
 	curr = *list;
 	if (curr)
 		ms_expander_delete_null(&curr->next);
+}
+
+int	is_space_only(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0' && str[i] == ' ')
+		i++;
+	return (str[i] == '\0');
 }
