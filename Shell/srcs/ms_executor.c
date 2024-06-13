@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:30:44 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/10 17:45:00 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 05:34:11 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,10 @@ void	executor_non_builtin(t_main *main, t_executor *exec, t_pipe_list *p,
 		signal(SIGINT, SIG_DFL);
 		ms_child_close_fd(exec, p);
 		if (ms_get_path_env(main->envp, argv))
+		{
+			free(argv);
 			exit(127);
+		}
 		execve(argv[0], argv, main->envp);
 		ft_dprintf(STDERR_FILENO, "%s: command not found\n", argv[0]);
 		exit(127);

@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 17:33:24 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 17:51:47 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 05:37:19 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	ms_pipe_list_free(t_pipe_list **pipe_list)
 	{
 		temp = *pipe_list;
 		*pipe_list = (*pipe_list)->next;
-		ft_lstclear(&temp->argv, &ms_pipe_list_free_args);
+		ft_lstclear(&temp->argv, &ms_free_args);
 		ms_io_list_free(&temp->io_list);
 		free(temp);
 	}

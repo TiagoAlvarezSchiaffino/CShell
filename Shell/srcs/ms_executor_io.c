@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/06/10 16:51:20 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/10 17:34:01 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 05:34:36 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,15 @@ void	ms_executor_io_list(t_main *main, t_executor *exec, t_io_list *io)
 	{
 		if (io->e_type != IO_AIN)
 		{
-			env_val = *(char **)io->value->content;
+			env_val = ft_strdup(*(char **)io->value->content);
 			expander(main, &io->value);
 			ms_expander_delete_null(&io->value);
 			if (ms_executor_check_ambiguous(exec, io->value, env_val))
+			{
+				free(env_val);
 				return ;
+			}
+			free(env_val);
 		}
 		if (io->e_type == IO_AIN || io->e_type == IO_IN)
 			ms_executor_io_in(exec, io);

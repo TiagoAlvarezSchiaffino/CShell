@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/06/10 15:40:23 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/10 17:47:51 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 05:34:48 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,6 @@ void	ms_executor(t_main *main, t_executor *exec, t_pipe_list *p)
 		executor(main, argv);
 	else
 		executor_non_builtin(main, exec, p, argv);
+	free(argv);
 	ms_exec_redir_reset(exec);
 }

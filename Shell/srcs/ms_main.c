@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/10 17:51:55 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 05:36:54 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,16 @@ void	ms_read_next_line(t_main *main)
 	if (input == NULL)
 		main->func[MS_EXIT](main, NULL);
 	if (ft_strlen(input) == 0)
+	{
+		free(input);
 		return ;
+	}
 	add_history(input);
 	if (ms_check_dangling(input))
+	{
+		free(input);
 		return ;
+	}
 	cmd_list = ms_get_cmd_list(main, input);
 	exec = ms_executor_init();
 	ms_heredoc_cmd_list_enqueue(exec, cmd_list);

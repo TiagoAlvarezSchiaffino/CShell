@@ -8,7 +8,7 @@
 #                                                            (    @\___      #
 #                                                             /         O    #
 #   Created: 2024/05/16 21:17:51 by Tiago                    /   (_____/     #
-#   Updated: 2024/06/10 17:04:39 by Tiago                 /_____/ U          #
+#   Updated: 2024/06/13 05:30:09 by Tiago                 /_____/ U          #
 #                                                                            #
 # ************************************************************************** #
 
@@ -49,7 +49,7 @@ SRCS_FILES	=	ms_expand_dollar \
 				ms_lexer \
 				ms_parser \
 				ms_pipe_list \
-				ms_pipe_list_utils \
+				ms_free_args \
 				ms_token \
 				ms_expander_tree \
 				ms_executor_struct \

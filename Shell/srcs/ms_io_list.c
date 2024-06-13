@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 16:49:30 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 16:57:43 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 05:36:11 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	ms_io_list_free(t_io_list **io_list)
 	{
 		temp = *io_list;
 		*io_list = (*io_list)->next;
-		free(temp->value);
+		ft_lstclear(&temp->value, &ms_free_args);
 		free(temp);
 	}
 }
