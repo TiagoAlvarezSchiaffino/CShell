@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 16:14:45 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 17:51:54 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 17:59:06 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static int	ms_has_dangling_quote(char *str, char c, char *ignore)
 }
 
 /**
- * @brief 	Checks string for dangling single quotes ', dangling double quotes ",
+ * @brief Checks string for dangling single quotes ', dangling double quotes ",
  * and dangling parentheses (). Prints error if there are dangling chars.
  * 
  * @param str String to check

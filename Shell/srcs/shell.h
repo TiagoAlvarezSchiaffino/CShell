@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:38:49 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 17:40:13 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 17:56:17 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,12 +241,14 @@ DIR			*get_dir(char *path);
 int			expand_dlr(t_list **cur_in, t_expand *exp, char *dollar_expanded);
 int			is_valid(char *tocheck, char *arg);
 int			val_in_quote(t_expand *exp);
+int			is_space_only(char *str)
 int			check_star(char *arg);
 char		*dlr_val(t_main *main, char *arg);
 char		*append_char(char *input, char c);
 void		recurs_expand_dollar(t_main *main, t_expand *exp, int depth);
 void		ms_expander_delete_null(t_list **list);
 void		expander(t_main *main, t_list **args);
+int			strjoin_n_return(t_expand *exp, char *d_value);
 
 int			echo(t_main *main, char **args);
 

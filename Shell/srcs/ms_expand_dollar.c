@@ -1,14 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*   ms_expand_dlr.c                                                          */
+/*   ms_expand_dollar.c                                                       */
 /*                                                                            */
 /*   By: Tiago <tiagoalvarezschiaffino@gmail.com>                             */
 /*                                                             / \__          */
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 18:41:10 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 17:33:47 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 18:02:44 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void	merge_first_split(t_list **cur_in, t_expand *exp, char **split)
  * @param d_value Value of $ expanded
  * @return int 0 if split[0] is not NULL, else 1
  */
-int	split_is_null(t_list **cur_in, t_expand *exp, char *str, char *d_value)
+static int	split_null(t_list **cur_in, t_expand *exp, char *str, char *d_value)
 {
 	t_list	*current;
 	int		i;
@@ -103,7 +103,7 @@ static t_list	*split_value(t_list **cur_in, t_expand *exp, char *d_value)
 	end = current->next;
 	split = ft_split(d_value, ' ');
 	j = 0;
-	merge_first_split(&current, exp, split);
+	if (split_null(&current, exp, split[0], d_value) == 0)
 	if (split_is_null(&current, exp, split[0], d_value) == 0)
 	{
 		while (split[++j] != 0)
@@ -123,9 +123,10 @@ static t_list	*split_value(t_list **cur_in, t_expand *exp, char *d_value)
 
 /**
  * @brief Expands $ to its value. If it is a single $, append '$' to the current
- * output instead. Else get the value of $ and split them into individual linked
- * list if there are spaces (eg. B="echo hi") and link them to the current node
- * of the linked list argument
+ * output instead. Else, if the character before $ is =, get the value of $ and
+ * append them to the current output, else if it is not NULL and the content are
+ * not spaces only, split them into individual linked list (eg. B="echo hi") and
+ * link them to the current node of the linked list argument
  * 
  * @param cur_in Current node of the argument linked list
  * @param exp Expansion struct containing the argument, i position and
@@ -144,7 +145,9 @@ int	expand_dlr(t_list **cur_in, t_expand *exp, char *d_value)
 		exp->output = append_char(exp->output, '$');
 	else if (d_value != NULL)
 	{
-		if (d_value[0] != '\0')
+		if (exp->i != 0 && exp->arg[exp->i - 1] == '=')
+			return (strjoin_n_return(exp, d_value));
+		if (d_value[0] != '\0' && is_space_only(d_value) == 0)
 		{
 			end = split_value(&current, exp, d_value);
 			current->next = end;
@@ -189,7 +192,8 @@ void	recurs_expand_dollar(t_main *main, t_expand *exp, int depth)
 		while (dollar_expanded[++i] != '\0' && dollar_expanded[0] != '\0')
 			exp->output = append_char(exp->output, dollar_expanded[i]);
 	while (exp->arg[exp->i + 1] != '\0' && exp->arg[exp->i + 1] != '\''
-		&& exp->arg[exp->i + 1] != '\"' && exp->arg[exp->i + 1] != '$')
+		&& exp->arg[exp->i + 1] != '\"' && exp->arg[exp->i + 1] != '$'
+		&& exp->arg[exp->i + 1] != ' ')
 			exp->i++;
 	free(dollar_expanded);
 	recurs_expand_dollar(main, exp, depth + 1);

@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 18:41:10 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 17:35:59 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 18:05:56 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*dlr_val(t_main *main, char *arg)
 	int		i;
 
 	i = 1;
-	while (arg[i] != '\0' && arg[i] != '\''
+	while (arg[i] != '\0' && arg[i] != '\'' && arg[i] != ' '
 		&& arg[i] != '\"' && arg[i] != '$' && arg[i] != '*')
 		i++;
 	key = ft_calloc(i, sizeof(char));
@@ -62,4 +62,19 @@ int	val_in_quote(t_expand *exp)
 		i++;
 	}
 	return (wc > 0);
+}
+
+/**
+ * @brief Strjoins the value of $ to the current output
+ * 
+ * @param exp Expansion struct containing the argument, i position and
+ * output string
+ * @param d_value Value of $ expanded
+ * @return int 0
+ */
+int	strjoin_n_return(t_expand *exp, char *d_value)
+{
+	exp->output = ft_strjoin_free(exp->output, d_value);
+	free(d_value);
+	return (0);
 }
