@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/06/10 15:40:23 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 18:40:56 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 19:08:28 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,10 @@ void	ms_executor(t_main *main, t_exe *exec, t_pipe *p)
 	if (argv[0] != NULL && ms_exec_is_builtin(argv[0]))
 		executor(main, argv);
 	else if (argv[0] != NULL)
+	{
 		exe_non_bi(main, exec, p, argv);
+		exec->has_child = 1;
+	}
 	free(argv);
 	ms_exec_redir_reset(exec);
 }

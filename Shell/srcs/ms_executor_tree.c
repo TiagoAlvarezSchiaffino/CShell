@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 16:34:04 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 18:37:39 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 19:07:43 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	ms_executor_wait_pipe(void)
 void	ms_executor_pipe_list(t_main *main, t_exe *exec, t_pipe *pipe)
 {
 	exec->pipe_count = 0;
+	exec->has_child = 0;
 	ms_executor_init_pipefd(exec, pipe);
 	while (pipe)
 	{
@@ -61,7 +62,8 @@ void	ms_executor_pipe_list(t_main *main, t_exe *exec, t_pipe *pipe)
 		exec->pipe_count++;
 	}
 	ms_executor_free_pipefd(exec);
-	ms_executor_wait_pipe();
+	if (exec->has_child == 1)
+		ms_executor_wait_pipe();
 }
 
 /**
