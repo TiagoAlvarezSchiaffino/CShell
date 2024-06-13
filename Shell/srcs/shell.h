@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:38:49 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 05:31:02 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 05:37:27 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ typedef struct s_main
 	char	**envp;
 	char	**func_name;
 	t_func	func[MS_MAX_BIFUNC];
-	int		syntax_error;
 }	t_main;
 
 /* Global struct */

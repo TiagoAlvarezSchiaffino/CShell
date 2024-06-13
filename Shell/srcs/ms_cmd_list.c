@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 16:22:16 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 16:29:02 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 05:38:03 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,11 @@ t_cmd_list	*ms_parser_parse_cmd_list(t_parser *p)
 			ms_parser_cmd_recurse(p, &buffer);
 		else if (ms_parser_is_pipe_token(p->curr_token))
 		{
+			if ((int)buffer->e_type != -1)
+			{
+				ms_parser_syntax_error(p);
+				return (cmd_list);
+			}
 			buffer->e_type = PIPE_LIST;
 			buffer->ptr = ms_parser_parse_pipe_list(p);
 		}
