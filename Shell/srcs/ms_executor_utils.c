@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/06/10 15:40:23 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 06:34:51 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 17:36:55 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ms_exec_is_builtin(char *command)
 	cmds = ft_split("echo cd pwd export unset env exit", ' ');
 	i = -1;
 	res = 0;
-	while (++i < 7)
+	while (++i < MS_MAX_BIFUNC)
 	{
 		if (ft_strcmp(command, cmds[i]) == 0)
 			res = 1;
