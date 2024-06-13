@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:38:49 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 18:20:05 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 19:08:52 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ typedef struct s_exe
 	int		tmpstdin;
 	int		tmpstdout;
 	int		runtime_error;
+	int		has_child;
 }	t_exe;
 
 /**
