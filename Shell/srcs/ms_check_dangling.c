@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 16:14:45 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 06:18:59 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 17:45:23 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,18 @@ static int	ms_has_dangling_bracket(char *str, char open, char close)
  * @param c Character to check
  * @return int 0 if no dangling quotes, 1 if there is a dangling quote
  */
-static int	ms_has_dangling_quote(char *str, char c)
+static int	ms_has_dangling_quote(char *str, char c, char *ignore)
 {
 	int	i;
+	int ignore_flag;
 
 	i = 0;
+	ignore_flag = 0;
 	while (*str)
 	{
-		if (*str == c)
+		if (ft_strchr(ignore, *str) != 0 && !i)
+			ignore_flag = !ignore_flag;
+		if (*str == c && !ignore_flag)
 			i = !i;
 		str++;
 	}
@@ -71,12 +75,12 @@ int	ms_check_dangling(char *str)
 	int	res;
 
 	res = 0;
-	if (ms_has_dangling_quote(str, '\''))
+	if (ms_has_dangling_quote(str, '\'', "\""))
 	{
 		res = 1;
 		ft_dprintf(2, "minishell: syntax error dangling single quote\n");
 	}
-	else if (ms_has_dangling_quote(str, '"'))
+	else if (ms_has_dangling_quote(str, '"', "'"))
 	{
 		res = 1;
 		ft_dprintf(2, "minishell: syntax error dangling double quote\n");
