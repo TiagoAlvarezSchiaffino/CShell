@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:38:49 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 19:08:52 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 19:17:30 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define SHELL_H
 
 # include "../libft/srcs/libft.h"
+# include <stdio.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <sys/ioctl.h>
@@ -27,6 +28,7 @@
 # include <dirent.h>
 # include <string.h>
 # include <term.h>
+
 
 /* Used to rename builtin functions into function pointers */
 struct		s_main;
