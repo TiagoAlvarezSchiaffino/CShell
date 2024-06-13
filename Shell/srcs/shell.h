@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:38:49 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 06:17:43 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 17:36:41 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,6 +240,7 @@ t_list		*get_files_from_dir(char *arg);
 DIR			*get_dir(char *path);
 int			expand_dlr(t_list **cur_in, t_expand *exp, char *dollar_expanded);
 int			is_valid(char *tocheck, char *arg);
+int			val_in_quote(t_expand *exp);
 int			check_star(char *arg);
 char		*dlr_val(t_main *main, char *arg);
 char		*append_char(char *input, char c);

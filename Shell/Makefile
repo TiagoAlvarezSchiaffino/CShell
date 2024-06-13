@@ -8,7 +8,7 @@
 #                                                            (    @\___      #
 #                                                             /         O    #
 #   Created: 2024/05/16 21:17:51 by Tiago                    /   (_____/     #
-#   Updated: 2024/06/13 06:08:26 by Tiago                 /_____/ U          #
+#   Updated: 2024/06/13 17:31:34 by Tiago                 /_____/ U          #
 #                                                                            #
 # ************************************************************************** #
 
@@ -23,6 +23,7 @@ READLINE	=	-lreadline
 READLINE	+=	-L/usr/local/opt/readline/lib
 SRCS_FILES	=	ms_heredoc_tree_enqueue \
 				ms_heredoc_tree_dequeue \
+				ms_expand_dollar_utils \
 				ms_executor_struct \
 				ms_check_dangling \
 				ms_executor_utils \
