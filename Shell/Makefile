@@ -8,7 +8,7 @@
 #                                                            (    @\___      #
 #                                                             /         O    #
 #   Created: 2024/05/16 21:17:51 by Tiago                    /   (_____/     #
-#   Updated: 2024/06/13 05:30:09 by Tiago                 /_____/ U          #
+#   Updated: 2024/06/13 05:46:26 by Tiago                 /_____/ U          #
 #                                                                            #
 # ************************************************************************** #
 
@@ -21,45 +21,44 @@ CFLAGS		+=	-I/usr/local/opt/readline/include -g
 CFLAGS		+=	-fsanitize=address -g3
 READLINE	=	-lreadline
 READLINE	+=	-L/usr/local/opt/readline/lib
-SRCS_FILES	=	ms_expand_dollar \
+SRCS_FILES	=	ms_heredoc_tree_enqueue \
+				ms_heredoc_tree_dequeue \
+				ms_executor_struct \
+				ms_check_dangling \
+				ms_executor_utils \
+				ms_expand_dollar \
 				ms_expand_second \
+				ms_expander_tree \
+				ms_executor_tree \
 				ms_expand_first \
 				ms_export_utils \
 				ms_expand_files \
 				ms_parse_input \
 				ms_expand_star \
+				ms_lexer_utils \
+				ms_executor_io \
+				ms_list_utils \
+				ms_pipe_list \
 				ms_executor \
 				ms_expander \
+				ms_cmd_list \
+				ms_env_path \
+				ms_io_list \
+				ms_heredoc \
 				ms_helper \
 				ms_signal \
 				ms_export \
+				ms_parser \
 				ms_error \
 				ms_unset \
+				ms_lexer \
+				ms_token \
 				ms_main \
 				ms_echo \
 				ms_exit \
 				ms_env \
 				ms_pwd \
-				ms_cd \
-				temp_debugger
-				ms_check_dangling \
-				ms_cmd_list \
-				ms_io_list \
-				ms_lexer_utils \
-				ms_lexer \
-				ms_parser \
-				ms_pipe_list \
-				ms_free_args \
-				ms_token \
-				ms_expander_tree \
-				ms_executor_struct \
-				ms_executor_tree \
-				ms_executor_io \
-				ms_executor_utils \
-				ms_heredoc \
-				ms_heredoc_tree_enqueue \
-				ms_heredoc_tree_dequeue \
-				ms_env_path
+				ms_cd
 SRCS		= 	$(addprefix $(SRCS_DIR), $(addsuffix .c, $(SRCS_FILES)))
 OBJS		= 	$(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRCS_FILES)))
 SRCS_DIR	=	srcs/

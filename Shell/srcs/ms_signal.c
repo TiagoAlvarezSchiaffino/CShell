@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:38:49 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 14:48:24 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 06:08:08 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	sigint_handler(int signo)
 	rl_replace_line("", 0);
 	rl_on_new_line();
 	rl_redisplay();
-	g_global.error_no = 1;
+	g_errno = 1;
 }
 
 /**

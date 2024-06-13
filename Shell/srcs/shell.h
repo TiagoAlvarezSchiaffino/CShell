@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:38:49 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 05:37:27 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 05:47:51 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,9 @@ typedef struct s_main
 {
 	char	**envp;
 	char	**func_name;
+	int 	syntax_error;
 	t_func	func[MS_MAX_BIFUNC];
 }	t_main;
-
-/* Global struct */
-typedef struct s_global
-{
-	int	error_no;
-}	t_global;
 
 /* Expander struct */
 typedef struct s_expand
@@ -63,8 +58,8 @@ typedef struct s_expand
 	int		i;
 }	t_expand;
 
-/* Global struct is defined here */
-extern t_global	g_global;
+/* Global errno is defined here */
+int			g_errno;
 
 typedef struct s_executor
 {
@@ -201,7 +196,6 @@ char		*get_envp_value(char **envp, char *key);
 char		**sort_doublearray(char **envp);
 void		free_doublearray(char **split);
 char		**dup_doublearray(char **src);
-void		ft_lstsort(t_list **lst);
 
 /* Parse Input */
 char		**parse_input(t_main *main, char *input);
@@ -292,8 +286,10 @@ t_pipe_list	*ms_parser_parse_pipe_list(t_parser *p);
 int			ms_parser_is_pipe_token(t_token *token);
 void		ms_pipe_list_free(t_pipe_list **pipe_list);
 
-/* Free args */
+/* List utils */
 void		ms_free_args(void *content);
+void		ft_lstsort(t_list **lst);
+int			ms_cmd_list_parse_pipe_list(t_cmd_list *buffer, t_parser *p);
 
 /* Io list */
 t_io_list	*ms_io_list_init(int type);

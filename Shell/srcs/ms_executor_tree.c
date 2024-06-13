@@ -8,84 +8,42 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 16:34:04 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/10 15:40:12 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 06:03:10 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-int	ms_executor_check_error(t_executor *exec, int error)
+void	ms_executor_wait_pipe(void)
 {
-	if (error != 0)
-	{
-		ft_dprintf(2, "some runtime error\n");
-		exec->runtime_error = 1;
-	}
-	return (error);
-}
+	int	returnpid;
+	int	status;
 
-int	ms_executor_check_ambiguous(t_executor *exec, t_list *value)
-{
-	if (ft_lstsize(value) != 1)
-	{
-		ft_dprintf(2, "minishell: ambiguous redirect\n");
-		return (ms_executor_check_error(exec, 1));
-	}
-	return (0);
-}
-
-void	ms_executor_io_list(t_executor *exec, t_io_list *io)
-{
-	while (io)
-	{
-		if (io->e_type == IO_AIN || io->e_type == IO_IN)
-		{
-			if (exec->infile != 0)
-				close(exec->infile);
-			if (io->e_type == IO_AIN)
-				exec->infile = ms_heredoc_dequeue(&exec->heredoc);
-			else
-			{
-				if (ms_executor_check_ambiguous(exec, io->value))
-					return ;
-				exec->infile = open(*(char **)io->value->content, O_RDONLY);
-			}
-		}
-		else if (io->e_type == IO_AOUT || io->e_type == IO_OUT)
-		{
-			if (exec->outfile != 1)
-				close(exec->outfile);
-			if (ms_executor_check_ambiguous(exec, io->value))
-				return ;
-			if (io->e_type == IO_AOUT)
-				exec->outfile = open(*(char **)io->value->content,
-						O_WRONLY | O_CREAT | O_APPEND, 0644);
-			else
-				exec->outfile = open(*(char **)io->value->content,
-						O_WRONLY | O_CREAT | O_TRUNC, 0644);
-		}
-		if (ms_executor_check_error(exec, exec->infile == -1)
-			|| ms_executor_check_error(exec, exec->outfile == -1))
-			return ;
-		io = io->next;
-	}
+	returnpid = 1;
+	while (returnpid > 0)
+		returnpid = waitpid(-1, &status, WUNTRACED);
+	if (WIFEXITED(status))
+		g_errno = (WEXITSTATUS(status));
 }
 
 void	ms_executor_pipe_list(t_main *main, t_executor *exec, t_pipe_list *pipe)
 {
 	exec->pipe_count = 0;
+	ms_executor_init_pipefd(exec, pipe);
 	while (pipe)
 	{
 		exec->infile = 0;
 		exec->outfile = 1;
-		ms_executor_io_list(exec, pipe->io_list);
+		ms_executor_io_list(main, exec, pipe->io_list);
 		if (exec->runtime_error)
-			g_global.error_no = exec->runtime_error;
+			g_errno = exec->runtime_error;
 		else
 			ms_executor(main, exec, pipe);
 		pipe = pipe->next;
 		exec->pipe_count++;
 	}
+	ms_executor_free_pipefd(exec);
+	ms_executor_wait_pipe();
 }
 
 void	ms_executor_cmd_list(t_main *main, t_executor *e, t_cmd_list *cmd)
@@ -93,8 +51,8 @@ void	ms_executor_cmd_list(t_main *main, t_executor *e, t_cmd_list *cmd)
 	while (cmd)
 	{
 		if (cmd->e_operator == OP_START
-			|| (cmd->e_operator == OP_AND && g_global.error_no == 0)
-			|| (cmd->e_operator == OP_OR && g_global.error_no != 0))
+			|| (cmd->e_operator == OP_AND && g_errno == 0)
+			|| (cmd->e_operator == OP_OR && g_errno != 0))
 		{
 			if (cmd->e_type == PIPE_LIST)
 				ms_executor_pipe_list(main, e, cmd->ptr);

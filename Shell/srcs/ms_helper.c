@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 18:17:59 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 05:49:00 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	*get_envp_value(char **envp, char *key)
 	i = -1;
 	if (key != NULL)
 		if (key[0] == '?' && key[1] == '\0')
-			return (ft_itoa(g_global.error_no));
+			return (ft_itoa(g_errno));
 	while (envp[++i] != 0)
 	{
 		split = envp_split(envp[i]);
@@ -115,38 +115,4 @@ char	**sort_doublearray(char **array)
 		}
 	}
 	return (output);
-}
-
-/**
- * @brief Sorts the list in ascii order
- * 
- * @param lst The head of the list
- */
-void	ft_lstsort(t_list **lst)
-{
-	t_list	*current;
-	t_list	*nextnode;
-	int		sorted;
-	void	*temp;
-
-	sorted = 0;
-	while (sorted == 0)
-	{
-		sorted = 1;
-		current = *lst;
-		nextnode = current;
-		while (nextnode->next != NULL)
-		{
-			if (ft_strcmp(*(char **)nextnode->content,
-					*(char **)nextnode->next->content) > 0)
-			{
-				temp = nextnode->content;
-				nextnode->content = nextnode->next->content;
-				nextnode->next->content = temp;
-				sorted = 0;
-			}
-			nextnode = nextnode->next;
-		}
-		current = current->next;
-	}
 }

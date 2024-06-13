@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:30:44 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 05:34:11 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 05:56:16 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ void	executor(t_main *main, char **command)
 			return ;
 		if (ft_strcmp(command[0], main->func_name[i]) == 0)
 		{
-			g_global.error_no = main->func[i](main, command);
+			g_errno = main->func[i](main, command);
 			return ;
 		}
 	}
 	ft_dprintf(STDERR_FILENO, "%s: command not found\n", command[0]);
-	g_global.error_no = 127;
+	g_errno = 127;
 }
 
 static void	ms_child_close_fd(t_executor *exec, t_pipe_list *p)

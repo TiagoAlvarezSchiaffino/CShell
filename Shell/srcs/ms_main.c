@@ -8,16 +8,11 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 05:46:12 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/13 06:08:00 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
-
-t_global	g_global;
-
-// TEMPORARY FOR DEBUGGING PURPOSES
-void	print_cmd_list(t_cmd_list *cmd_list);
 
 /**
  * @brief Initializes all of the functions pointers with their respective names
@@ -39,22 +34,31 @@ static void	init_main(t_main *main, char **envp)
 	main->envp = dup_doublearray(envp);
 }
 
-static t_cmd_list	*ms_get_cmd_list(char *input)
+static t_cmd_list	*ms_get_cmd_list(t_main *main, char *input)
 {
 	t_parser	*parser;
 	t_cmd_list	*cmd_list;
 
 	parser = ms_parser_init(ms_lexer_init(ft_strdup(input)));
 	cmd_list = ms_parser_parse_cmd_list(parser);
-	g_global.error_no = parser->syntax_error;
+	main->syntax_error = parser->syntax_error;
 	ms_parser_free(&parser);
 	return (cmd_list);
+}
+
+static void	ms_run_execution(t_main *main, t_cmd_list *cmd_list)
+{
+	t_executor	*exec;
+
+	exec = ms_executor_init();
+	ms_heredoc_cmd_list_enqueue(exec, cmd_list);
+	ms_executor_cmd_list(main, exec, cmd_list);
+	ms_executor_free(&exec);
 }
 
 void	ms_read_next_line(t_main *main)
 {
 	t_cmd_list	*cmd_list;
-	t_executor	*exec;
 	char		*input;
 
 	init_signal();
@@ -66,14 +70,11 @@ void	ms_read_next_line(t_main *main)
 		add_history(input);
 		if (!ms_check_dangling(input))
 		{
-			cmd_list = ms_get_cmd_list(input);
-			if (g_global.error_no == 0)
-			{
-				exec = ms_executor_init();
-				ms_heredoc_cmd_list_enqueue(exec, cmd_list);
-				ms_executor_cmd_list(main, exec, cmd_list);
-				ms_executor_free(&exec);
-			}
+			cmd_list = ms_get_cmd_list(main, input);
+			if (main->syntax_error == 0)
+				ms_run_execution(main, cmd_list);
+			else
+				g_errno = main->syntax_error;
 			ms_cmd_list_free(&cmd_list);
 		}
 	}
