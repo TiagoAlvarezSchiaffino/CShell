@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 13:21:11 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 13:23:54 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/14 07:00:30 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,4 @@ t_list	*ft_array_to_list(void *array, int array_size, int elem_size)
 		array += elem_size;
 	}
 	return (head);
-} 
+}

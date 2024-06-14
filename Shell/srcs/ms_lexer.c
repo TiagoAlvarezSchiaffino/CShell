@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 16:58:01 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 17:15:23 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/14 07:12:14 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,9 @@ t_lexer	*ms_lexer_init(char *input)
 }
 
 /**
- * @brief Returns the word token from current position.
-	If lexer hits a single quote (') or a double quote ("), the entire string in
-	the quotes will be included, including whitespace.\
-	@brief i.e. ec"ho hi" will be one token
+ * @brief Returns the word token from current position. If lexer hits a single
+ * quote ' or a double quote ", the entire string in the quotes will be included,
+ * including whitespace. (i.e. ec"ho hi" will be one token)
  * 
  * @param lexer Lexer struct
  * @return t_token* Token containing a string
@@ -83,7 +82,7 @@ t_token	*ms_lexer_get_spec_token(t_lexer *lexer)
 		i++;
 	token = ms_token_init(i + 1, ft_strdup(token_list[i]));
 	lexer->c += ft_strlen(token_list[i]);
-	free_doublearray(token_list);
+	ms_free_doublearray(token_list);
 	return (token);
 }
 

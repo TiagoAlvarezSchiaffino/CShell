@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/06/13 05:49:08 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 19:01:33 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/14 07:10:30 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ms_free_args(void *content)
  * 
  * @param lst The head of the list
  */
-void	ft_lstsort(t_list **lst)
+void	ms_lstsort(t_list **lst)
 {
 	t_list	*current;
 	t_list	*nextnode;

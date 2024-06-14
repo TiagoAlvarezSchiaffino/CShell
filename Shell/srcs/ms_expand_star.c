@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 15:11:31 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 18:46:46 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/14 07:24:28 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	check_valid_star(char **tocheck_in, char **arg_in, int *i, int *j)
 		return (0);
 	while (tocheck[*i] == arg[*j])
 		(*i)++;
-	if (is_valid(tocheck + *i, arg + *j - 1))
+	if (ms_is_valid(tocheck + *i, arg + *j - 1))
 		return (1);
 	(*j)++;
 	if (arg[*j] == '\0' && tocheck[*i] != '\0')
@@ -85,7 +85,7 @@ static int	check_end_string(char *tocheck, char *arg, int *i, int *j)
  * @param arg Argument that will be checked with
  * @return int 1 if it is valid and is not a hidden file, else 0
  */
-int	is_valid(char *tocheck, char *arg)
+int	ms_is_valid(char *tocheck, char *arg)
 {
 	int	i;
 	int	j;
@@ -122,13 +122,13 @@ int	is_valid(char *tocheck, char *arg)
  * @return int 1 if there is a * character in the argument and the current
  * directory can be opened, else 0
  */
-int	check_star(char *arg)
+int	ms_check_star(char *arg)
 {
 	DIR		*dir;
 
 	if (ft_strchr(arg, '*') == NULL)
 		return (0);
-	dir = get_dir(getcwd(NULL, 0));
+	dir = ms_get_dir(getcwd(NULL, 0));
 	if (dir == NULL)
 		return (0);
 	closedir(dir);

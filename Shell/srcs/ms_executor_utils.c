@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/06/10 15:40:23 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 19:08:28 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/14 07:39:13 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ms_exec_is_builtin(char *command)
 		if (ft_strcmp(command, cmds[i]) == 0)
 			res = 1;
 	}
-	free_doublearray(cmds);
+	ms_free_doublearray(cmds);
 	return (res);
 }
 
@@ -93,15 +93,15 @@ void	ms_executor(t_main *main, t_exe *exec, t_pipe *p)
 	char	**argv;
 
 	ms_exec_redir_set(exec, p);
-	expander(main, &p->argv);
+	ms_expander(main, &p->argv);
 	ms_expander_delete_null(&p->argv);
 	ft_lstadd_back(&p->argv, ft_lstnew(ft_calloc(1, sizeof(char *))));
 	argv = ft_list_to_array(p->argv, sizeof(char *));
 	if (argv[0] != NULL && ms_exec_is_builtin(argv[0]))
-		executor(main, argv);
+		ms_executor_bi(main, argv);
 	else if (argv[0] != NULL)
 	{
-		exe_non_bi(main, exec, p, argv);
+		ms_exe_non_bi(main, exec, p, argv);
 		exec->has_child = 1;
 	}
 	free(argv);

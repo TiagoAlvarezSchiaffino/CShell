@@ -8,7 +8,7 @@
 #                                                            (    @\___      #
 #                                                             /         O    #
 #   Created: 2024/05/16 21:17:51 by Tiago                    /   (_____/     #
-#   Updated: 2024/06/13 19:11:14 by Tiago                 /_____/ U          #
+#   Updated: 2024/06/14 07:00:24 by Tiago                 /_____/ U          #
 #                                                                            #
 # ************************************************************************** #
 
@@ -18,8 +18,8 @@ CC			=	gcc
 RM			=	rm -rf
 MKDIR		=	mkdir -p
 CFLAGS		=	-Wall -Wextra -Werror
-CFLAGS		+=	-I/usr/local/opt/readline/include -g
-CFLAGS		+=	-fsanitize=address -g3
+CFLAGS		+=	-I/usr/local/opt/readline/include
+# CFLAGS		+=	-fsanitize=address -g3
 READLINE	=	-lreadline
 READLINE	+=	-L/usr/local/opt/readline/lib
 SRCS_FILES	=	ms_expand_dollar_utils \
@@ -74,7 +74,7 @@ $(OBJS_DIR)%.o: $(SRCS_DIR)%.c
 
 $(NAME):		$(OBJS)
 				$(CC) $(CFLAGS) $^ $(READLINE) -Llibft -lft -o $@
-
+				
 libft:
 				make -C $(LIBFT_DIR)
 
@@ -89,6 +89,6 @@ fclean:			clean
 re:				fclean all
 
 valgrind:
-				valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=valgrind-out.txt ./minishell
+				valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=valgrind-out.txt ./shell
 
 .PHONY:			all libft clean fclean re

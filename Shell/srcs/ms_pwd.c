@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 06:58:30 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/14 07:07:36 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
  * @param args Arguments (Can be NULL)
  * @return int 0 on success
  */
-int	pwd(t_main *main, char **args)
+int	ms_pwd(t_main *main, char **args)
 {
 	char	*path;
 

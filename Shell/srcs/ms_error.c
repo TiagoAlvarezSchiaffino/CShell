@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 06:22:33 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/14 07:41:23 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  * 
  * @param errormsg Error message to be printed
  */
-void	perror_and_exit(char *errormsg)
+void	ms_perror_and_exit(char *errormsg)
 {
 	perror(errormsg);
 	exit(EXIT_FAILURE);
@@ -33,7 +33,7 @@ void	perror_and_exit(char *errormsg)
  * @param type The type of builtin function it is called from (unset or export)
  * @return int 1 to be set as errno
  */
-int	export_unset_error(char *arg, char *type)
+int	ms_export_unset_error(char *arg, char *type)
 {
 	ft_dprintf(STDERR_FILENO, "%s: `%s': not a valid identifier\n", type, arg);
 	return (1);

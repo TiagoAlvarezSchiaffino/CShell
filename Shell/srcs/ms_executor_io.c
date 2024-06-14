@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/06/10 16:51:20 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 18:29:28 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/14 07:39:56 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	ms_executor_check_file_error(t_exe *exec, char *filename)
 {
 	if (exec->infile == -1 || exec->outfile == -1)
 	{
-		ft_dprintf(2, "minishell: %s: %s\n", filename, strerror(errno));
+		ft_dprintf(2, "shell: %s: %s\n", filename, strerror(errno));
 		exec->runtime_error = 1;
 	}
 	return (exec->runtime_error);
@@ -48,7 +48,7 @@ static int	ms_executor_ambiguous(t_exe *exec, t_list *value, char *env_val)
 {
 	if (ft_lstsize(value) != 1)
 	{
-		ft_dprintf(2, "minishell: %s: ambiguous redirect\n", env_val);
+		ft_dprintf(2, "shell: %s: ambiguous redirect\n", env_val);
 		exec->runtime_error = 1;
 		return (1);
 	}
@@ -114,7 +114,7 @@ void	ms_executor_io_list(t_main *main, t_exe *exec, t_io *io)
 		if (io->e_type != IO_AIN)
 		{
 			env_val = ft_strdup(*(char **)io->value->content);
-			expander(main, &io->value);
+			ms_expander(main, &io->value);
 			ms_expander_delete_null(&io->value);
 			if (ms_executor_ambiguous(exec, io->value, env_val))
 			{

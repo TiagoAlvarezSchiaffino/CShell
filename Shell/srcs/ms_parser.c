@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/30 17:20:18 by Tiago                    /   (_____/     */
-/*   Updated: 2024/05/30 17:33:02 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/14 07:08:11 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,8 @@ t_parser	*ms_parser_init(t_lexer *lexer)
 }
 
 /**
- * @brief Frees current token and gets next token from lexer.\
- * @brief If current token is special, i.e. not a word token, free the value.\
- * @brief \
- * @brief nom nom yummy tokens~
+ * @brief Frees current token and gets next token from lexer. If current token
+ * is special (i.e. not a word token), free the value. Nom nom yummy tokens~
  * 
  * @param parser Parser struct.
  */

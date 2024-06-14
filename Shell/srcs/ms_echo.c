@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 06:20:22 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/14 07:42:32 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	get_flag(char **args)
  * @param args Arguments that will be printed out
  * @return int 0 on success
  */
-int	echo(t_main *main, char **args)
+int	ms_echo(t_main *main, char **args)
 {
 	int	i;
 	int	flag_count;

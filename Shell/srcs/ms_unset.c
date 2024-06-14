@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 06:58:56 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/14 07:04:50 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ static void	find_and_delete(t_main *main, char *key)
 	j = 0;
 	while (main->envp[++i] != 0)
 	{
-		split = envp_split(main->envp[i]);
+		split = ms_envp_split(main->envp[i]);
 		if (ft_strcmp(split[0], key) != 0)
 			new_envp[j++] = ft_strdup(main->envp[i]);
-		free_doublearray(split);
+		ms_free_doublearray(split);
 	}
-	free_doublearray(main->envp);
+	ms_free_doublearray(main->envp);
 	main->envp = new_envp;
 }
 
@@ -56,14 +56,14 @@ static void	find_and_delete(t_main *main, char *key)
  * @param args Arguments that will be unset
  * @return int 0 on success, else 1
  */
-int	unset(t_main *main, char **args)
+int	ms_unset(t_main *main, char **args)
 {
 	int		i;
 
 	i = 0;
 	while (args[++i] != 0)
 	{
-		if (check_valid_identifier(args[i], args[i], "unset") == 0)
+		if (ms_check_valid_identifier(args[i], args[i], "unset") == 0)
 			find_and_delete(main, args[i]);
 		else
 			return (1);

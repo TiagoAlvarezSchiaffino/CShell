@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/06/10 16:15:15 by Tiago                   /   (_____/      */
-/*   Updated: 2024/06/13 18:46:32 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/14 07:27:12 by Tiago                   /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	files_is_null(t_list *files, t_expand *exp)
 	while (exp->arg[exp->i + 1] != '\0' && exp->arg[exp->i + 1] != '\''
 		&& exp->arg[exp->i + 1] != '\"')
 	{
-		exp->output = append_char(exp->output, exp->arg[exp->i]);
+		exp->output = ms_append_char(exp->output, exp->arg[exp->i]);
 		exp->i++;
 	}
 	return (0);
@@ -50,11 +50,11 @@ static void	filter_quote(t_expand *exp)
 {
 	if (exp->arg[exp->i] == '\\' && exp->arg[exp->i + 1] == '\"')
 	{
-		exp->output = append_char(exp->output, '\'');
+		exp->output = ms_append_char(exp->output, '\'');
 		exp->i++;
 	}
 	else if (exp->arg[exp->i] != '\'')
-		exp->output = append_char(exp->output, exp->arg[exp->i]);
+		exp->output = ms_append_char(exp->output, exp->arg[exp->i]);
 	exp->i++;
 }
 
@@ -69,7 +69,7 @@ static void	filter_quote(t_expand *exp)
  * @param current Current node of the argument linked list
  * @return t_list* Next node of the argument to be expanded (Excluding the files)
  */
-t_list	*expand_second_phase(t_expand *exp, t_list *current)
+t_list	*ms_expand_second(t_expand *exp, t_list *current)
 {
 	t_list	*files;
 	int		dollar;
@@ -80,19 +80,19 @@ t_list	*expand_second_phase(t_expand *exp, t_list *current)
 	exp->output = ft_calloc(1, sizeof(char *));
 	dollar = 0;
 	if (exp->arg == NULL)
-		return (check_output_dollar(current, exp->output, dollar));
+		return (ms_check_output_dollar(current, exp->output, dollar));
 	while (exp->arg[exp->i] != '\0')
 	{
 		dollar = 0;
 		if (exp->arg[exp->i] == '\'')
 			quote = (quote == 0);
-		if (exp->arg[exp->i] == '*' && check_star(exp->arg) && quote == 0)
+		if (exp->arg[exp->i] == '*' && ms_check_star(exp->arg) && quote == 0)
 		{
-			files = get_files_from_dir(exp->arg);
+			files = ms_get_files_from_dir(exp->arg);
 			if (files_is_null(files, exp))
-				return (connect_cur_with_cur(current, files, exp->output));
+				return (ms_cnct_lst_to_cur(current, files, exp->output));
 		}
 		filter_quote(exp);
 	}
-	return (check_output_dollar(current, exp->output, dollar));
+	return (ms_check_output_dollar(current, exp->output, dollar));
 }

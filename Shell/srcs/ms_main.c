@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 19:03:50 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/14 07:10:18 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@
 static void	init_main(t_main *main, char **envp)
 {
 	main->func_name = ft_split("echo cd pwd export unset env exit", ' ');
-	main->func[MS_ECHO] = echo;
-	main->func[MS_CD] = cd;
-	main->func[MS_PWD] = pwd;
-	main->func[MS_EXPORT] = export;
-	main->func[MS_UNSET] = unset;
-	main->func[MS_ENV] = env;
+	main->func[MS_ECHO] = ms_echo;
+	main->func[MS_CD] = ms_cd;
+	main->func[MS_PWD] = ms_pwd;
+	main->func[MS_EXPORT] = ms_export;
+	main->func[MS_UNSET] = ms_unset;
+	main->func[MS_ENV] = ms_env;
 	main->func[MS_EXIT] = ms_exit;
-	main->envp = dup_doublearray(envp);
+	main->envp = ms_dup_doublearray(envp);
 }
 
 /**
@@ -85,7 +85,7 @@ void	ms_read_next_line(t_main *main)
 	t_cmd	*cmd_list;
 	char	*input;
 
-	init_signal();
+	ms_init_signal();
 	input = readline("$> ");
 	if (input == NULL)
 		main->func[MS_EXIT](NULL, NULL);
@@ -107,7 +107,7 @@ void	ms_read_next_line(t_main *main)
 
 /**
  * @brief Initializes the main struct and enters a while(1) loop to start
- * minishell
+ * shell
  * 
  * @param ac The argument count (Can be NULL)
  * @param av The argument variables (Can be NULL)

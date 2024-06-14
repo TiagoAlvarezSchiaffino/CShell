@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/27 14:51:06 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 06:48:42 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/14 07:20:32 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	add_new_envp(t_main *main, char *key, char *value, int i)
 	}
 	while (--i >= 0)
 		new_envp[i] = ft_strdup(main->envp[i]);
-	free_doublearray(main->envp);
+	ms_free_doublearray(main->envp);
 	main->envp = new_envp;
 }
 
@@ -119,23 +119,20 @@ static int	find_and_add(t_main *main, char **args)
 {
 	int		i;
 	char	**split;
+	int		error;
 
 	i = 0;
+	error = 0;
 	while (args[++i] != 0)
 	{
-		split = envp_split(args[i]);
-		if (check_valid_identifier(args[i], split[0], "export") == 0)
-		{
+		split = ms_envp_split(args[i]);
+		if (ms_check_valid_identifier(args[i], split[0], "export") == 0)
 			update_envp(main, args[i], split[0], split[1]);
-			free_doublearray(split);
-		}
 		else
-		{
-			free_doublearray(split);
-			return (1);
-		}
+			error = 1;
+		ms_free_doublearray(split);
 	}
-	return (0);
+	return (error);
 }
 
 /**
@@ -146,15 +143,15 @@ static int	find_and_add(t_main *main, char **args)
  * @param args The arguments
  * @return int 0 on success
  */
-int	export(t_main *main, char **args)
+int	ms_export(t_main *main, char **args)
 {
 	char	**dup;
 
 	if (args[1] == 0 || args[1][0] == '#')
 	{
-		dup = sort_doublearray(main->envp);
-		print_export(dup);
-		free_doublearray(dup);
+		dup = ms_sort_doublearray(main->envp);
+		ms_print_export(dup);
+		ms_free_doublearray(dup);
 	}
 	else
 		return (find_and_add(main, args));

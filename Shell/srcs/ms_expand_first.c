@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/06/10 16:03:01 by Tiago                   /   (_____/      */
-/*   Updated: 2024/06/13 17:54:42 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/14 07:29:17 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,26 +31,26 @@ static void	convert_dquote(t_main *main, t_expand *exp)
 	{
 		if (exp->arg[exp->i] == '\'')
 		{
-			exp->output = append_char(exp->output, '\\');
-			exp->output = append_char(exp->output, '\"');
+			exp->output = ms_append_char(exp->output, '\\');
+			exp->output = ms_append_char(exp->output, '\"');
 		}
 		else if (exp->arg[exp->i] == '$')
 		{
 			if (exp->arg[exp->i + 1] == '\"' || exp->arg[exp->i + 1] == '\'')
-				exp->output = append_char(exp->output, '$');
+				exp->output = ms_append_char(exp->output, '$');
 			else
-				recurs_expand_dollar(main, exp, 0);
+				ms_recurs_expand_dollar(main, exp, 0);
 		}
 		else if (exp->arg[exp->i] == '*')
 		{
-			exp->output = append_char(exp->output, '\'');
+			exp->output = ms_append_char(exp->output, '\'');
 			while (exp->arg[exp->i] != '\0' && exp->arg[exp->i] != '\"')
-				exp->output = append_char(exp->output, exp->arg[exp->i++]);
-			exp->output = append_char(exp->output, '\'');
+				exp->output = ms_append_char(exp->output, exp->arg[exp->i++]);
+			exp->output = ms_append_char(exp->output, '\'');
 			break ;
 		}
 		else
-			exp->output = append_char(exp->output, exp->arg[exp->i]);
+			exp->output = ms_append_char(exp->output, exp->arg[exp->i]);
 	}
 }
 
@@ -70,21 +70,21 @@ static int	convert_quote_star(t_main *main, t_expand *exp, int *quote)
 {
 	if (exp->arg[exp->i] == '\'')
 	{
-		exp->output = append_char(exp->output, '\0');
+		exp->output = ms_append_char(exp->output, '\0');
 		*quote = (*quote == 0);
 		exp->i++;
 		return (1);
 	}
 	else if (exp->arg[exp->i] == '\"' && *quote == 0)
 	{
-		exp->output = append_char(exp->output, '\0');
+		exp->output = ms_append_char(exp->output, '\0');
 		convert_dquote(main, exp);
 		exp->i++;
 		return (1);
 	}
 	else if (exp->arg[exp->i] == '*' && *quote == 1)
 	{
-		exp->output = append_char(exp->output, '\'');
+		exp->output = ms_append_char(exp->output, '\'');
 		exp->output = ft_strjoin_free(exp->output, "*\'");
 		exp->i++;
 		return (1);
@@ -104,7 +104,7 @@ static int	convert_quote_star(t_main *main, t_expand *exp, int *quote)
  * @param current Current node of the argument linked list
  * @return t_list* Next node of the argument linked list to be expanded
  */
-t_list	*expand_first_phase(t_main *main, t_expand *exp, t_list *current)
+t_list	*ms_expand_first(t_main *main, t_expand *exp, t_list *current)
 {
 	int		quote;
 	int		dollar;
@@ -117,18 +117,18 @@ t_list	*expand_first_phase(t_main *main, t_expand *exp, t_list *current)
 		dollar = 0;
 		if (convert_quote_star(main, exp, &quote))
 			continue ;
-		else if (exp->arg[exp->i] == '$' && quote == 0)
+		else if (exp->arg[exp->i] == '$' && exp->arg[exp->i + 1] != ':'
+			&& quote == 0)
 		{
-			dollar = expand_dlr(&current, exp,
-					dlr_val(main, &exp->arg[exp->i]));
-			while (exp->arg[exp->i + 1] != '\0' && exp->arg[exp->i + 1] != '\''
-				&& exp->arg[exp->i + 1] != '\"' && exp->arg[exp->i + 1] != '$'
-				&& exp->arg[exp->i + 1] != '*')
-					exp->i++;
+			dollar = ms_expand_dlr(&current, exp,
+					ms_dlr_val(main, &exp->arg[exp->i]));
+			while (ft_isalnum(exp->arg[exp->i + 1])
+				|| exp->arg[exp->i + 1] == '?')
+				exp->i++;
 		}
 		else
-			exp->output = append_char(exp->output, exp->arg[exp->i]);
+			exp->output = ms_append_char(exp->output, exp->arg[exp->i]);
 		exp->i++;
 	}
-	return (check_output_dollar(current, exp->output, dollar));
+	return (ms_check_output_dollar(current, exp->output, dollar));
 }

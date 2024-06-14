@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 18:49:50 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/14 07:14:29 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  * 
  * @param split Double array that will be freed
  */
-void	free_doublearray(char **split)
+void	ms_free_doublearray(char **split)
 {
 	int	i;
 
@@ -35,7 +35,7 @@ void	free_doublearray(char **split)
  * @param src Double array source that will be duplicated
  * @return char** double array that was duplicated from src
  */
-char	**dup_doublearray(char **src)
+char	**ms_dup_doublearray(char **src)
 {
 	char	**output;
 	int		i;
@@ -57,7 +57,7 @@ char	**dup_doublearray(char **src)
  * @param key Key of the value
  * @return char* value of the key if the key is found, else NULL if its not found
  */
-char	*get_envp_value(char **envp, char *key)
+char	*ms_get_envp_value(char **envp, char *key)
 {
 	char	**split;
 	char	*value;
@@ -69,14 +69,14 @@ char	*get_envp_value(char **envp, char *key)
 			return (ft_itoa(g_errno));
 	while (envp[++i] != 0)
 	{
-		split = envp_split(envp[i]);
+		split = ms_envp_split(envp[i]);
 		if (ft_strcmp(split[0], key) == 0)
 		{
 			value = ft_strdup(split[1]);
-			free_doublearray(split);
+			ms_free_doublearray(split);
 			return (value);
 		}
-		free_doublearray(split);
+		ms_free_doublearray(split);
 	}
 	return (NULL);
 }
@@ -88,7 +88,7 @@ char	*get_envp_value(char **envp, char *key)
  * @param envp The enviroment variable array
  * @return char** envp that is malloc'ed and sorted
  */
-char	**sort_doublearray(char **array)
+char	**ms_sort_doublearray(char **array)
 {
 	int		i;
 	int		j;
@@ -96,7 +96,7 @@ char	**sort_doublearray(char **array)
 	char	**output;
 	char	*temp;
 
-	output = dup_doublearray(array);
+	output = ms_dup_doublearray(array);
 	max = 0;
 	while (array[max] != 0)
 		max++;

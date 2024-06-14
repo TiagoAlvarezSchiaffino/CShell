@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:39:47 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 19:10:32 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/14 07:45:11 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@
  * @param args Arguments that will be cd into
  * @return int 0 on success
  */
-int	cd(t_main *main, char **args)
+int	ms_cd(t_main *main, char **args)
 {
 	char	*path;
 
 	if (args[1] == 0)
 	{
-		path = get_envp_value(main->envp, "HOME");
+		path = ms_get_envp_value(main->envp, "HOME");
 		if (path == NULL)
 			ft_dprintf(STDERR_FILENO, "HOME not set\n");
 		else if (chdir(path) < 0)

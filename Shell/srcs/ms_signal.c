@@ -8,7 +8,7 @@
 /*                                                            (    @\___      */
 /*                                                             /         O    */
 /*   Created: 2024/05/16 19:38:49 by Tiago                    /   (_____/     */
-/*   Updated: 2024/06/13 06:08:08 by Tiago                  /_____/ U         */
+/*   Updated: 2024/06/14 07:07:02 by Tiago                  /_____/ U         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
  * 
  * @param signo The signal (Should be SIGINT)
  */
-void	sigint_handler(int signo)
+void	ms_sigint_handler(int signo)
 {
 	if (signo != SIGINT)
 		return ;
@@ -35,7 +35,7 @@ void	sigint_handler(int signo)
  * not print ^C or ^D. This is done by turning the ECHO flag off. When CTRL-\
  * (SIGQUIT) signal is received, it is ignored
  */
-void	init_signal(void)
+void	ms_init_signal(void)
 {
 	struct termios	termios_current;
 
@@ -50,6 +50,6 @@ void	init_signal(void)
 		perror("Tcsetattr failed\n");
 		exit(errno);
 	}
-	signal(SIGINT, sigint_handler);
+	signal(SIGINT, ms_sigint_handler);
 	signal(SIGQUIT, SIG_IGN);
 }
